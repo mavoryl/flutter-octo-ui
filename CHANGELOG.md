@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.7.0-dev.0] — 2026-05-26
+
+### Changed
+
+- Upgraded `golden_matrix` 0.18.1 → 0.19.0 to pick up the new
+  `componentMatrixGolden` API. Migrated 11 small-component golden
+  tests (button, icon_button, label, counter_label, spinner,
+  state_label, divider, progress_bar, flash, collapsible, pagination)
+  off `matrixGolden` so the captured PNGs are widget-sized instead of
+  swimming inside a phone viewport — file names drop the device
+  segment (`<theme>_<locale>_<dir>_<scale>.png`). Bigger / overlay /
+  scaffold-positioned components stay on `matrixGolden` where the
+  viewport context still matters.
+- New `octoComponentWrap(child)` helper in `test/goldens/_octo_matrix
+  .dart` — `componentMatrixGolden` does not expose a `wrapApp` hook,
+  so the helper pulls `OctoThemeData` out of the inherited Material
+  theme (it sits there as a `ThemeExtension` via
+  `OctoThemeData.toMaterialTheme`) and installs `OctoTheme` above the
+  scenario subtree.
+
 ### Added
 
 - **`OctoDataTable<T>`** + `OctoDataColumn<T>` + `OctoDataColumnAlignment`
