@@ -64,6 +64,7 @@ void main() {
     axes: MatrixAxes(themes: octoThemes),
     wrapApp: wrapInOctoTheme,
     reportFormats: octoReportFormats,
+    tolerance: octoGoldenTolerance,
   );
 }
 

@@ -19,6 +19,14 @@ Widget wrapInOctoTheme(Widget app, MatrixCombination combination) {
   return OctoTheme(data: octo, child: app);
 }
 
+/// Pixel-diff tolerance for every Octo golden, expressed as a fraction.
+///
+/// `0.01` = up to 1 % of pixels may differ before a test fails. This absorbs
+/// sub-pixel anti-aliasing / font hinting differences between the local
+/// macOS dev machine where baselines are baked and the CI macOS runner —
+/// without hiding real visual regressions.
+const double octoGoldenTolerance = 0.01;
+
 /// Report formats for goldens.
 ///
 /// Locally — silence (no HTML / Markdown / JSON / XML on disk). In CI
