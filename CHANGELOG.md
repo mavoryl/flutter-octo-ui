@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.5.0-dev.0] — 2026-05-26
+
 ### Added
 
 - **`OctoToast`** + `OctoToastVariant` + `OctoToastAction` +
