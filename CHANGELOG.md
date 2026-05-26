@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.8.0] — 2026-05-26
+
+First stable release on pub.dev. Promotes the `0.7.0-dev.0` component
+surface (25 components across form / display / navigation / overlay /
+data / layout categories) without API changes.
+
+### Changed
+
+- Repository / issue-tracker URLs in `pubspec.yaml` point at the
+  canonical `github.com/Autocrab/flutter-octo-ui` location.
+- Package description, library doc comment, and README reframe the
+  positioning as *cross-platform, optimised for devtools / dashboards
+  / dense data*. No platform restrictions in `pubspec.yaml` — the kit
+  runs anywhere Flutter does; mobile just isn't the design target.
+- `README.md` rewritten to cover the current component catalogue,
+  theming model, accessibility baseline, and the golden-test split
+  between `matrixGolden` and `componentMatrixGolden`.
+- `NOTICE` keeps the upstream MIT / BSD-3 attributions for Octicons +
+  `flutter_octicons` and drops the standalone disclaimer paragraph.
+- New `.pubignore` shaves the published archive from ~15 MB to ~88 KB
+  by excluding test goldens, example platform scaffolding, CI
+  plumbing, and dev tooling configs. Mirrors `.gitignore` patterns so
+  the two files stay in sync.
+
 ## [0.7.0-dev.0] — 2026-05-23
 
 ### Changed
