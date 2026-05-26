@@ -1,0 +1,24 @@
+name: octo_ui
+description: >-
+  GitHub Primer-inspired Flutter UI kit for web, desktop, devtools, dashboards,
+  and admin panels. Not affiliated with GitHub.
+version: 0.1.0-dev.0
+repository: https://github.com/maratshakirov/octo_ui
+issue_tracker: https://github.com/maratshakirov/octo_ui/issues
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.15.0
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  golden_matrix: ^0.18.1
+
+flutter:
