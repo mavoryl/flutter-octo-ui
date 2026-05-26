@@ -1,6 +1,7 @@
 export 'action_list/octo_action_list.dart';
 export 'action_list/octo_action_list_item.dart';
 export 'button/octo_button.dart';
+export 'checkbox/octo_checkbox.dart';
 export 'command_palette/octo_command_palette.dart';
 export 'command_palette/octo_command_palette_controller.dart';
 export 'counter_label/octo_counter_label.dart';
@@ -9,6 +10,8 @@ export 'icon_button/octo_icon_button.dart';
 export 'label/octo_label.dart';
 export 'menu/octo_menu.dart';
 export 'menu/octo_menu_controller.dart';
+export 'radio/octo_radio.dart';
+export 'switch/octo_switch.dart';
 export 'text_field/octo_text_field.dart';
 export 'tooltip/octo_tooltip.dart';
 export 'underline_nav/octo_underline_nav.dart';

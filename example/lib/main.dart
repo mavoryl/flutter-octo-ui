@@ -131,6 +131,9 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
   bool _showError = false;
   String _lastAction = '';
   int _navIndex = 0;
+  bool _notifications = true;
+  bool? _terms = false;
+  String _priority = 'medium';
 
   @override
   void dispose() {
@@ -377,6 +380,68 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                       const OctoTextField(
                         placeholder: 'disabled',
                         enabled: false,
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Form controls',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          OctoSwitch(
+                            value: _notifications,
+                            onChanged: (v) =>
+                                setState(() => _notifications = v),
+                            semanticLabel: 'Notifications',
+                          ),
+                          SizedBox(width: theme.spacing.gap.md),
+                          OctoText(
+                            _notifications
+                                ? 'Notifications: enabled'
+                                : 'Notifications: muted',
+                            kind: OctoTextKind.body,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: theme.spacing.gap.md),
+                      Row(
+                        children: [
+                          OctoCheckbox(
+                            value: _terms,
+                            tristate: true,
+                            onChanged: (v) => setState(() => _terms = v),
+                            semanticLabel: 'I accept the terms',
+                          ),
+                          SizedBox(width: theme.spacing.gap.md),
+                          const OctoText(
+                            'I accept the terms (tap cycles tri-state)',
+                            kind: OctoTextKind.body,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: theme.spacing.gap.md),
+                      OctoText(
+                        'Priority',
+                        kind: OctoTextKind.label,
+                        color: theme.colors.fg.muted,
+                      ),
+                      SizedBox(height: theme.spacing.gap.sm),
+                      Row(
+                        children: [
+                          for (final p in const ['low', 'medium', 'high']) ...[
+                            OctoRadio<String>(
+                              value: p,
+                              groupValue: _priority,
+                              onChanged: (v) => setState(() => _priority = v!),
+                            ),
+                            SizedBox(width: theme.spacing.gap.sm),
+                            OctoText(p, kind: OctoTextKind.body),
+                            SizedBox(width: theme.spacing.gap.lg),
+                          ],
+                        ],
                       ),
                     ],
                   ),

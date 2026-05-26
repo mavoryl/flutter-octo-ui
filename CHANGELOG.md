@@ -6,6 +6,26 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoSwitch`** — pill-shaped on/off toggle. Controlled
+  (`value` + `onChanged`); `onChanged: null` disables. Animated thumb
+  (`theme.animation.fast` + `standardCurve`). `Space` activates the
+  focused switch via `ActivateIntent`. `Semantics(toggled, enabled,
+  label)`.
+- **`OctoCheckbox`** — 16×16 box with the Octicons `check_16` / `dash_16`
+  glyph. Supports `tristate: true` for indeterminate (cycle
+  `false → true → null → false`); a non-tristate checkbox with a `null`
+  value triggers an assertion. `Semantics(checked, mixed, enabled,
+  label)`.
+- **`OctoRadio<T>`** — generic radio with `value` / `groupValue` /
+  `onChanged`. Tapping the already-selected radio is a no-op; tapping a
+  sibling sends its value. `Semantics(inMutuallyExclusiveGroup, checked,
+  enabled, label)`.
+- Shared golden suite `octo_form_controls` covers Switch / Checkbox /
+  Radio across off / on / disabled / indeterminate states. Tests 13
+  widget cases (4 + 5 + 4) across the three components.
+- Kitchen-sink demo grows a "Form controls" section: a notifications
+  switch, a tri-state terms checkbox, and a 3-radio priority group.
+
 - **Octicons integration** — `flutter_octicons ^1.71.0` is now a direct
   dependency, and `package:octo_ui/octo_ui.dart` re-exports the
   `OctIcons` class so apps can write `Icon(OctIcons.code_16)` without an
