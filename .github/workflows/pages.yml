@@ -42,11 +42,14 @@ jobs:
 
       - name: Build web
         working-directory: example
-        # `--base-href` is the GitHub Pages sub-path. The repo lives at
+        # `--base-href` is the GitHub Pages sub-path (the repo lives at
         # `Autocrab/flutter-octo-ui`, so the URL prefix is
-        # `/flutter-octo-ui/`. CanvasKit renders text identically to
-        # the macOS dev environment used for goldens.
-        run: flutter build web --release --base-href "/flutter-octo-ui/"
+        # `/flutter-octo-ui/`).
+        # `--wasm` opts into the Skwasm renderer (faster scrolling and
+        # paint than CanvasKit on Chromium 119+ / Firefox 120+) and
+        # bundles a CanvasKit fallback for browsers without WasmGC, so
+        # the demo loads everywhere without manual UA detection.
+        run: flutter build web --release --wasm --base-href "/flutter-octo-ui/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
