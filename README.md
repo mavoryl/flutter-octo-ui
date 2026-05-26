@@ -1,5 +1,8 @@
 # octo_ui
 
+[![pub package](https://img.shields.io/pub/v/octo_ui.svg)](https://pub.dev/packages/octo_ui)
+[![CI](https://github.com/Autocrab/flutter-octo-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Autocrab/flutter-octo-ui/actions/workflows/ci.yml)
+
 A cross-platform Flutter UI kit inspired by [Primer](https://primer.style/). Optimised for **devtools, dashboards, admin panels, and dense data-heavy interfaces** — but every widget shares the same theme tokens, focus model, and accessibility baseline regardless of platform, so it runs cleanly on mobile too.
 
 ## Why another UI kit
@@ -13,7 +16,7 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current development tag is **`0.7.0-dev.0`**; `0.8.0` will be the first pub.dev publish.
+Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.8.0`**.
 
 ## Component catalogue
 
@@ -40,20 +43,11 @@ Pre-1.0 — APIs may evolve between `0.x` releases. The current development tag 
 ## Installation
 
 ```yaml
-# Once published to pub.dev
 dependencies:
   octo_ui: ^0.8.0
 ```
 
-Until then, pull from git:
-
-```yaml
-dependencies:
-  octo_ui:
-    git:
-      url: https://github.com/Autocrab/flutter-octo-ui
-      ref: v0.7.0-dev.0
-```
+Or `flutter pub add octo_ui`.
 
 ## Quick start
 
