@@ -26,6 +26,7 @@ export 'skeleton/octo_skeleton.dart';
 export 'spinner/octo_spinner.dart';
 export 'state_label/octo_state_label.dart';
 export 'switch/octo_switch.dart';
+export 'tabs/octo_tabs.dart';
 export 'text_field/octo_text_field.dart';
 export 'toast/octo_toast.dart';
 export 'tooltip/octo_tooltip.dart';

@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoTabs`** — content-switching tab group built on top of
+  `OctoUnderlineNav`. Pairs a list of `OctoUnderlineNavItem` tabs with
+  an equal-length list of body widgets and swaps the visible body via
+  `AnimatedSwitcher` (180 ms cross-fade by default) when the user picks
+  a different tab. *Uncontrolled* via `initialIndex` or *controlled*
+  via `selectedIndex` + `onTabChanged`. Motion-reduce
+  (`MediaQuery.disableAnimationsOf`) drops the switch duration to zero
+  so transitions snap. Tapping the already-active tab is a no-op.
 - **`OctoPagination`** — paged navigator (Primer "Pagination"). 1-based
   `currentPage` + `pageCount`, fires `onPageChanged(int)` when the user
   picks a different page (the already-selected tile silently ignores

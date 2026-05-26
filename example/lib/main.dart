@@ -140,6 +140,8 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
   String? _droppedPriority = 'medium';
 
   int _paginationPage = 1;
+
+  int _tabIndex = 0;
   final Set<String> _chips = {'frontend', 'flutter', 'p1'};
 
   @override
@@ -585,6 +587,57 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                           message: 'Failed to publish workflow',
                           variant: OctoToastVariant.danger,
                           dismissible: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Tabs — content-switching tab group',
+                  child: OctoTabs(
+                    selectedIndex: _tabIndex,
+                    onTabChanged: (i) => setState(() => _tabIndex = i),
+                    tabs: const [
+                      OctoUnderlineNavItem(label: 'Overview'),
+                      OctoUnderlineNavItem(
+                        label: 'Issues',
+                        trailing: OctoCounterLabel(12),
+                      ),
+                      OctoUnderlineNavItem(
+                        label: 'Pull requests',
+                        trailing: OctoCounterLabel(3),
+                      ),
+                    ],
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: theme.spacing.gap.md,
+                        ),
+                        child: OctoText(
+                          'Repository overview — README, recent commits, '
+                          'contributors.',
+                          kind: OctoTextKind.bodySmall,
+                          color: theme.colors.fg.muted,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: theme.spacing.gap.md,
+                        ),
+                        child: OctoText(
+                          '12 open issues, sorted by recent activity.',
+                          kind: OctoTextKind.bodySmall,
+                          color: theme.colors.fg.muted,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: theme.spacing.gap.md,
+                        ),
+                        child: OctoText(
+                          '3 pull requests awaiting review.',
+                          kind: OctoTextKind.bodySmall,
+                          color: theme.colors.fg.muted,
                         ),
                       ),
                     ],
