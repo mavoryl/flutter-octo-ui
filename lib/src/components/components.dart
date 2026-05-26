@@ -30,6 +30,8 @@ export 'state_label/octo_state_label.dart';
 export 'switch/octo_switch.dart';
 export 'tabs/octo_tabs.dart';
 export 'text_field/octo_text_field.dart';
+export 'timeline/octo_timeline.dart';
+export 'timeline/octo_timeline_item.dart';
 export 'toast/octo_toast.dart';
 export 'tooltip/octo_tooltip.dart';
 export 'underline_nav/octo_underline_nav.dart';

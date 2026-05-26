@@ -595,6 +595,40 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                   ),
                 ),
                 _Section(
+                  title: 'Timeline — activity feed',
+                  child: SizedBox(
+                    width: 360,
+                    child: OctoTimeline(
+                      items: const [
+                        OctoTimelineItem(
+                          icon: OctIcons.git_commit_16,
+                          title: 'Created branch feature/foo',
+                          subtitle: '2 hours ago',
+                        ),
+                        OctoTimelineItem(
+                          icon: OctIcons.comment_16,
+                          title: 'Anna commented',
+                          subtitle: '1 hour ago',
+                          variant: OctoTimelineVariant.accent,
+                          body: Text('LGTM — ship it.'),
+                        ),
+                        OctoTimelineItem(
+                          icon: OctIcons.git_pull_request_16,
+                          title: 'Opened pull request #42',
+                          subtitle: '54 minutes ago',
+                          variant: OctoTimelineVariant.success,
+                        ),
+                        OctoTimelineItem(
+                          icon: OctIcons.x_circle_16,
+                          title: 'Deploy to staging failed',
+                          subtitle: 'just now',
+                          variant: OctoTimelineVariant.danger,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                _Section(
                   title: 'Side nav — vertical sidebar navigation',
                   child: SizedBox(
                     width: 220,

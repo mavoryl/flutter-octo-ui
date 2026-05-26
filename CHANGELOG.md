@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoTimeline`** + `OctoTimelineItem` + `OctoTimelineVariant` —
+  vertical activity feed (Primer "Timeline"). Each entry pairs a 24 px
+  variant-tinted marker disc with a title / subtitle / optional `body`
+  widget; a 2 px `border.muted` rail runs through the entries to give
+  the feed a continuous chronological spine (the rail uses
+  `Clip.none` on its Stack so it extends through the per-row bottom
+  padding into the next entry). Five marker variants — standard /
+  accent / success / attention / danger.
 - **`OctoSideNav`** + `OctoSideNavItem` — vertical sidebar navigation
   (Primer "SideNav"). Renders a stretched column of tappable rows
   bounded on the right by a `border.muted` divider. The selected row
