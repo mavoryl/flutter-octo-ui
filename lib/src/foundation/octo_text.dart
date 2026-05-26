@@ -41,8 +41,8 @@ class OctoText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.semanticsLabel,
-  }) : kind = OctoTextKind.body,
-       styleOverride = style;
+  })  : kind = OctoTextKind.body,
+        styleOverride = style;
 
   TextStyle _resolve(OctoThemeData theme) {
     if (styleOverride != null) return styleOverride!;

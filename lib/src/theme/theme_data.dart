@@ -35,27 +35,29 @@ class OctoThemeData extends ThemeExtension<OctoThemeData> with Diagnosticable {
 
   factory OctoThemeData.light({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
-  }) => OctoThemeData(
-    colors: OctoColorScheme.light(variant: variant),
-    spacing: OctoSpacing.standard(),
-    radii: OctoRadius.standard(),
-    typography: OctoTypography.standard(),
-    shadows: OctoShadows.standard(),
-    breakpoints: OctoBreakpoints.standard(),
-    animation: OctoAnimation.standard(),
-  );
+  }) =>
+      OctoThemeData(
+        colors: OctoColorScheme.light(variant: variant),
+        spacing: OctoSpacing.standard(),
+        radii: OctoRadius.standard(),
+        typography: OctoTypography.standard(),
+        shadows: OctoShadows.standard(),
+        breakpoints: OctoBreakpoints.standard(),
+        animation: OctoAnimation.standard(),
+      );
 
   factory OctoThemeData.dark({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
-  }) => OctoThemeData(
-    colors: OctoColorScheme.dark(variant: variant),
-    spacing: OctoSpacing.standard(),
-    radii: OctoRadius.standard(),
-    typography: OctoTypography.standard(),
-    shadows: OctoShadows.standardDark(),
-    breakpoints: OctoBreakpoints.standard(),
-    animation: OctoAnimation.standard(),
-  );
+  }) =>
+      OctoThemeData(
+        colors: OctoColorScheme.dark(variant: variant),
+        spacing: OctoSpacing.standard(),
+        radii: OctoRadius.standard(),
+        typography: OctoTypography.standard(),
+        shadows: OctoShadows.standardDark(),
+        breakpoints: OctoBreakpoints.standard(),
+        animation: OctoAnimation.standard(),
+      );
 
   @override
   OctoThemeData copyWith({
@@ -66,15 +68,16 @@ class OctoThemeData extends ThemeExtension<OctoThemeData> with Diagnosticable {
     OctoShadows? shadows,
     OctoBreakpoints? breakpoints,
     OctoAnimation? animation,
-  }) => OctoThemeData(
-    colors: colors ?? this.colors,
-    spacing: spacing ?? this.spacing,
-    radii: radii ?? this.radii,
-    typography: typography ?? this.typography,
-    shadows: shadows ?? this.shadows,
-    breakpoints: breakpoints ?? this.breakpoints,
-    animation: animation ?? this.animation,
-  );
+  }) =>
+      OctoThemeData(
+        colors: colors ?? this.colors,
+        spacing: spacing ?? this.spacing,
+        radii: radii ?? this.radii,
+        typography: typography ?? this.typography,
+        shadows: shadows ?? this.shadows,
+        breakpoints: breakpoints ?? this.breakpoints,
+        animation: animation ?? this.animation,
+      );
 
   @override
   OctoThemeData lerp(ThemeExtension<OctoThemeData>? other, double t) {

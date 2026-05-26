@@ -33,14 +33,16 @@ class OctoIcon extends StatelessWidget {
     required double size,
     this.color,
     this.semanticLabel,
-  }) : size = OctoIconSize.medium,
-       customSize = size;
+  })  : size = OctoIconSize.medium,
+        customSize = size;
 
-  double get _sizeValue => customSize ?? switch (size) {
-    OctoIconSize.small => 12,
-    OctoIconSize.medium => 16,
-    OctoIconSize.large => 24,
-  };
+  double get _sizeValue =>
+      customSize ??
+      switch (size) {
+        OctoIconSize.small => 12,
+        OctoIconSize.medium => 16,
+        OctoIconSize.large => 24,
+      };
 
   @override
   Widget build(BuildContext context) {

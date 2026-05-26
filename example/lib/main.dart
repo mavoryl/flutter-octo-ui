@@ -34,7 +34,8 @@ class KitchenSinkPage extends StatefulWidget {
   final bool isDark;
   final VoidCallback onToggleTheme;
 
-  const KitchenSinkPage({super.key, required this.isDark, required this.onToggleTheme});
+  const KitchenSinkPage(
+      {super.key, required this.isDark, required this.onToggleTheme});
 
   @override
   State<KitchenSinkPage> createState() => _KitchenSinkPageState();
@@ -59,14 +60,19 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
         backgroundColor: theme.colors.canvas.subtle,
         surfaceTintColor: theme.colors.canvas.subtle,
         elevation: 0,
-        shape: Border(bottom: BorderSide(color: theme.colors.border.defaultColor)),
+        shape:
+            Border(bottom: BorderSide(color: theme.colors.border.defaultColor)),
         title: const OctoText('octo_ui kitchen sink', kind: OctoTextKind.title),
         actions: [
           OctoIconButton(
-            icon: widget.isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+            icon: widget.isDark
+                ? Icons.light_mode_outlined
+                : Icons.dark_mode_outlined,
             onPressed: widget.onToggleTheme,
             variant: OctoButtonVariant.invisible,
-            semanticLabel: widget.isDark ? 'Switch to light theme' : 'Switch to dark theme',
+            semanticLabel: widget.isDark
+                ? 'Switch to light theme'
+                : 'Switch to dark theme',
           ),
           SizedBox(width: theme.spacing.gap.md),
         ],
@@ -99,10 +105,14 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                     spacing: 12,
                     runSpacing: 12,
                     children: [
-                      OctoButton.label('Save', onPressed: () {}, variant: OctoButtonVariant.primary),
+                      OctoButton.label('Save',
+                          onPressed: () {}, variant: OctoButtonVariant.primary),
                       OctoButton.label('Cancel', onPressed: () {}),
-                      OctoButton.label('Delete', onPressed: () {}, variant: OctoButtonVariant.danger),
-                      OctoButton.label('Edit', onPressed: () {}, variant: OctoButtonVariant.invisible),
+                      OctoButton.label('Delete',
+                          onPressed: () {}, variant: OctoButtonVariant.danger),
+                      OctoButton.label('Edit',
+                          onPressed: () {},
+                          variant: OctoButtonVariant.invisible),
                       OctoButton.label('Disabled', onPressed: null),
                     ],
                   ),
@@ -114,9 +124,11 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                     spacing: 12,
                     runSpacing: 12,
                     children: [
-                      OctoButton.label('Small', onPressed: () {}, size: OctoButtonSize.small),
+                      OctoButton.label('Small',
+                          onPressed: () {}, size: OctoButtonSize.small),
                       OctoButton.label('Medium', onPressed: () {}),
-                      OctoButton.label('Large', onPressed: () {}, size: OctoButtonSize.large),
+                      OctoButton.label('Large',
+                          onPressed: () {}, size: OctoButtonSize.large),
                     ],
                   ),
                 ),
@@ -157,7 +169,9 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: const [
-                      OctoFlash(message: 'A new release is available.', icon: Icons.info_outline),
+                      OctoFlash(
+                          message: 'A new release is available.',
+                          icon: Icons.info_outline),
                       SizedBox(height: 12),
                       OctoFlash(
                         message: 'Changes saved successfully.',
@@ -194,10 +208,12 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                       SizedBox(height: theme.spacing.gap.md),
                       OctoButton.label(
                         _showError ? 'Hide error' : 'Show error',
-                        onPressed: () => setState(() => _showError = !_showError),
+                        onPressed: () =>
+                            setState(() => _showError = !_showError),
                       ),
                       SizedBox(height: theme.spacing.gap.md),
-                      const OctoTextField(placeholder: 'disabled', enabled: false),
+                      const OctoTextField(
+                          placeholder: 'disabled', enabled: false),
                     ],
                   ),
                 ),
@@ -231,7 +247,8 @@ class _Section extends StatelessWidget {
             decoration: BoxDecoration(
               color: theme.colors.canvas.subtle,
               border: Border.all(color: theme.colors.border.defaultColor),
-              borderRadius: BorderRadius.all(Radius.circular(theme.radii.medium)),
+              borderRadius:
+                  BorderRadius.all(Radius.circular(theme.radii.medium)),
             ),
             child: child,
           ),

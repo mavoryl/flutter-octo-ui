@@ -88,8 +88,8 @@ class OctoButton extends StatefulWidget {
     this.trailingIcon,
     this.focusNode,
     this.autofocus = false,
-  }) : child = OctoText(label, kind: OctoTextKind.bodyEmphasis),
-       semanticLabel = label;
+  })  : child = OctoText(label, kind: OctoTextKind.bodyEmphasis),
+        semanticLabel = label;
 
   @override
   State<OctoButton> createState() => _OctoButtonState();
@@ -152,25 +152,25 @@ class _OctoButtonState extends State<OctoButton> {
   }
 
   EdgeInsetsGeometry _padding(OctoThemeData theme) => switch (widget.size) {
-    OctoButtonSize.small => EdgeInsets.symmetric(
-      horizontal: theme.spacing.gap.md,
-      vertical: theme.spacing.scale(2),
-    ),
-    OctoButtonSize.medium => EdgeInsets.symmetric(
-      horizontal: theme.spacing.gap.lg,
-      vertical: theme.spacing.gap.sm,
-    ),
-    OctoButtonSize.large => EdgeInsets.symmetric(
-      horizontal: theme.spacing.gap.xl,
-      vertical: theme.spacing.gap.md,
-    ),
-  };
+        OctoButtonSize.small => EdgeInsets.symmetric(
+            horizontal: theme.spacing.gap.md,
+            vertical: theme.spacing.scale(2),
+          ),
+        OctoButtonSize.medium => EdgeInsets.symmetric(
+            horizontal: theme.spacing.gap.lg,
+            vertical: theme.spacing.gap.sm,
+          ),
+        OctoButtonSize.large => EdgeInsets.symmetric(
+            horizontal: theme.spacing.gap.xl,
+            vertical: theme.spacing.gap.md,
+          ),
+      };
 
   double _minHeight() => switch (widget.size) {
-    OctoButtonSize.small => 28,
-    OctoButtonSize.medium => 32,
-    OctoButtonSize.large => 40,
-  };
+        OctoButtonSize.small => 28,
+        OctoButtonSize.medium => 32,
+        OctoButtonSize.large => 40,
+      };
 
   _ButtonColors _resolveColors(OctoThemeData theme, Set<WidgetState> states) {
     final disabled = states.contains(WidgetState.disabled);
@@ -200,10 +200,10 @@ class _OctoButtonState extends State<OctoButton> {
   }
 
   double _spinnerSize() => switch (widget.size) {
-    OctoButtonSize.small => 12,
-    OctoButtonSize.medium => 14,
-    OctoButtonSize.large => 16,
-  };
+        OctoButtonSize.small => 12,
+        OctoButtonSize.medium => 14,
+        OctoButtonSize.large => 16,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -308,6 +308,10 @@ class _OctoButtonState extends State<OctoButton> {
       );
     }
 
-    return Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: children);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children,
+    );
   }
 }

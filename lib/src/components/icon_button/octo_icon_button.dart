@@ -32,10 +32,10 @@ class OctoIconButton extends StatelessWidget {
   });
 
   OctoIconSize get _iconSize => switch (size) {
-    OctoButtonSize.small => OctoIconSize.small,
-    OctoButtonSize.medium => OctoIconSize.medium,
-    OctoButtonSize.large => OctoIconSize.large,
-  };
+        OctoButtonSize.small => OctoIconSize.small,
+        OctoButtonSize.medium => OctoIconSize.medium,
+        OctoButtonSize.large => OctoIconSize.large,
+      };
 
   @override
   Widget build(BuildContext context) {

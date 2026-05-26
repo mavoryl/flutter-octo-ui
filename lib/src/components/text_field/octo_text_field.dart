@@ -67,9 +67,9 @@ class OctoTextField extends StatefulWidget {
     this.minLines,
     this.maxLength,
   }) : assert(
-         controller == null || initialValue == null,
-         'Provide either a controller or initialValue, not both.',
-       );
+          controller == null || initialValue == null,
+          'Provide either a controller or initialValue, not both.',
+        );
 
   @override
   State<OctoTextField> createState() => _OctoTextFieldState();
@@ -148,9 +148,8 @@ class _OctoTextFieldState extends State<OctoTextField> {
               decoration: InputDecoration(
                 isDense: true,
                 filled: true,
-                fillColor: widget.enabled
-                    ? theme.colors.canvas.defaultColor
-                    : theme.colors.canvas.subtle,
+                fillColor:
+                    widget.enabled ? theme.colors.canvas.defaultColor : theme.colors.canvas.subtle,
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: theme.spacing.gap.md,
                   vertical: theme.spacing.gap.sm,
@@ -181,4 +180,3 @@ class _OctoTextFieldState extends State<OctoTextField> {
     );
   }
 }
-

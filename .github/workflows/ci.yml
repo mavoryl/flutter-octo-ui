@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-flight runs on the same ref — saves CI minutes on rapid pushes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    permissions:
+      contents: read
+      # Required by dorny/test-reporter to write Check Run results that
+      # appear inline on the PR.
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.7'
+          channel: stable
+          cache: true
+
+      - name: Print versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Resolve package dependencies
+        run: flutter pub get
+
+      - name: Resolve example dependencies
+        working-directory: example
+        run: flutter pub get
+
+      - name: Format check (page_width=100, configured in analysis_options.yaml)
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test — widget / unit / goldens
+        run: flutter test
+
+      - name: Test — example smoke
+        working-directory: example
+        run: flutter test
+
+      # Publish the JUnit XML reports written by golden_matrix as a GitHub
+      # Check Run. Surfaces per-scenario pass/fail and diff messages inline
+      # on the PR. Runs even on failure so red goldens still get rendered.
+      - name: Publish golden test report
+        if: ${{ !cancelled() }}
+        uses: dorny/test-reporter@v1
+        with:
+          name: goldens (matrix)
+          path: 'test/goldens/**/*_report.xml'
+          reporter: java-junit
+          fail-on-error: false
+
+      # When a golden diff happens, the framework writes failure PNGs under
+      # test/**/failures/. Upload them (and the raw XML reports) so they can
+      # be downloaded and diffed locally without re-running.
+      - name: Upload golden artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-artifacts
+          path: |
+            test/goldens/**/failures/**
+            test/goldens/**/*_report.xml
+          if-no-files-found: ignore
+          retention-days: 7

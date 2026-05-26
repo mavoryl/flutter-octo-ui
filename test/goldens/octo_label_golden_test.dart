@@ -27,7 +27,7 @@ void main() {
     ],
     axes: MatrixAxes(themes: octoThemes),
     wrapApp: wrapInOctoTheme,
-    reportFormats: const <MatrixReportFormat>{},
+    reportFormats: octoReportFormats,
   );
 }
 
@@ -38,7 +38,7 @@ class _Sampler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(24),
-    child: Align(alignment: Alignment.topLeft, child: child),
-  );
+        padding: const EdgeInsets.all(24),
+        child: Align(alignment: Alignment.topLeft, child: child),
+      );
 }

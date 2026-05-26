@@ -59,8 +59,7 @@ class _OctoFocusRingState extends State<OctoFocusRing> {
     final focus = Focus.maybeOf(context);
     final hasFocus = focus?.hasPrimaryFocus ?? false;
     final mode = FocusManager.instance.highlightMode;
-    final visible =
-        widget.enabled && hasFocus && mode == FocusHighlightMode.traditional;
+    final visible = widget.enabled && hasFocus && mode == FocusHighlightMode.traditional;
 
     return Stack(
       clipBehavior: Clip.none,

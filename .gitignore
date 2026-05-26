@@ -31,3 +31,10 @@ migrate_working_dir/
 /coverage/
 /docs/
 /CLAUDE.md
+
+# golden_matrix CI reports — generated only under isCiEnvironment, uploaded
+# as artifacts by GitHub Actions; never committed.
+test/goldens/**/*_report.xml
+test/goldens/**/*_report.html
+test/goldens/**/*_report.md
+test/goldens/**/*_report.json

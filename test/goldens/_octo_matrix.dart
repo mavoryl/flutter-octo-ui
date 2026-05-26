@@ -18,3 +18,13 @@ Widget wrapInOctoTheme(Widget app, MatrixCombination combination) {
   final octo = combination.theme.data! as OctoThemeData;
   return OctoTheme(data: octo, child: app);
 }
+
+/// Report formats for goldens.
+///
+/// Locally — silence (no HTML / Markdown / JSON / XML on disk). In CI
+/// (detected by `isCiEnvironment`) — only the JUnit XML report, which the
+/// CI workflow then publishes via `dorny/test-reporter` so failures surface
+/// inline on the PR.
+Set<MatrixReportFormat> get octoReportFormats => isCiEnvironment
+    ? const <MatrixReportFormat>{MatrixReportFormat.junit}
+    : const <MatrixReportFormat>{};
