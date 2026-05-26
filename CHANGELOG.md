@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.8.2] — 2026-05-26
+
+### Added
+
+- Five pub.dev topics for discovery: `design-system`, `ui`, `widgets`,
+  `theme`, `dashboard`.
+- Codecov badge in the README; `flutter test --coverage` now uploads
+  `coverage/lcov.info` to codecov from CI.
+
+### Changed
+
+- CI gates `lib/` line coverage at **>= 90%** — a regression that
+  drops below the threshold fails the workflow. Current coverage
+  sits at 92.4%, leaving headroom for the next round of features.
+
 ## [0.8.1] — 2026-05-26
 
 ### Changed
