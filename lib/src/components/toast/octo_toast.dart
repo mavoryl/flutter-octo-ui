@@ -321,8 +321,7 @@ class _OctoToastEntry extends StatefulWidget {
   State<_OctoToastEntry> createState() => _OctoToastEntryState();
 }
 
-class _OctoToastEntryState extends State<_OctoToastEntry>
-    with SingleTickerProviderStateMixin {
+class _OctoToastEntryState extends State<_OctoToastEntry> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _slide;
   late final Animation<double> _fade;
@@ -350,8 +349,7 @@ class _OctoToastEntryState extends State<_OctoToastEntry>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final disableAnims =
-        MediaQuery.maybeDisableAnimationsOf(context) ?? false;
+    final disableAnims = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
     if (disableAnims) {
       _controller.duration = Duration.zero;
       // Snap to fully visible if we hadn't already.

@@ -74,8 +74,7 @@ class OctoCollapsible extends StatefulWidget {
   State<OctoCollapsible> createState() => _OctoCollapsibleState();
 }
 
-class _OctoCollapsibleState extends State<OctoCollapsible>
-    with SingleTickerProviderStateMixin {
+class _OctoCollapsibleState extends State<OctoCollapsible> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _curve;
   late final WidgetStatesController _states;
@@ -85,8 +84,7 @@ class _OctoCollapsibleState extends State<OctoCollapsible>
 
   bool get _isExpanded => widget.expanded ?? _internalExpanded;
 
-  FocusNode get _focusNode =>
-      widget.focusNode ?? (_ownedFocusNode ??= FocusNode());
+  FocusNode get _focusNode => widget.focusNode ?? (_ownedFocusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -104,20 +102,16 @@ class _OctoCollapsibleState extends State<OctoCollapsible>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final disableAnims =
-        MediaQuery.maybeDisableAnimationsOf(context) ?? false;
-    _controller.duration =
-        disableAnims ? Duration.zero : widget.animationDuration;
+    final disableAnims = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
+    _controller.duration = disableAnims ? Duration.zero : widget.animationDuration;
   }
 
   @override
   void didUpdateWidget(OctoCollapsible oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.animationDuration != widget.animationDuration) {
-      final disableAnims =
-          MediaQuery.maybeDisableAnimationsOf(context) ?? false;
-      _controller.duration =
-          disableAnims ? Duration.zero : widget.animationDuration;
+      final disableAnims = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
+      _controller.duration = disableAnims ? Duration.zero : widget.animationDuration;
     }
     if (widget.expanded != null && widget.expanded != oldWidget.expanded) {
       _syncAnimation();

@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Added
+
+- **`OctoSpinner`** + `OctoSpinnerSize` — circular indeterminate loading
+  indicator. A 270° arc rotates continuously over a configurable
+  `duration` (default 900 ms). Three size presets (16 / 24 / 40 px);
+  default colour is `theme.colors.fg.muted`. Under motion-reduce
+  (`MediaQuery.disableAnimationsOf`) the controller stops at a parked
+  quarter-turn so the static shape still reads as a spinner.
+  `Semantics(label, liveRegion)` announces the loading state.
+- Golden coverage: `octo_misc/spinners` (small / medium / large, light +
+  dark) — scenario wraps the row in `MediaQuery(disableAnimations:
+  true)` so the snapshot stays deterministic under `freezeAnimations`.
+- Demo: a new "Spinners" section in the kitchen-sink showing all three
+  sizes paired with body-small status text.
+
 ## [0.5.0-dev.0] — 2026-05-26
 
 ### Added

@@ -141,8 +141,7 @@ class _OctoChipState extends State<OctoChip> {
             _ChipDismissButton(
               onPressed: widget.onDismiss!,
               color: colors.foreground,
-              semanticLabel:
-                  widget.dismissSemanticLabel ?? 'Remove ${widget.label}',
+              semanticLabel: widget.dismissSemanticLabel ?? 'Remove ${widget.label}',
             ),
           ],
         ],

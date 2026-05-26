@@ -589,6 +589,24 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                   ),
                 ),
                 _Section(
+                  title: 'Spinners — small / medium / large',
+                  child: Row(
+                    children: [
+                      const OctoSpinner(size: OctoSpinnerSize.small),
+                      SizedBox(width: theme.spacing.gap.md),
+                      const OctoSpinner(),
+                      SizedBox(width: theme.spacing.gap.md),
+                      const OctoSpinner(size: OctoSpinnerSize.large),
+                      SizedBox(width: theme.spacing.gap.md),
+                      OctoText(
+                        'Fetching repositories…',
+                        kind: OctoTextKind.bodySmall,
+                        color: theme.colors.fg.muted,
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
                   title: 'Progress bars — determinate + indeterminate',
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -70,8 +70,7 @@ class OctoProgressBar extends StatefulWidget {
   State<OctoProgressBar> createState() => _OctoProgressBarState();
 }
 
-class _OctoProgressBarState extends State<OctoProgressBar>
-    with SingleTickerProviderStateMixin {
+class _OctoProgressBarState extends State<OctoProgressBar> with SingleTickerProviderStateMixin {
   static const double _indeterminateFraction = 0.35;
 
   late final AnimationController _controller;
@@ -140,12 +139,10 @@ class _OctoProgressBarState extends State<OctoProgressBar>
     final radius = BorderRadius.all(Radius.circular(theme.radii.full));
     final track = theme.colors.neutral.muted;
     final fill = _resolveFillColor(theme);
-    final disableAnimations =
-        MediaQuery.maybeDisableAnimationsOf(context) ?? false;
+    final disableAnimations = MediaQuery.maybeDisableAnimationsOf(context) ?? false;
     final isDeterminate = widget.value != null;
 
-    final semanticsValue =
-        isDeterminate ? '${(widget.value! * 100).round()}%' : null;
+    final semanticsValue = isDeterminate ? '${(widget.value! * 100).round()}%' : null;
 
     return Semantics(
       container: true,

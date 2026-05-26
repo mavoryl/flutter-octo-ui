@@ -22,6 +22,7 @@ export 'radio/octo_radio.dart';
 export 'segmented_control/octo_segmented_control.dart';
 export 'segmented_control/octo_segmented_control_item.dart';
 export 'skeleton/octo_skeleton.dart';
+export 'spinner/octo_spinner.dart';
 export 'switch/octo_switch.dart';
 export 'text_field/octo_text_field.dart';
 export 'toast/octo_toast.dart';

@@ -159,6 +159,27 @@ void main() {
         ),
       ),
       MatrixScenario(
+        'spinners',
+        // Park each spinner via motion-reduce so the snapshot stays
+        // deterministic under freezeAnimations.
+        builder: () => const MediaQuery(
+          data: MediaQueryData(disableAnimations: true),
+          child: _Sampler(
+            child: SizedBox(
+              width: 280,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  OctoSpinner(size: OctoSpinnerSize.small),
+                  OctoSpinner(),
+                  OctoSpinner(size: OctoSpinnerSize.large),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      MatrixScenario(
         'progress_bars',
         builder: () => const _Sampler(
           child: SizedBox(
