@@ -142,6 +142,8 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
   int _paginationPage = 1;
 
   int _tabIndex = 0;
+
+  int _sideNavIndex = 1;
   final Set<String> _chips = {'frontend', 'flutter', 'p1'};
 
   @override
@@ -590,6 +592,35 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                _Section(
+                  title: 'Side nav — vertical sidebar navigation',
+                  child: SizedBox(
+                    width: 220,
+                    child: OctoSideNav(
+                      selectedIndex: _sideNavIndex,
+                      onChanged: (i) => setState(() => _sideNavIndex = i),
+                      items: const [
+                        OctoSideNavItem(
+                          label: 'Repositories',
+                          icon: Icon(OctIcons.repo_16),
+                        ),
+                        OctoSideNavItem(
+                          label: 'Projects',
+                          icon: Icon(OctIcons.project_16),
+                          trailing: OctoCounterLabel(7),
+                        ),
+                        OctoSideNavItem(
+                          label: 'Discussions',
+                          icon: Icon(OctIcons.comment_discussion_16),
+                        ),
+                        OctoSideNavItem(
+                          label: 'Insights',
+                          icon: Icon(OctIcons.graph_16),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 _Section(

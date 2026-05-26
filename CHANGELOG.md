@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoSideNav`** + `OctoSideNavItem` — vertical sidebar navigation
+  (Primer "SideNav"). Renders a stretched column of tappable rows
+  bounded on the right by a `border.muted` divider. The selected row
+  paints a 2 px accent bar flush against its leading edge over a
+  `neutral.subtle` background; its label switches to
+  `OctoTextKind.bodyEmphasis`. Tapping the already-selected row is a
+  no-op; `selectedIndex: -1` highlights nothing. Per-row a11y carries
+  `Semantics(button, selected, enabled, label)`; the focus ring and
+  state layer behave the same as elsewhere.
 - **`OctoTabs`** — content-switching tab group built on top of
   `OctoUnderlineNav`. Pairs a list of `OctoUnderlineNavItem` tabs with
   an equal-length list of body widgets and swaps the visible body via

@@ -22,6 +22,8 @@ export 'progress_bar/octo_progress_bar.dart';
 export 'radio/octo_radio.dart';
 export 'segmented_control/octo_segmented_control.dart';
 export 'segmented_control/octo_segmented_control_item.dart';
+export 'side_nav/octo_side_nav.dart';
+export 'side_nav/octo_side_nav_item.dart';
 export 'skeleton/octo_skeleton.dart';
 export 'spinner/octo_spinner.dart';
 export 'state_label/octo_state_label.dart';
