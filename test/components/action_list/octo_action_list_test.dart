@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -102,6 +103,73 @@ void main() {
       );
       expect(find.text('Archive'), findsOneWidget);
       expect(find.text('Hide from default search results'), findsOneWidget);
+    });
+
+    testWidgets('autofocus moves primary focus to the first item', (tester) async {
+      final firstNode = FocusNode();
+      addTearDown(firstNode.dispose);
+      // We don't have direct access to the row's FocusNode, but we can
+      // assert *some* primary focus exists inside the OctoActionList
+      // subtree after a settle.
+      await _pump(
+        tester,
+        OctoActionList(
+          autofocus: true,
+          items: [
+            OctoActionListItem(label: 'First', onPressed: () {}),
+            OctoActionListItem(label: 'Second', onPressed: () {}),
+          ],
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(FocusManager.instance.primaryFocus, isNotNull);
+      expect(FocusManager.instance.primaryFocus!.debugLabel, contains('First'));
+    });
+
+    testWidgets('ArrowDown / ArrowUp move focus across rows', (tester) async {
+      await _pump(
+        tester,
+        OctoActionList(
+          autofocus: true,
+          items: [
+            OctoActionListItem(label: 'Alpha', onPressed: () {}),
+            OctoActionListItem(label: 'Beta', onPressed: () {}),
+            OctoActionListItem(label: 'Gamma', onPressed: () {}),
+          ],
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(FocusManager.instance.primaryFocus!.debugLabel, contains('Alpha'));
+
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+      expect(FocusManager.instance.primaryFocus!.debugLabel, contains('Beta'));
+
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+      expect(FocusManager.instance.primaryFocus!.debugLabel, contains('Gamma'));
+
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pump();
+      expect(FocusManager.instance.primaryFocus!.debugLabel, contains('Beta'));
+    });
+
+    testWidgets('Enter activates the focused row', (tester) async {
+      var taps = 0;
+      await _pump(
+        tester,
+        OctoActionList(
+          autofocus: true,
+          items: [
+            OctoActionListItem(label: 'Run', onPressed: () => taps++),
+            OctoActionListItem(label: 'Skip', onPressed: () {}),
+          ],
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pump();
+      expect(taps, 1);
     });
 
     testWidgets('.builder builds the right number of rows', (tester) async {

@@ -50,25 +50,25 @@ class _MenuStageState extends State<_MenuStage> {
         alignment: Alignment.topLeft,
         child: OctoMenu(
           controller: _controller,
-          items: [
+          items: const [
             OctoActionListItem(
               label: 'New issue',
-              leading: const Icon(Icons.add),
+              leading: Icon(Icons.add),
               onPressed: _noop,
             ),
             OctoActionListItem(
               label: 'New pull request',
-              leading: const Icon(Icons.merge_type),
+              leading: Icon(Icons.merge_type),
               onPressed: _noop,
             ),
             OctoActionListItem(
               label: 'Settings',
-              leading: const Icon(Icons.settings_outlined),
+              leading: Icon(Icons.settings_outlined),
               onPressed: _noop,
             ),
             OctoActionListItem(
               label: 'Delete repository',
-              leading: const Icon(Icons.delete_outline),
+              leading: Icon(Icons.delete_outline),
               variant: OctoActionListItemVariant.danger,
               onPressed: _noop,
             ),

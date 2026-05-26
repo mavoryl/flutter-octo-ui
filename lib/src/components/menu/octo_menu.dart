@@ -166,10 +166,10 @@ class _OctoMenuState extends State<OctoMenu> {
               },
             ),
           },
-          // Focus needs an actual focusable node to receive keystrokes;
-          // FocusScope alone won't intercept Escape.
+          // No autofocus here — the inner ActionList autofocuses its first
+          // row, which sits inside this Shortcuts subtree, so Escape still
+          // bubbles up to DismissIntent above.
           child: Focus(
-            autofocus: true,
             // Overlay parent (Stack) doesn't constrain width, so we ask
             // IntrinsicWidth to size the popover to its content, then bump
             // up to `minWidth` (typically the anchor width) via the inner
@@ -186,7 +186,9 @@ class _OctoMenuState extends State<OctoMenu> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(theme.spacing.scale(1)),
-                    child: OctoActionList(items: _wrapItems()),
+                    // autofocus → first row receives focus on open, so
+                    // ArrowDown / ArrowUp / Enter work without a mouse tap.
+                    child: OctoActionList(items: _wrapItems(), autofocus: true),
                   ),
                 ),
               ),

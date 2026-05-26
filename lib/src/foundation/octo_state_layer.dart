@@ -44,7 +44,9 @@ class OctoStateLayer extends StatelessWidget {
     if (states.contains(WidgetState.pressed)) {
       return overlayColor ?? theme.colors.neutral.muted;
     }
-    if (states.contains(WidgetState.hovered)) {
+    // Keyboard focus shares the subtle overlay with hover so a focused row
+    // is visible during arrow-key traversal even without a pointer.
+    if (states.contains(WidgetState.hovered) || states.contains(WidgetState.focused)) {
       return overlayColor ?? theme.colors.neutral.subtle;
     }
     if (states.contains(WidgetState.selected)) {

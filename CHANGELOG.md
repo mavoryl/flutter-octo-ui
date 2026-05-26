@@ -12,6 +12,17 @@ All notable changes to this project will be documented in this file. The format 
   rules as the inline variant (focus + `FocusHighlightMode.traditional`).
   Requires an enclosing `Overlay` (provided by `MaterialApp` /
   `WidgetsApp`). See ADR-0006.
+- **Arrow-key navigation in `OctoActionList`** — each row is a focusable
+  node; the list wraps in `Shortcuts({Up: PreviousFocusIntent, Down:
+  NextFocusIntent})` + `Actions(NextFocusAction, PreviousFocusAction)` +
+  `FocusTraversalGroup(ReadingOrderTraversalPolicy)`, so arrow keys
+  traverse rows without requiring a `WidgetsApp`. `Enter` / `Space` /
+  `NumpadEnter` activate the focused row. New `autofocus: bool` parameter
+  requests focus on the first row at mount — `OctoMenu` now passes
+  `autofocus: true` so menus are keyboard-ready on open.
+- **`OctoStateLayer.focused`** now paints the `neutral.subtle` overlay,
+  matching `hovered` — focused rows / buttons are visible during keyboard
+  traversal without a pointer hover.
 - `OctoMenu` + `OctoMenuController` — popover-style menu anchored to a
   trigger widget. Composes `OctoActionList` inside an `OverlayPortal`
   tracked to the trigger via `LayerLink` + `CompositedTransformFollower`.
