@@ -88,7 +88,11 @@ class _TimelineRow extends StatelessWidget {
         label: item.semanticLabel ?? item.title,
         child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // Stretch instead of start — start gives the marker column
+            // loose height, so the inner Stack would shrink to the
+            // marker disc (24 px) and the rail would only cover the
+            // per-row bottom padding instead of the full row height.
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
                 width: OctoTimeline._markerSize,
