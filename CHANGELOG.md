@@ -6,6 +6,29 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoDialog`** + `OctoDialog.show<T>()` — themed modal dialog. Wraps
+  Material's `Dialog` with Primer chrome (`canvas.overlay`,
+  `border.defaultColor`, `radii.large`, `shadows.large`); `title` /
+  `content` / `actions` slots. `Escape` and outside-tap on the scrim
+  both dismiss. Action buttons wire their own `Navigator.pop(ctx,
+  value)` to surface a `Future<T?>` from `show`. `OctoDialogTitle` is
+  sugar for the common heading text case.
+- **`OctoSkeleton`** + `OctoSkeletonText` + `OctoSkeletonAvatar` —
+  loading placeholders that pulse between `neutral.muted` and
+  `neutral.subtle`. Wrapped in `ExcludeSemantics` so the placeholder is
+  invisible to screen readers. Honours `MediaQuery.disableAnimationsOf`
+  (ADR-0008) by suspending the controller — for golden tests, pass
+  `freezeAnimations: true` to `matrixGolden`.
+- **`OctoAvatar`** — user avatar with image-then-initials fallback.
+  `imageUrl` (default `NetworkImage`) OR `imageProvider` (asset / memory
+  / custom); `initials` for the fallback. 5 sizes (`xs`/`sm`/`md`/`lg`/
+  `xl` = 16/20/32/48/64 dp) and 2 shapes (`circle` / `square`). Required
+  `semanticLabel` + `Semantics(image: true)`.
+- **`OctoBreadcrumbs`** + `OctoBreadcrumbItem` — horizontal navigation
+  trail. Clickable segments render as `invisible`-variant
+  `OctoButton`s; the final segment (`onPressed: null`) becomes plain
+  text — the "current page" convention. Octicons `chevron_right_16`
+  separates pairs.
 - **`OctoSwitch`** — pill-shaped on/off toggle. Controlled
   (`value` + `onChanged`); `onChanged: null` disables. Animated thumb
   (`theme.animation.fast` + `standardCurve`). `Space` activates the
