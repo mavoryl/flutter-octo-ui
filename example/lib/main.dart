@@ -138,6 +138,8 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
   String? _dialogResult;
   String _segment = 'open';
   String? _droppedPriority = 'medium';
+
+  int _paginationPage = 1;
   final Set<String> _chips = {'frontend', 'flutter', 'p1'};
 
   @override
@@ -584,6 +586,27 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                           variant: OctoToastVariant.danger,
                           dismissible: true,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Pagination — paged navigator',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      OctoPagination(
+                        currentPage: _paginationPage,
+                        pageCount: 20,
+                        onPageChanged: (p) =>
+                            setState(() => _paginationPage = p),
+                      ),
+                      SizedBox(height: theme.spacing.gap.sm),
+                      OctoText(
+                        'Page $_paginationPage of 20',
+                        kind: OctoTextKind.bodySmall,
+                        color: theme.colors.fg.muted,
                       ),
                     ],
                   ),

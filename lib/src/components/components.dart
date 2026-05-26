@@ -17,6 +17,7 @@ export 'icon_button/octo_icon_button.dart';
 export 'label/octo_label.dart';
 export 'menu/octo_menu.dart';
 export 'menu/octo_menu_controller.dart';
+export 'pagination/octo_pagination.dart';
 export 'progress_bar/octo_progress_bar.dart';
 export 'radio/octo_radio.dart';
 export 'segmented_control/octo_segmented_control.dart';

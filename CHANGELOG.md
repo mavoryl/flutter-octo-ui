@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- **`OctoPagination`** — paged navigator (Primer "Pagination"). 1-based
+  `currentPage` + `pageCount`, fires `onPageChanged(int)` when the user
+  picks a different page (the already-selected tile silently ignores
+  taps). Prev / Next chevrons step by one and disable at the range
+  edges. Numbered slots are bounded by `maxVisible` (default 7) and
+  collapse with `…` ellipsis tokens when the gap exceeds one — the
+  slot-computation helper is exposed as `OctoPagination.computeSlots`
+  for callers that need to predict the rendered sequence.
+  `Semantics(button, selected, enabled, label: 'Page N')` per tile;
+  Prev / Next carry their own a11y labels.
 - **`OctoStateLabel`** + `OctoStateLabelVariant` +
   `OctoStateLabelEmphasis` — Primer-style PR / issue lifecycle pill.
   Five variants (`open`, `closed`, `merged`, `draft`, `attention`) with
