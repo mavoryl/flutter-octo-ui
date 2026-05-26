@@ -8,15 +8,31 @@ import 'package:flutter/painting.dart' show TextStyle, FontWeight;
 /// for escape hatches, not for direct widget use.
 @immutable
 class OctoTypography {
+  /// 14/regular — default reading text.
   final TextStyle body;
+
+  /// 12/regular — secondary copy and helper text.
   final TextStyle bodySmall;
+
+  /// 14/semibold — emphasised body, button labels.
   final TextStyle bodyEmphasis;
+
+  /// 12/medium — form labels, metadata.
   final TextStyle label;
+
+  /// 10/medium — counters, pills, micro-labels.
   final TextStyle labelSmall;
+
+  /// 16/semibold — section titles.
   final TextStyle title;
+
+  /// 20/semibold — page-level headings.
   final TextStyle heading;
+
+  /// Monospaced — inline code and code blocks.
   final TextStyle code;
 
+  /// Creates an explicit typography set. Prefer [OctoTypography.standard].
   const OctoTypography({
     required this.body,
     required this.bodySmall,
@@ -28,6 +44,7 @@ class OctoTypography {
     required this.code,
   });
 
+  /// Primer-aligned typography using system sans + monospaced fallbacks.
   factory OctoTypography.standard() {
     const sans = <String>[
       '-apple-system',
@@ -64,6 +81,7 @@ class OctoTypography {
     );
   }
 
+  /// Returns a copy with the given fields overridden.
   OctoTypography copyWith({
     TextStyle? body,
     TextStyle? bodySmall,
@@ -85,6 +103,7 @@ class OctoTypography {
         code: code ?? this.code,
       );
 
+  /// Linear interpolation between two typography sets.
   static OctoTypography lerp(OctoTypography a, OctoTypography b, double t) => identical(a, b)
       ? a
       : OctoTypography(

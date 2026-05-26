@@ -1,16 +1,31 @@
 import 'package:flutter/animation.dart' show Curve, Curves;
 import 'package:flutter/foundation.dart';
 
+/// Duration and curve tokens for transitions.
 @immutable
 class OctoAnimation {
+  /// Zero-duration token — used to bypass animation explicitly.
   final Duration instant;
+
+  /// 100 ms — micro-interactions (hover/press feedback).
   final Duration fast;
+
+  /// 200 ms — default transition.
   final Duration medium;
+
+  /// 400 ms — page-level and large surface changes.
   final Duration slow;
+
+  /// Default ease for symmetric transitions.
   final Curve standardCurve;
+
+  /// Ease used when content enters the screen.
   final Curve enterCurve;
+
+  /// Ease used when content leaves the screen.
   final Curve exitCurve;
 
+  /// Creates an animation token set. Defaults match Primer.
   const OctoAnimation({
     this.instant = Duration.zero,
     this.fast = const Duration(milliseconds: 100),
@@ -21,8 +36,10 @@ class OctoAnimation {
     this.exitCurve = Curves.easeIn,
   });
 
+  /// Default Primer-aligned animation tokens.
   factory OctoAnimation.standard() => const OctoAnimation();
 
+  /// Returns a copy with the given fields overridden.
   OctoAnimation copyWith({
     Duration? instant,
     Duration? fast,

@@ -6,16 +6,23 @@ import 'package:flutter/painting.dart' show BoxShadow;
 /// Elevation tokens — Primer uses three: small, medium, large.
 @immutable
 class OctoShadows {
+  /// Resting surface — cards, tiles, default chrome.
   final List<BoxShadow> small;
+
+  /// Floating affordances — menus, popovers.
   final List<BoxShadow> medium;
+
+  /// Modal-level elevation — dialogs, overlays.
   final List<BoxShadow> large;
 
+  /// Creates an explicit shadow set. Prefer [OctoShadows.standard].
   const OctoShadows({
     required this.small,
     required this.medium,
     required this.large,
   });
 
+  /// Primer-aligned shadows for light surfaces.
   factory OctoShadows.standard() => const OctoShadows(
         small: <BoxShadow>[
           BoxShadow(
@@ -39,6 +46,7 @@ class OctoShadows {
         ],
       );
 
+  /// Primer-aligned shadows tuned for dark surfaces.
   factory OctoShadows.standardDark() => const OctoShadows(
         small: <BoxShadow>[
           BoxShadow(
@@ -62,6 +70,7 @@ class OctoShadows {
         ],
       );
 
+  /// Returns a copy with the given fields overridden.
   OctoShadows copyWith({
     List<BoxShadow>? small,
     List<BoxShadow>? medium,
@@ -73,6 +82,7 @@ class OctoShadows {
         large: large ?? this.large,
       );
 
+  /// Linear interpolation between two shadow sets.
   static OctoShadows lerp(OctoShadows a, OctoShadows b, double t) {
     if (identical(a, b)) return a;
     return OctoShadows(

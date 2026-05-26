@@ -15,14 +15,29 @@ import 'package:octo_ui/src/tokens/typography.dart';
 /// can register the Octo theme via `ThemeData.extensions` (see ADR-0007).
 @immutable
 class OctoThemeData extends ThemeExtension<OctoThemeData> with Diagnosticable {
+  /// Semantic colour palette (canvas, fg, border, accent, status families).
   final OctoColorScheme colors;
+
+  /// Spacing scale plus semantic [OctoGap] / [OctoInset] aliases.
   final OctoSpacing spacing;
+
+  /// Corner-radius tokens (none, small, medium, large, full).
   final OctoRadius radii;
+
+  /// Semantic typography styles (body, label, title, heading, code).
   final OctoTypography typography;
+
+  /// Elevation shadows (small / medium / large).
   final OctoShadows shadows;
+
+  /// Layout breakpoints for responsive code paths.
   final OctoBreakpoints breakpoints;
+
+  /// Duration and curve tokens for transitions.
   final OctoAnimation animation;
 
+  /// Creates a theme data bundle. Use [OctoThemeData.light] /
+  /// [OctoThemeData.dark] for the defaults.
   const OctoThemeData({
     required this.colors,
     required this.spacing,
@@ -33,6 +48,7 @@ class OctoThemeData extends ThemeExtension<OctoThemeData> with Diagnosticable {
     required this.animation,
   });
 
+  /// Default light theme. [variant] selects an [OctoColorSchemeVariant].
   factory OctoThemeData.light({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
   }) =>
@@ -46,6 +62,7 @@ class OctoThemeData extends ThemeExtension<OctoThemeData> with Diagnosticable {
         animation: OctoAnimation.standard(),
       );
 
+  /// Default dark theme. [variant] selects an [OctoColorSchemeVariant].
   factory OctoThemeData.dark({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
   }) =>

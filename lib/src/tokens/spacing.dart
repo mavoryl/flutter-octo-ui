@@ -44,10 +44,12 @@ class OctoSpacing {
     xl: 24,
   );
 
+  /// Raw indexed spacing scale in logical pixels.
   final List<double> steps;
   final OctoGap? _gap;
   final OctoInset? _inset;
 
+  /// Creates a spacing token set.
   const OctoSpacing({
     this.steps = _defaultSteps,
     OctoGap? gap,
@@ -55,10 +57,13 @@ class OctoSpacing {
   })  : _gap = gap,
         _inset = inset;
 
+  /// Default Primer-aligned spacing tokens.
   factory OctoSpacing.standard() => const OctoSpacing();
 
+  /// Semantic gap aliases used for spacing between siblings.
   OctoGap get gap => _gap ?? _defaultGap;
 
+  /// Semantic inset aliases used for inner padding of containers.
   OctoInset get inset => _inset ?? _defaultInset;
 
   /// Raw scale lookup. [step] is a position in [steps], not a pixel value.
@@ -73,12 +78,14 @@ class OctoSpacing {
   /// Reverse lookup — returns the step index that produces [value], or -1.
   int indexFor(double value) => steps.indexOf(value);
 
+  /// Returns a copy with the given fields overridden.
   OctoSpacing copyWith({List<double>? steps, OctoGap? gap, OctoInset? inset}) => OctoSpacing(
         steps: steps ?? this.steps,
         gap: gap ?? _gap,
         inset: inset ?? _inset,
       );
 
+  /// Linear interpolation between two spacing sets.
   static OctoSpacing lerp(OctoSpacing a, OctoSpacing b, double t) {
     if (identical(a, b)) return a;
     // Scales of different shape do not interpolate — step semantics differ.
@@ -106,14 +113,25 @@ class OctoSpacing {
   int get hashCode => Object.hash(Object.hashAll(steps), gap, inset);
 }
 
+/// Semantic spacing aliases for the gap between sibling widgets.
 @immutable
 class OctoGap {
+  /// Smallest gap — between tightly grouped elements.
   final double xs;
+
+  /// Small gap — icon-to-text within a button.
   final double sm;
+
+  /// Medium gap — default spacing between adjacent controls.
   final double md;
+
+  /// Large gap — section-internal spacing.
   final double lg;
+
+  /// Largest gap — between major sections.
   final double xl;
 
+  /// Creates an explicit gap set.
   const OctoGap({
     required this.xs,
     required this.sm,
@@ -122,6 +140,7 @@ class OctoGap {
     required this.xl,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoGap copyWith({double? xs, double? sm, double? md, double? lg, double? xl}) => OctoGap(
         xs: xs ?? this.xs,
         sm: sm ?? this.sm,
@@ -130,6 +149,7 @@ class OctoGap {
         xl: xl ?? this.xl,
       );
 
+  /// Linear interpolation between two gap sets.
   static OctoGap lerp(OctoGap a, OctoGap b, double t) => identical(a, b)
       ? a
       : OctoGap(
@@ -154,14 +174,25 @@ class OctoGap {
   int get hashCode => Object.hash(xs, sm, md, lg, xl);
 }
 
+/// Semantic spacing aliases for inner padding of containers.
 @immutable
 class OctoInset {
+  /// Smallest inset — dense pills, tags.
   final double xs;
+
+  /// Small inset — compact controls.
   final double sm;
+
+  /// Medium inset — default container padding.
   final double md;
+
+  /// Large inset — comfortable card padding.
   final double lg;
+
+  /// Largest inset — dialog and surface padding.
   final double xl;
 
+  /// Creates an explicit inset set.
   const OctoInset({
     required this.xs,
     required this.sm,
@@ -170,6 +201,7 @@ class OctoInset {
     required this.xl,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoInset copyWith({double? xs, double? sm, double? md, double? lg, double? xl}) => OctoInset(
         xs: xs ?? this.xs,
         sm: sm ?? this.sm,
@@ -178,6 +210,7 @@ class OctoInset {
         xl: xl ?? this.xl,
       );
 
+  /// Linear interpolation between two inset sets.
   static OctoInset lerp(OctoInset a, OctoInset b, double t) => identical(a, b)
       ? a
       : OctoInset(

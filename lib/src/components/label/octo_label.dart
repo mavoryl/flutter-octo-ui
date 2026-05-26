@@ -9,7 +9,22 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `standard` is the neutral, low-emphasis variant. Other entries pull from
 /// the matching status colour family (`accent`, `success`, ...) and use
 /// `*.fg` for both the text and the border to match Primer Labels.
-enum OctoLabelVariant { standard, accent, success, attention, danger }
+enum OctoLabelVariant {
+  /// Neutral border, muted foreground. Generic tag.
+  standard,
+
+  /// Accent-tinted pill. Informational classification.
+  accent,
+
+  /// Success-tinted pill — merged, passing, resolved.
+  success,
+
+  /// Attention-tinted pill — warning, pending review.
+  attention,
+
+  /// Danger-tinted pill — failure, blocked, critical.
+  danger,
+}
 
 /// Compact pill-shaped tag (Primer "Label"). Communicates classification —
 /// e.g. PR status, issue area, severity — at a glance.
@@ -18,9 +33,13 @@ enum OctoLabelVariant { standard, accent, success, attention, danger }
 /// is outlined (border only, no fill) to match Primer's default Label style;
 /// the subtle filled variant is deferred to a later milestone.
 class OctoLabel extends StatelessWidget {
+  /// Pill text. Rendered with [OctoTextKind.labelSmall].
   final String text;
+
+  /// Colour family. See [OctoLabelVariant].
   final OctoLabelVariant variant;
 
+  /// Creates a pill-shaped label.
   const OctoLabel(this.text, {super.key, this.variant = OctoLabelVariant.standard});
 
   ({Color border, Color fg}) _resolveColors(OctoThemeData theme) {

@@ -18,6 +18,9 @@ analyzer:
 
 linter:
   rules:
+    # Public API documentation — warning level via `errors:` above.
+    public_member_api_docs: true
+
     # Const correctness
     prefer_const_constructors: true
     prefer_const_constructors_in_immutables: true

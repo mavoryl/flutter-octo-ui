@@ -19,30 +19,71 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `textInputAction`, `onChanged`, `onSubmitted`, `maxLines`, etc.) so the
 /// component is usable for real forms without escape hatches.
 class OctoTextField extends StatefulWidget {
+  /// External controller. Mutually exclusive with [initialValue].
   final TextEditingController? controller;
+
+  /// External focus node. A new node is created when omitted.
   final FocusNode? focusNode;
+
+  /// Seed text used when no [controller] is supplied.
   final String? initialValue;
+
+  /// Hint shown when the field is empty.
   final String? placeholder;
+
+  /// Label rendered above the field. Also used as the a11y label.
   final String? label;
+
+  /// Helper text rendered below the field. Hidden when [errorText] is set.
   final String? helperText;
+
+  /// Validation error rendered below the field; switches the border to
+  /// `danger.emphasis` and the helper line to `danger.fg`.
   final String? errorText;
 
+  /// Called on every value change.
   final ValueChanged<String>? onChanged;
+
+  /// Called when the user submits (e.g. Enter on single-line fields).
   final ValueChanged<String>? onSubmitted;
+
+  /// Called when editing completes without an explicit submit.
   final VoidCallback? onEditingComplete;
 
+  /// Soft keyboard layout hint for IMEs.
   final TextInputType? keyboardType;
+
+  /// Affordance of the IME action button (done / next / search / ...).
   final TextInputAction? textInputAction;
+
+  /// Input formatters applied as the user types.
   final List<TextInputFormatter>? inputFormatters;
+
+  /// Autofill domain hints for platform autofill providers.
   final List<String>? autofillHints;
+
+  /// Mask the input — passwords and similar secrets.
   final bool obscureText;
+
+  /// Whether the field accepts input. Disabled fields use a subtle fill.
   final bool enabled;
+
+  /// Whether the field should request focus when first mounted.
   final bool autofocus;
+
+  /// When true, the field is selectable but not editable.
   final bool readOnly;
+
+  /// Maximum line count. `null` is unbounded (use for multi-line bodies).
   final int? maxLines;
+
+  /// Minimum line count for multi-line layout.
   final int? minLines;
+
+  /// Hard character cap. The counter glyph is suppressed by design.
   final int? maxLength;
 
+  /// Creates a themed text field.
   const OctoTextField({
     super.key,
     this.controller,

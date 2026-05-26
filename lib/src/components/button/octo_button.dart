@@ -14,10 +14,31 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `standard`  — outlined, neutral background. Default action button.
 /// `danger`    — solid danger emphasis. Destructive operations.
 /// `invisible` — no chrome until hovered. Toolbar / inline actions.
-enum OctoButtonVariant { primary, standard, danger, invisible }
+enum OctoButtonVariant {
+  /// Solid accent emphasis. Use sparingly: one per surface.
+  primary,
+
+  /// Outlined, neutral background. Default action button.
+  standard,
+
+  /// Solid danger emphasis. Destructive operations.
+  danger,
+
+  /// No chrome until hovered. Toolbar / inline actions.
+  invisible,
+}
 
 /// Compact sizing — Primer ships small / medium / large.
-enum OctoButtonSize { small, medium, large }
+enum OctoButtonSize {
+  /// 28 px min-height. Dense toolbars and inline rows.
+  small,
+
+  /// 32 px min-height. Default form actions.
+  medium,
+
+  /// 40 px min-height. Hero / primary call-to-action.
+  large,
+}
 
 /// Resolved color set for one (variant, state) pair.
 class _ButtonColors {
@@ -43,7 +64,10 @@ class OctoButton extends StatefulWidget {
   /// pointer / keyboard input.
   final VoidCallback? onPressed;
 
+  /// Visual emphasis tier. See [OctoButtonVariant].
   final OctoButtonVariant variant;
+
+  /// Sizing tier. See [OctoButtonSize].
   final OctoButtonSize size;
 
   /// When `true`, displays a spinner in place of the leading content and
@@ -51,16 +75,24 @@ class OctoButton extends StatefulWidget {
   /// shift mid-action.
   final bool loading;
 
+  /// Optional icon placed before the child. Hidden while [loading].
   final Widget? leadingIcon;
+
+  /// Optional icon placed after the child. Hidden while [loading].
   final Widget? trailingIcon;
 
   /// Accessibility label. Defaults to `child`'s text when [OctoButton.label]
   /// is used.
   final String? semanticLabel;
 
+  /// Focus node forwarded to the inner [FocusableActionDetector].
   final FocusNode? focusNode;
+
+  /// Whether the button should request focus when first mounted.
   final bool autofocus;
 
+  /// Creates a button with an arbitrary [child]. Prefer [OctoButton.label]
+  /// for the common text-only case.
   const OctoButton({
     super.key,
     required this.child,

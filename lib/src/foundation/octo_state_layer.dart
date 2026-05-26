@@ -16,8 +16,13 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 ///   * [WidgetState.selected]    → tinted overlay using accent muted.
 ///   * otherwise                 → transparent.
 class OctoStateLayer extends StatelessWidget {
+  /// Widget beneath the overlay.
   final Widget child;
+
+  /// Active widget states that drive overlay selection.
   final Set<WidgetState> states;
+
+  /// Corner rounding matching the [child]'s decoration.
   final BorderRadius? borderRadius;
 
   /// Optional explicit overlay color. When null, the colour is resolved from
@@ -25,6 +30,7 @@ class OctoStateLayer extends StatelessWidget {
   /// for selected.
   final Color? overlayColor;
 
+  /// Creates a state overlay around [child].
   const OctoStateLayer({
     super.key,
     required this.child,

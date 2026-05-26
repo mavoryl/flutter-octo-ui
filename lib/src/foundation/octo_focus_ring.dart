@@ -16,13 +16,25 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// clips (`ClipRect`, `ListView` items), the ring will be cropped — for those
 /// cases switch to `OctoFocusRing.overlay` (lands in 0.2; see ADR-0006).
 class OctoFocusRing extends StatefulWidget {
+  /// Widget that owns the ring's geometry; the ring paints around it.
   final Widget child;
+
+  /// Disables painting without removing the widget from the tree.
   final bool enabled;
+
+  /// Corner rounding matching the [child]'s decoration.
   final BorderRadius? borderRadius;
+
+  /// Stroke colour. Defaults to `theme.colors.accent.fg`.
   final Color? color;
+
+  /// Stroke width in logical pixels.
   final double thickness;
+
+  /// Pixels of separation between the [child] edge and the ring.
   final double offset;
 
+  /// Creates a focus ring that wraps [child].
   const OctoFocusRing({
     super.key,
     required this.child,

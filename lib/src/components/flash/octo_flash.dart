@@ -10,17 +10,35 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 ///
 /// `liveRegion: true` (ADR-0008) marks the banner so screen readers
 /// announce it when it appears.
-enum OctoFlashVariant { info, success, attention, danger }
+enum OctoFlashVariant {
+  /// Neutral informational message; uses the accent palette.
+  info,
+
+  /// Positive outcome — save succeeded, action confirmed.
+  success,
+
+  /// Non-blocking warning that needs the user's attention.
+  attention,
+
+  /// Error or destructive consequence.
+  danger,
+}
 
 /// 0.1.0 ships Flash WITHOUT a dismiss button. The close glyph would
 /// require Material's `Icons.close`, which the design system explicitly
 /// forbids (see ADR review, plan §24). Dismiss lands in 0.2 once
 /// `octo_icons` provides a native close glyph.
 class OctoFlash extends StatelessWidget {
+  /// Body text shown in the banner.
   final String message;
+
+  /// Status colour family. See [OctoFlashVariant].
   final OctoFlashVariant variant;
+
+  /// Optional leading glyph. Decorative — its semantics are excluded.
   final IconData? icon;
 
+  /// Creates a status banner.
   const OctoFlash({
     super.key,
     required this.message,

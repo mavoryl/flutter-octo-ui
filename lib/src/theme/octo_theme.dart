@@ -9,8 +9,10 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `InheritedTheme.captureAll`, which would not work with a plain
 /// `InheritedWidget`.
 class OctoTheme extends InheritedTheme {
+  /// Tokens exposed to descendant widgets.
   final OctoThemeData data;
 
+  /// Creates a theme scope that exposes [data] to its subtree.
   const OctoTheme({required this.data, required super.child, super.key});
 
   /// Returns the [OctoThemeData] from the closest enclosing [OctoTheme].

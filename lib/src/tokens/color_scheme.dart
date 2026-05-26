@@ -8,26 +8,57 @@ import 'package:flutter/foundation.dart';
 /// contrast for low-vision users. The colourblind variants ship as enum slots
 /// only — their concrete values land in a later milestone (ADR-0005).
 enum OctoColorSchemeVariant {
+  /// Default Primer-like palette.
   standard,
+
+  /// Reserved — values land in a later milestone (ADR-0005).
   highContrast,
+
+  /// Reserved — values land in a later milestone (ADR-0005).
   protanopia,
+
+  /// Reserved — values land in a later milestone (ADR-0005).
   deuteranopia,
+
+  /// Reserved — values land in a later milestone (ADR-0005).
   tritanopia,
 }
 
+/// Semantic colour palette aggregating every Primer-style status family.
 @immutable
 class OctoColorScheme with Diagnosticable {
+  /// Light or dark mode — drives auxiliary defaults (e.g. shadows).
   final Brightness brightness;
+
+  /// Palette variant. See [OctoColorSchemeVariant].
   final OctoColorSchemeVariant variant;
+
+  /// Background surfaces — page, overlay, inset, subtle.
   final OctoCanvasColors canvas;
+
+  /// Foreground / text colours — default, muted, subtle, onEmphasis.
   final OctoForegroundColors fg;
+
+  /// Border / divider colours.
   final OctoBorderColors border;
+
+  /// Neutral status colours — quiet UI states.
   final OctoNeutralColors neutral;
+
+  /// Accent status colours — informational, brand.
   final OctoAccentColors accent;
+
+  /// Success status colours — passing, merged, healthy.
   final OctoSuccessColors success;
+
+  /// Attention status colours — warning, pending.
   final OctoAttentionColors attention;
+
+  /// Danger status colours — failure, destructive.
   final OctoDangerColors danger;
 
+  /// Creates a colour scheme. Prefer [OctoColorScheme.light] /
+  /// [OctoColorScheme.dark] for the defaults.
   const OctoColorScheme({
     required this.brightness,
     required this.variant,
@@ -41,6 +72,8 @@ class OctoColorScheme with Diagnosticable {
     required this.danger,
   });
 
+  /// Primer-aligned light palette. [variant] selects an
+  /// [OctoColorSchemeVariant].
   factory OctoColorScheme.light({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
   }) {
@@ -109,6 +142,8 @@ class OctoColorScheme with Diagnosticable {
     }
   }
 
+  /// Primer-aligned dark palette. [variant] selects an
+  /// [OctoColorSchemeVariant].
   factory OctoColorScheme.dark({
     OctoColorSchemeVariant variant = OctoColorSchemeVariant.standard,
   }) {
@@ -177,6 +212,7 @@ class OctoColorScheme with Diagnosticable {
     }
   }
 
+  /// Returns a copy with the given fields overridden.
   OctoColorScheme copyWith({
     Brightness? brightness,
     OctoColorSchemeVariant? variant,
@@ -203,6 +239,7 @@ class OctoColorScheme with Diagnosticable {
     );
   }
 
+  /// Linear interpolation between two colour schemes.
   static OctoColorScheme lerp(OctoColorScheme a, OctoColorScheme b, double t) {
     if (identical(a, b)) return a;
     return OctoColorScheme(
@@ -250,13 +287,22 @@ class OctoColorScheme with Diagnosticable {
       );
 }
 
+/// Canvas (background) surface colours.
 @immutable
 class OctoCanvasColors {
+  /// Plain canvas background — page / scaffold body.
   final Color defaultColor;
+
+  /// Elevated surface — dialogs, popovers, sheets.
   final Color overlay;
+
+  /// Inset / well — code blocks, sunken panels.
   final Color inset;
+
+  /// Subtle alternate background — striped rows, side panels.
   final Color subtle;
 
+  /// Creates an explicit canvas colour set.
   const OctoCanvasColors({
     required this.defaultColor,
     required this.overlay,
@@ -264,6 +310,7 @@ class OctoCanvasColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoCanvasColors copyWith({
     Color? defaultColor,
     Color? overlay,
@@ -277,6 +324,7 @@ class OctoCanvasColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two canvas colour sets.
   static OctoCanvasColors lerp(
     OctoCanvasColors a,
     OctoCanvasColors b,
@@ -304,15 +352,22 @@ class OctoCanvasColors {
   int get hashCode => Object.hash(defaultColor, overlay, inset, subtle);
 }
 
+/// Foreground (text) colours.
 @immutable
 class OctoForegroundColors {
+  /// Primary text colour.
   final Color defaultColor;
+
+  /// De-emphasised text — secondary copy, metadata.
   final Color muted;
+
+  /// Lowest-emphasis text — placeholders, captions.
   final Color subtle;
 
   /// Foreground for any `*.emphasis` background. Required (ADR-0005).
   final Color onEmphasis;
 
+  /// Creates an explicit foreground colour set.
   const OctoForegroundColors({
     required this.defaultColor,
     required this.muted,
@@ -320,6 +375,7 @@ class OctoForegroundColors {
     required this.onEmphasis,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoForegroundColors copyWith({
     Color? defaultColor,
     Color? muted,
@@ -333,6 +389,7 @@ class OctoForegroundColors {
         onEmphasis: onEmphasis ?? this.onEmphasis,
       );
 
+  /// Linear interpolation between two foreground colour sets.
   static OctoForegroundColors lerp(
     OctoForegroundColors a,
     OctoForegroundColors b,
@@ -360,18 +417,26 @@ class OctoForegroundColors {
   int get hashCode => Object.hash(defaultColor, muted, subtle, onEmphasis);
 }
 
+/// Border / divider colours.
 @immutable
 class OctoBorderColors {
+  /// Default border — buttons, inputs, cards.
   final Color defaultColor;
+
+  /// Quieter border — secondary dividers.
   final Color muted;
+
+  /// Faintest border — inset/well separators, hairlines.
   final Color subtle;
 
+  /// Creates an explicit border colour set.
   const OctoBorderColors({
     required this.defaultColor,
     required this.muted,
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoBorderColors copyWith({
     Color? defaultColor,
     Color? muted,
@@ -383,6 +448,7 @@ class OctoBorderColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two border colour sets.
   static OctoBorderColors lerp(
     OctoBorderColors a,
     OctoBorderColors b,
@@ -408,14 +474,25 @@ class OctoBorderColors {
   int get hashCode => Object.hash(defaultColor, muted, subtle);
 }
 
+/// Neutral status colours — quiet UI surfaces unrelated to status.
 @immutable
 class OctoNeutralColors {
+  /// Foreground colour for neutral content (icons, labels).
   final Color fg;
+
+  /// Solid neutral background — tooltips, neutral badges.
   final Color emphasis;
+
+  /// High-emphasis neutral — snackbars, dense overlays.
   final Color emphasisPlus;
+
+  /// Translucent neutral overlay — pressed state fill.
   final Color muted;
+
+  /// Faintest neutral overlay — hover state fill.
   final Color subtle;
 
+  /// Creates an explicit neutral colour set.
   const OctoNeutralColors({
     required this.fg,
     required this.emphasis,
@@ -424,6 +501,7 @@ class OctoNeutralColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoNeutralColors copyWith({
     Color? fg,
     Color? emphasis,
@@ -439,6 +517,7 @@ class OctoNeutralColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two neutral colour sets.
   static OctoNeutralColors lerp(
     OctoNeutralColors a,
     OctoNeutralColors b,
@@ -475,17 +554,26 @@ abstract class _StatusColors {
   Color get subtle;
 }
 
+/// Accent (informational / brand) status colour set.
 @immutable
 class OctoAccentColors implements _StatusColors {
+  /// Foreground for accent text and icons.
   @override
   final Color fg;
+
+  /// Solid accent background — primary buttons, badges.
   @override
   final Color emphasis;
+
+  /// Translucent accent — pressed / selected overlays.
   @override
   final Color muted;
+
+  /// Faint accent fill — info banner background.
   @override
   final Color subtle;
 
+  /// Creates an explicit accent colour set.
   const OctoAccentColors({
     required this.fg,
     required this.emphasis,
@@ -493,6 +581,7 @@ class OctoAccentColors implements _StatusColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoAccentColors copyWith({
     Color? fg,
     Color? emphasis,
@@ -506,6 +595,7 @@ class OctoAccentColors implements _StatusColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two accent colour sets.
   static OctoAccentColors lerp(
     OctoAccentColors a,
     OctoAccentColors b,
@@ -533,17 +623,26 @@ class OctoAccentColors implements _StatusColors {
   int get hashCode => Object.hash(fg, emphasis, muted, subtle);
 }
 
+/// Success (passing / merged / healthy) status colour set.
 @immutable
 class OctoSuccessColors implements _StatusColors {
+  /// Foreground for success text and icons.
   @override
   final Color fg;
+
+  /// Solid success background — confirm buttons, badges.
   @override
   final Color emphasis;
+
+  /// Translucent success — pressed / selected overlays.
   @override
   final Color muted;
+
+  /// Faint success fill — success banner background.
   @override
   final Color subtle;
 
+  /// Creates an explicit success colour set.
   const OctoSuccessColors({
     required this.fg,
     required this.emphasis,
@@ -551,6 +650,7 @@ class OctoSuccessColors implements _StatusColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoSuccessColors copyWith({
     Color? fg,
     Color? emphasis,
@@ -564,6 +664,7 @@ class OctoSuccessColors implements _StatusColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two success colour sets.
   static OctoSuccessColors lerp(
     OctoSuccessColors a,
     OctoSuccessColors b,
@@ -591,17 +692,26 @@ class OctoSuccessColors implements _StatusColors {
   int get hashCode => Object.hash(fg, emphasis, muted, subtle);
 }
 
+/// Attention (warning / pending) status colour set.
 @immutable
 class OctoAttentionColors implements _StatusColors {
+  /// Foreground for attention text and icons.
   @override
   final Color fg;
+
+  /// Solid attention background — warning badges.
   @override
   final Color emphasis;
+
+  /// Translucent attention — pressed / selected overlays.
   @override
   final Color muted;
+
+  /// Faint attention fill — warning banner background.
   @override
   final Color subtle;
 
+  /// Creates an explicit attention colour set.
   const OctoAttentionColors({
     required this.fg,
     required this.emphasis,
@@ -609,6 +719,7 @@ class OctoAttentionColors implements _StatusColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoAttentionColors copyWith({
     Color? fg,
     Color? emphasis,
@@ -622,6 +733,7 @@ class OctoAttentionColors implements _StatusColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two attention colour sets.
   static OctoAttentionColors lerp(
     OctoAttentionColors a,
     OctoAttentionColors b,
@@ -649,17 +761,26 @@ class OctoAttentionColors implements _StatusColors {
   int get hashCode => Object.hash(fg, emphasis, muted, subtle);
 }
 
+/// Danger (failure / destructive) status colour set.
 @immutable
 class OctoDangerColors implements _StatusColors {
+  /// Foreground for danger text and icons.
   @override
   final Color fg;
+
+  /// Solid danger background — destructive buttons, badges.
   @override
   final Color emphasis;
+
+  /// Translucent danger — pressed / selected overlays.
   @override
   final Color muted;
+
+  /// Faint danger fill — error banner background.
   @override
   final Color subtle;
 
+  /// Creates an explicit danger colour set.
   const OctoDangerColors({
     required this.fg,
     required this.emphasis,
@@ -667,6 +788,7 @@ class OctoDangerColors implements _StatusColors {
     required this.subtle,
   });
 
+  /// Returns a copy with the given fields overridden.
   OctoDangerColors copyWith({
     Color? fg,
     Color? emphasis,
@@ -680,6 +802,7 @@ class OctoDangerColors implements _StatusColors {
         subtle: subtle ?? this.subtle,
       );
 
+  /// Linear interpolation between two danger colour sets.
   static OctoDangerColors lerp(
     OctoDangerColors a,
     OctoDangerColors b,

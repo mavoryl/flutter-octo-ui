@@ -7,17 +7,37 @@ import 'package:flutter/widgets.dart';
 /// layer free of theme dependencies. Component widgets resolve theme tokens
 /// at their level and pass concrete values down.
 class OctoBox extends StatelessWidget {
+  /// Optional content rendered inside the box.
   final Widget? child;
+
+  /// Inner spacing between the box edge and the [child].
   final EdgeInsetsGeometry? padding;
+
+  /// Outer spacing around the box.
   final EdgeInsetsGeometry? margin;
+
+  /// Positions the [child] within the available space.
   final AlignmentGeometry? alignment;
+
+  /// Background fill.
   final Color? color;
+
+  /// Corner rounding for the background and border.
   final BorderRadiusGeometry? borderRadius;
+
+  /// Optional border. Caller resolves the stroke colour from theme.
   final BoxBorder? border;
+
+  /// Drop shadows. Caller resolves elevation from `theme.shadows`.
   final List<BoxShadow>? shadows;
+
+  /// Fixed width. `null` means hug content.
   final double? width;
+
+  /// Fixed height. `null` means hug content.
   final double? height;
 
+  /// Creates a layout primitive with optional decoration.
   const OctoBox({
     super.key,
     this.child,

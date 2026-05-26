@@ -5,13 +5,25 @@ import 'package:flutter/foundation.dart';
 /// Layout breakpoints mirroring Primer Viewport sizes.
 @immutable
 class OctoBreakpoints {
+  /// Minimum viewport — phones in portrait.
   final double xs;
+
+  /// Small — large phones / phones in landscape.
   final double sm;
+
+  /// Medium — tablets in portrait.
   final double md;
+
+  /// Large — tablets in landscape / small laptops.
   final double lg;
+
+  /// Extra large — desktops.
   final double xl;
+
+  /// Wide desktop / large monitors.
   final double xxl;
 
+  /// Creates a breakpoint set. Defaults match Primer Viewport sizes.
   const OctoBreakpoints({
     this.xs = 320,
     this.sm = 544,
@@ -21,8 +33,10 @@ class OctoBreakpoints {
     this.xxl = 1400,
   });
 
+  /// Default Primer-aligned breakpoints.
   factory OctoBreakpoints.standard() => const OctoBreakpoints();
 
+  /// Returns a copy with the given fields overridden.
   OctoBreakpoints copyWith({
     double? xs,
     double? sm,
@@ -40,6 +54,7 @@ class OctoBreakpoints {
         xxl: xxl ?? this.xxl,
       );
 
+  /// Linear interpolation between two breakpoint sets.
   static OctoBreakpoints lerp(
     OctoBreakpoints a,
     OctoBreakpoints b,

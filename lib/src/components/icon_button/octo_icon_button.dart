@@ -10,15 +10,31 @@ import 'package:octo_ui/src/foundation/octo_icon.dart';
 /// `semanticLabel` is required (ADR-0008): a bare icon is meaningless to
 /// screen-readers without an explicit description.
 class OctoIconButton extends StatelessWidget {
+  /// Glyph rendered as the button's content.
   final IconData icon;
+
+  /// Tap handler. `null` renders the button disabled.
   final VoidCallback? onPressed;
+
+  /// Visual emphasis tier. See [OctoButtonVariant].
   final OctoButtonVariant variant;
+
+  /// Sizing tier — also picks the matching [OctoIconSize].
   final OctoButtonSize size;
+
+  /// When true, shows a spinner in place of the icon.
   final bool loading;
+
+  /// Accessibility label — required (ADR-0008).
   final String semanticLabel;
+
+  /// Focus node forwarded to the underlying [OctoButton].
   final FocusNode? focusNode;
+
+  /// Whether the button should request focus when first mounted.
   final bool autofocus;
 
+  /// Creates an icon-only button.
   const OctoIconButton({
     super.key,
     required this.icon,

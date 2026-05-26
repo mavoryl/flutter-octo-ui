@@ -15,6 +15,10 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `Theme.of(context).extension<OctoThemeData>()` works as a fallback path
 /// when an [OctoTheme] ancestor is unavailable (ADR-0007).
 extension OctoMaterialAdapter on OctoThemeData {
+  /// Produces a Material 3 [ThemeData] mirroring this [OctoThemeData].
+  ///
+  /// Embeds the receiver in `ThemeData.extensions` so an [OctoTheme] lookup
+  /// can fall back through `Theme.of(context).extension<OctoThemeData>()`.
   ThemeData toMaterialTheme() {
     final scheme = _materialColorScheme();
     final textTheme = _materialTextTheme();
