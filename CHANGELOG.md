@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.8.3] — 2026-05-26
+
+### Added
+
+- Live demo on GitHub Pages — the kitchen-sink runs in-browser at
+  <https://autocrab.github.io/flutter-octo-ui/>, redeployed on every
+  push to `main`. Built with `flutter build web --release --wasm` so
+  the Skwasm renderer is used on modern Chromium / Firefox with
+  automatic CanvasKit fallback for older browsers.
+- README now opens with a link to the live demo right under the
+  badges.
+
 ## [0.8.2] — 2026-05-26
 
 ### Added
