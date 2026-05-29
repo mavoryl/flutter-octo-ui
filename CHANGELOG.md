@@ -1,11 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project adheres to [Semantic Versioning](https://semver.org/).
-
-## [Unreleased]
-
-## [0.8.4] — 2026-05-29
-
+## [0.8.5]
 ### Added
 
 - **`OctoTooltip.tooltipKey`** — optional `Key` forwarded to the inner
@@ -21,6 +16,14 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Fixed
 
+- **Dark-theme tooltip was unreadable** — the popup used
+  `neutral.emphasisPlus` as its background, but in Primer's dark
+  palette `emphasisPlus` flips to a light "highest-contrast inverse
+  surface" colour. Pairing that with `fg.onEmphasis` (white in dark
+  mode) rendered white text on a near-white tooltip. The Material
+  adapter now uses `neutral.emphasis` for the tooltip background —
+  it stays high-contrast against the canvas in every palette and
+  pairs correctly with `fg.onEmphasis`.
 - The tooltip popup textStyle now sets an explicit `fontFamily`
   (`'Roboto'` with a platform-aware fallback cascade). Previously the
   textStyle inherited only `fontFamilyFallback` from the ambient
@@ -30,8 +33,7 @@ All notable changes to this project will be documented in this file. The format 
   embedded builds, golden tests) every glyph rendered as the Ahem
   `.notdef` block.
 
-## [0.8.3] — 2026-05-26
-
+## [0.8.3]
 ### Added
 
 - Live demo on GitHub Pages — the kitchen-sink runs in-browser at
@@ -42,8 +44,7 @@ All notable changes to this project will be documented in this file. The format 
 - README now opens with a link to the live demo right under the
   badges.
 
-## [0.8.2] — 2026-05-26
-
+## [0.8.2]
 ### Added
 
 - Five pub.dev topics for discovery: `design-system`, `ui`, `widgets`,
@@ -57,15 +58,13 @@ All notable changes to this project will be documented in this file. The format 
   drops below the threshold fails the workflow. Current coverage
   sits at 92.4%, leaving headroom for the next round of features.
 
-## [0.8.1] — 2026-05-26
-
+## [0.8.1]
 ### Changed
 
 - Minor fixes — README now ships pub.dev + CI badges and the install
   snippet drops the git-ref fallback now that the package is live.
 
-## [0.8.0] — 2026-05-26
-
+## [0.8.0]
 First stable release on pub.dev. Promotes the `0.7.0-dev.0` component
 surface (25 components across form / display / navigation / overlay /
 data / layout categories) without API changes.
@@ -88,8 +87,7 @@ data / layout categories) without API changes.
   plumbing, and dev tooling configs. Mirrors `.gitignore` patterns so
   the two files stay in sync.
 
-## [0.7.0-dev.0] — 2026-05-23
-
+## [0.7.0-dev.0]
 ### Changed
 
 - Upgraded `golden_matrix` 0.18.1 → 0.19.0 to pick up the new
@@ -135,8 +133,7 @@ data / layout categories) without API changes.
 - Demo: a new "Data table" section in the kitchen sink wired to a
   controlled sort state.
 
-## [0.6.0-dev.0] — 2026-05-19
-
+## [0.6.0-dev.0]
 ### Added
 
 - **`OctoTimeline`** + `OctoTimelineItem` + `OctoTimelineVariant` —
@@ -199,8 +196,7 @@ data / layout categories) without API changes.
 - Demo: a new "Spinners" section in the kitchen-sink showing all three
   sizes paired with body-small status text.
 
-## [0.5.0-dev.0] — 2026-05-14
-
+## [0.5.0-dev.0]
 ### Added
 
 - **`OctoToast`** + `OctoToastVariant` + `OctoToastAction` +
@@ -254,8 +250,7 @@ data / layout categories) without API changes.
 - Demo: a new "Dividers" section in the kitchen-sink showing subtle /
   muted / strong horizontals plus a vertical inline strip.
 
-## [0.4.0-dev.0] — 2026-05-09
-
+## [0.4.0-dev.0]
 ### Added
 
 - **`OctoSegmentedControl<T>`** + `OctoSegmentedControlItem<T>` —
@@ -280,8 +275,7 @@ data / layout categories) without API changes.
 - Demo grows three new sections — "Segmented control", "Chips",
   "Dropdown" — wired to live state.
 
-## [0.3.0-dev.0] — 2026-05-05
-
+## [0.3.0-dev.0]
 ### Added
 
 - **`OctoDialog`** + `OctoDialog.show<T>()` — themed modal dialog. Wraps
@@ -353,8 +347,7 @@ data / layout categories) without API changes.
   does not handle horizontal overflow — wrap in a `SingleChildScrollView`
   when the tab strip is wider than the available room.
 
-## [0.2.0-dev.0] — 2026-05-01
-
+## [0.2.0-dev.0]
 ### Added
 
 - `OctoFocusRing.overlay` — clip-proof named constructor that renders the
@@ -433,8 +426,7 @@ data / layout categories) without API changes.
   `public_member_api_docs` is enabled at warning level and reports zero
   issues.
 
-## [0.1.0-dev.0] — 2026-04-26
-
+## [0.1.0-dev.0]
 Foundation release. API is unstable until `0.1.0`.
 
 ### Added

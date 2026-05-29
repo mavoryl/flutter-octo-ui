@@ -68,7 +68,14 @@ extension OctoMaterialAdapter on OctoThemeData {
       ),
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(
-          color: colors.neutral.emphasisPlus,
+          // Use `neutral.emphasis`, NOT `neutral.emphasisPlus`. In dark
+          // mode Primer's `emphasisPlus` flips to a light colour (it's
+          // the "highest-contrast inverse surface" slot) — pairing it
+          // with `fg.onEmphasis` (white in dark) renders white text on
+          // a near-white tooltip, which is unreadable. `neutral.emphasis`
+          // stays high-contrast against the canvas in every palette and
+          // pairs correctly with `fg.onEmphasis`.
+          color: colors.neutral.emphasis,
           borderRadius: BorderRadius.all(Radius.circular(radii.small)),
         ),
         // Tooltip popup mounts in an Overlay, where Material applies the
