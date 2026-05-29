@@ -21,17 +21,24 @@ class OctoTooltip extends StatelessWidget {
   /// elsewhere).
   final TooltipTriggerMode? triggerMode;
 
+  /// Forwarded to the inner Material [Tooltip] so callers can hold a
+  /// `GlobalKey<TooltipState>` and drive show / dismiss programmatically
+  /// (golden tests, controlled tutorials, "first-run" coachmarks).
+  final Key? tooltipKey;
+
   /// Wraps [child] with a themed tooltip showing [message].
   const OctoTooltip({
     super.key,
     required this.message,
     required this.child,
     this.triggerMode,
+    this.tooltipKey,
   });
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
+      key: tooltipKey,
       message: message,
       triggerMode: triggerMode,
       child: child,

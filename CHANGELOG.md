@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [0.8.4] — 2026-05-29
+
+### Added
+
+- **`OctoTooltip.tooltipKey`** — optional `Key` forwarded to the inner
+  Material `Tooltip`. Lets callers hold a `GlobalKey<TooltipState>` and
+  drive show / dismiss programmatically — useful for golden snapshots,
+  guided tutorials, and first-run coachmarks.
+- Golden coverage: a new `octo_tooltip/shown` scenario captures the
+  popup at full opacity across all four theme variants.
+- The golden theme axis (`octoThemes`) now includes `light-hc` and
+  `dark-hc` so every existing scenario also snapshots the high-contrast
+  palette. Catches regressions where a component reads from the wrong
+  token slot in addition to the WCAG-AA contrast unit tests.
+
+### Fixed
+
+- The tooltip popup textStyle now sets an explicit `fontFamily`
+  (`'Roboto'` with a platform-aware fallback cascade). Previously the
+  textStyle inherited only `fontFamilyFallback` from the ambient
+  typography, but Material's `_TooltipOverlay` replaces the ambient
+  `DefaultTextStyle` rather than merging into it — so on platforms
+  where the fallback families don't resolve (Linux desktop, certain
+  embedded builds, golden tests) every glyph rendered as the Ahem
+  `.notdef` block.
+
 ## [0.8.3] — 2026-05-26
 
 ### Added

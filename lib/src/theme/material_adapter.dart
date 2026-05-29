@@ -71,7 +71,24 @@ extension OctoMaterialAdapter on OctoThemeData {
           color: colors.neutral.emphasisPlus,
           borderRadius: BorderRadius.all(Radius.circular(radii.small)),
         ),
-        textStyle: typography.bodySmall.copyWith(color: colors.fg.onEmphasis),
+        // Tooltip popup mounts in an Overlay, where Material applies the
+        // tooltipTheme textStyle verbatim — the ambient DefaultTextStyle
+        // is replaced, not merged. Set fontFamily explicitly (with a
+        // platform-sensible fallback cascade) so the popup text resolves
+        // to a real glyph instead of the Ahem `.notdef` block we'd get
+        // if we relied on `fontFamilyFallback` alone.
+        textStyle: TextStyle(
+          fontFamily: 'Roboto',
+          fontFamilyFallback: const <String>[
+            'SF Pro Text',
+            'Segoe UI',
+            'Cantarell',
+            'sans-serif',
+          ],
+          fontSize: 12,
+          height: 1.5,
+          color: colors.fg.onEmphasis,
+        ),
       ),
       extensions: <ThemeExtension<dynamic>>[this],
     );
