@@ -2,7 +2,7 @@ name: octo_ui
 description: >-
   Cross-platform Primer-inspired Flutter UI kit. Optimised for devtools,
   dashboards, and dense data-heavy interfaces.
-version: 0.8.5
+version: 0.8.6
 repository: https://github.com/mavoryl/flutter-octo-ui
 issue_tracker: https://github.com/mavoryl/flutter-octo-ui/issues
 
@@ -12,6 +12,24 @@ topics:
   - widgets
   - theme
   - dashboard
+
+screenshots:
+  - description: >-
+      Sortable data table with state labels — the kind of dense table
+      every admin panel needs.
+    path: screenshots/01-data-table.png
+  - description: >-
+      Status labels — PR / issue lifecycle pills across all five variants
+      in both high and low emphasis tiers.
+    path: screenshots/02-state-labels.png
+  - description: >-
+      Command palette — the ⌘K-style picker, fully keyboard-driven,
+      with fuzzy filtering and danger-variant entries.
+    path: screenshots/03-command-palette.png
+  - description: >-
+      Vertical activity timeline — variant-tinted marker discs over a
+      continuous rail, ideal for PR / deploy history feeds.
+    path: screenshots/04-timeline.png
 
 environment:
   sdk: ^3.6.0

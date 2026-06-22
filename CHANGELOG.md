@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.8.6]
+
+### Changed
+
+- Repository moved from `Autocrab/flutter-octo-ui` to
+  `mavoryl/flutter-octo-ui` (organisation account). All in-repo URLs,
+  badges, the live-demo link, and the demo / breadcrumb-test labels
+  flip to the new owner. `LICENSE` / `NOTICE` keep the `Autocrab`
+  copyright line — those identify the legal author, not the GitHub
+  host.
+
+### Added
+
+- `screenshots:` section in `pubspec.yaml` so the pub.dev landing card
+  carries a four-image carousel (data table, state labels, command
+  palette, timeline) instead of falling back to a plain text preview.
+
 ## [0.8.5]
 ### Added
 

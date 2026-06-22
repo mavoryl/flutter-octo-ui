@@ -19,7 +19,7 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.8.5`**.
+Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.8.6`**.
 
 ## Component catalogue
 
@@ -47,7 +47,7 @@ Pre-1.0 — APIs may evolve between `0.x` releases. The current published versio
 
 ```yaml
 dependencies:
-  octo_ui: ^0.8.5
+  octo_ui: ^0.8.6
 ```
 
 Or `flutter pub add octo_ui`.
