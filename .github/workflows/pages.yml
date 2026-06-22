@@ -43,7 +43,7 @@ jobs:
       - name: Build web
         working-directory: example
         # `--base-href` is the GitHub Pages sub-path (the repo lives at
-        # `Autocrab/flutter-octo-ui`, so the URL prefix is
+        # `mavoryl/flutter-octo-ui`, so the URL prefix is
         # `/flutter-octo-ui/`).
         # `--wasm` opts into the Skwasm renderer (faster scrolling and
         # paint than CanvasKit on Chromium 119+ / Firefox 120+) and

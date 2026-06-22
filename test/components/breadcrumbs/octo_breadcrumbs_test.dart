@@ -18,13 +18,13 @@ void main() {
         tester,
         OctoBreadcrumbs(
           items: [
-            OctoBreadcrumbItem(label: 'Autocrab', onPressed: () {}),
+            OctoBreadcrumbItem(label: 'mavoryl', onPressed: () {}),
             OctoBreadcrumbItem(label: 'octo_ui', onPressed: () {}),
             const OctoBreadcrumbItem(label: 'main'),
           ],
         ),
       );
-      expect(find.text('Autocrab'), findsOneWidget);
+      expect(find.text('mavoryl'), findsOneWidget);
       expect(find.text('octo_ui'), findsOneWidget);
       expect(find.text('main'), findsOneWidget);
     });
@@ -34,7 +34,7 @@ void main() {
         tester,
         OctoBreadcrumbs(
           items: [
-            OctoBreadcrumbItem(label: 'Autocrab', onPressed: () {}),
+            OctoBreadcrumbItem(label: 'mavoryl', onPressed: () {}),
             OctoBreadcrumbItem(label: 'octo_ui', onPressed: () {}),
             const OctoBreadcrumbItem(label: 'main'),
           ],
@@ -49,12 +49,12 @@ void main() {
         tester,
         OctoBreadcrumbs(
           items: [
-            OctoBreadcrumbItem(label: 'Autocrab', onPressed: () => taps++),
+            OctoBreadcrumbItem(label: 'mavoryl', onPressed: () => taps++),
             const OctoBreadcrumbItem(label: 'octo_ui'),
           ],
         ),
       );
-      await tester.tap(find.text('Autocrab'));
+      await tester.tap(find.text('mavoryl'));
       expect(taps, 1);
     });
 

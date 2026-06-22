@@ -37,7 +37,7 @@
 ### Added
 
 - Live demo on GitHub Pages — the kitchen-sink runs in-browser at
-  <https://autocrab.github.io/flutter-octo-ui/>, redeployed on every
+  <https://mavoryl.github.io/flutter-octo-ui/>, redeployed on every
   push to `main`. Built with `flutter build web --release --wasm` so
   the Skwasm renderer is used on modern Chromium / Firefox with
   automatic CanvasKit fallback for older browsers.
@@ -72,7 +72,7 @@ data / layout categories) without API changes.
 ### Changed
 
 - Repository / issue-tracker URLs in `pubspec.yaml` point at the
-  canonical `github.com/Autocrab/flutter-octo-ui` location.
+  canonical `github.com/mavoryl/flutter-octo-ui` location.
 - Package description, library doc comment, and README reframe the
   positioning as *cross-platform, optimised for devtools / dashboards
   / dense data*. No platform restrictions in `pubspec.yaml` — the kit
@@ -471,8 +471,8 @@ Foundation release. API is unstable until `0.1.0`.
 - Widgetbook playground.
 - Goldens for dynamic states (`hovered`, `pressed`, `focused`, `loading`).
 
-[Unreleased]: https://github.com/Autocrab/flutter-octo-ui/compare/v0.4.0-dev.0...HEAD
-[0.4.0-dev.0]: https://github.com/Autocrab/flutter-octo-ui/compare/v0.3.0-dev.0...v0.4.0-dev.0
-[0.3.0-dev.0]: https://github.com/Autocrab/flutter-octo-ui/compare/v0.2.0-dev.0...v0.3.0-dev.0
-[0.2.0-dev.0]: https://github.com/Autocrab/flutter-octo-ui/compare/v0.1.0-dev.0...v0.2.0-dev.0
-[0.1.0-dev.0]: https://github.com/Autocrab/flutter-octo-ui/releases/tag/v0.1.0-dev.0
+[Unreleased]: https://github.com/mavoryl/flutter-octo-ui/compare/v0.4.0-dev.0...HEAD
+[0.4.0-dev.0]: https://github.com/mavoryl/flutter-octo-ui/compare/v0.3.0-dev.0...v0.4.0-dev.0
+[0.3.0-dev.0]: https://github.com/mavoryl/flutter-octo-ui/compare/v0.2.0-dev.0...v0.3.0-dev.0
+[0.2.0-dev.0]: https://github.com/mavoryl/flutter-octo-ui/compare/v0.1.0-dev.0...v0.2.0-dev.0
+[0.1.0-dev.0]: https://github.com/mavoryl/flutter-octo-ui/releases/tag/v0.1.0-dev.0

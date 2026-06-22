@@ -15,7 +15,7 @@ void main() {
         builder: () => _Sampler(
           child: OctoBreadcrumbs(
             items: const [
-              OctoBreadcrumbItem(label: 'Autocrab', onPressed: _noop),
+              OctoBreadcrumbItem(label: 'mavoryl', onPressed: _noop),
               OctoBreadcrumbItem(label: 'octo_ui', onPressed: _noop),
               OctoBreadcrumbItem(label: 'main'),
             ],

@@ -3,8 +3,8 @@ description: >-
   Cross-platform Primer-inspired Flutter UI kit. Optimised for devtools,
   dashboards, and dense data-heavy interfaces.
 version: 0.8.5
-repository: https://github.com/Autocrab/flutter-octo-ui
-issue_tracker: https://github.com/Autocrab/flutter-octo-ui/issues
+repository: https://github.com/mavoryl/flutter-octo-ui
+issue_tracker: https://github.com/mavoryl/flutter-octo-ui/issues
 
 topics:
   - design-system

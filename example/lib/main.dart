@@ -243,8 +243,8 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                   child: OctoBreadcrumbs(
                     items: [
                       OctoBreadcrumbItem(
-                        label: 'Autocrab',
-                        onPressed: () => _record('Autocrab'),
+                        label: 'mavoryl',
+                        onPressed: () => _record('mavoryl'),
                       ),
                       OctoBreadcrumbItem(
                         label: 'octo_ui',

@@ -1,10 +1,10 @@
 # octo_ui
 
 [![pub package](https://img.shields.io/pub/v/octo_ui.svg)](https://pub.dev/packages/octo_ui)
-[![CI](https://github.com/Autocrab/flutter-octo-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Autocrab/flutter-octo-ui/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/Autocrab/flutter-octo-ui/branch/main/graph/badge.svg)](https://codecov.io/gh/Autocrab/flutter-octo-ui)
+[![CI](https://github.com/mavoryl/flutter-octo-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mavoryl/flutter-octo-ui/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/mavoryl/flutter-octo-ui/branch/main/graph/badge.svg)](https://codecov.io/gh/mavoryl/flutter-octo-ui)
 
-🎮 **Live demo:** <https://autocrab.github.io/flutter-octo-ui/> — the kitchen sink running in your browser. Updated on every push to `main`.
+🎮 **Live demo:** <https://mavoryl.github.io/flutter-octo-ui/> — the kitchen sink running in your browser. Updated on every push to `main`.
 
 A cross-platform Flutter UI kit inspired by [Primer](https://primer.style/). Optimised for **devtools, dashboards, admin panels, and dense data-heavy interfaces** — but every widget shares the same theme tokens, focus model, and accessibility baseline regardless of platform, so it runs cleanly on mobile too.
 
