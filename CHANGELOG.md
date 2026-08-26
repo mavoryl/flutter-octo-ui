@@ -1,5 +1,76 @@
 # Changelog
 
+## [Unreleased]
+
+## [0.9.0] — 2026-08-26
+
+### Added
+
+- **`OctoCard`** — content surface (Primer "Box"). Presentational by
+  default; passing `onPressed` turns it into a full interactive surface
+  with hover / focus / pressed states, a focus ring, and
+  `Semantics.button`. `selected` works in both modes so a list of
+  read-only cards can still show which row is current. Two treatments
+  via `OctoCardVariant`: `outlined` (hairline border) and `elevated`
+  (drop shadow).
+- **`OctoEmptyState`** — placeholder for a surface with nothing to show
+  (Primer "Blankslate"): optional icon, title announced as a header,
+  optional description, and a wrapped row of `actions`.
+- **`OctoAvatarStack`** — overlapping avatar row. The first face paints
+  on top, each avatar is ringed in the canvas colour so the overlap
+  stays legible, and `maxVisible` collapses the remainder into a `+N`
+  counter whose accessibility label is customisable through
+  `overflowLabelBuilder`. Overlap is tunable via `overlapRatio`.
+- **`OctoPopover`** — anchored surface holding arbitrary content, with
+  four placements (`bottomStart` / `bottomEnd` / `topStart` / `topEnd`)
+  resolved against the ambient `Directionality`. Same overlay machinery
+  as `OctoMenu` — `OverlayPortal` + `LayerLink`, outside-tap and Escape
+  dismissal — but tapping *inside* does not dismiss, since the content
+  is a form rather than a list of actions.
+- **`OctoAvatar.dimension`** — public getter for the diameter of a size
+  bucket, so composites can compute geometry without duplicating the
+  size table.
+- Golden coverage for all four new components across the full theme
+  axis (light / dark / light-hc / dark-hc), including hover / pressed /
+  selected / focused card states and all three popover placements.
+
+### Changed
+
+- **`OctoMenuController` is now a typedef for `OctoOverlayController`.**
+  The driver is shared by every anchored overlay in the kit, so it moved
+  to `foundation/` under a name that does not claim to be menu-specific.
+  Existing code keeps compiling — `OctoMenuController` remains a valid
+  type name.
+
+### Changed (toolchain)
+
+- **CI now pins Flutter `3.44.8`** (was `3.35.7`), matching the version
+  used for development. Flutter 3.44 reworked the semantics flag API:
+  `isChecked` became a `CheckedState` enum, and `isSelected` /
+  `isEnabled` / `isToggled` / `isExpanded` became `Tristate`, while
+  `hasCheckedState`, `hasToggledState`, and `isCheckStateMixed` were
+  removed — a single `CheckedState.mixed` / `Tristate.isTrue` now
+  carries what used to take two or three flags. Sixteen semantics
+  assertions across the suite were migrated accordingly. No `lib/` code
+  changed, so the `flutter: ">=3.27.0"` constraint stays as it is — only
+  the test suite requires the newer SDK.
+- **`octo_command_palette` goldens rebaked.** Flutter 3.44 changed the
+  Material input metrics, so the palette's search field now stretches
+  closer to the panel edges and its rows sit slightly tighter. Visual
+  change from the framework, not from this package.
+
+### Fixed
+
+- **Tapping the trigger of an open `OctoMenu` did not close it.** The
+  trigger sat outside the popover's `TapRegion`, so the tap first fired
+  `onTapOutside` (closing the menu) and then the trigger's own `toggle`
+  (reopening it). Trigger and surface now share a `TapRegion` group.
+  `OctoPopover` was built with the same group from the start.
+- **`OctoAvatar` announced its initials on top of its label.** The
+  fallback text is a visual stand-in for the name, never extra
+  information, so a screen reader read "Marat Shakirov MA". The initials
+  are now wrapped in `ExcludeSemantics`.
+
 ## [0.8.6]
 
 ### Changed

@@ -19,35 +19,35 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.8.6`**.
+Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.9.0`**.
 
 ## Component catalogue
 
-25 components across 6 categories. Each one has a [golden snapshot](test/goldens) and unit / widget tests.
+36 components across 6 categories. Each one has a [golden snapshot](test/goldens) and unit / widget tests.
 
 **Form & input**
 &nbsp;&nbsp;`OctoButton` · `OctoIconButton` · `OctoTextField` · `OctoSwitch` · `OctoCheckbox` · `OctoRadio` · `OctoSegmentedControl` · `OctoDropdown`
 
 **Display & labels**
-&nbsp;&nbsp;`OctoLabel` · `OctoCounterLabel` · `OctoStateLabel` · `OctoChip` · `OctoAvatar` · `OctoFlash` · `OctoSkeleton`
+&nbsp;&nbsp;`OctoLabel` · `OctoCounterLabel` · `OctoStateLabel` · `OctoChip` · `OctoAvatar` · `OctoAvatarStack` · `OctoFlash` · `OctoSkeleton` · `OctoEmptyState`
 
 **Navigation**
 &nbsp;&nbsp;`OctoUnderlineNav` · `OctoSideNav` · `OctoTabs` · `OctoBreadcrumbs` · `OctoPagination`
 
 **Overlays**
-&nbsp;&nbsp;`OctoDialog` · `OctoTooltip` · `OctoMenu` · `OctoToast` · `OctoCommandPalette` (⌘K-style picker) · `OctoActionList`
+&nbsp;&nbsp;`OctoDialog` · `OctoTooltip` · `OctoMenu` · `OctoPopover` · `OctoToast` · `OctoCommandPalette` (⌘K-style picker) · `OctoActionList`
 
 **Data & feedback**
 &nbsp;&nbsp;`OctoDataTable<T>` · `OctoTimeline` · `OctoProgressBar` · `OctoSpinner`
 
 **Layout primitives**
-&nbsp;&nbsp;`OctoCollapsible` · `OctoDivider`
+&nbsp;&nbsp;`OctoCard` · `OctoCollapsible` · `OctoDivider`
 
 ## Installation
 
 ```yaml
 dependencies:
-  octo_ui: ^0.8.6
+  octo_ui: ^0.9.0
 ```
 
 Or `flutter pub add octo_ui`.
