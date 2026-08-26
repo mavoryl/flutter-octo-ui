@@ -76,7 +76,10 @@ class OctoAvatar extends StatelessWidget {
           'Provide either imageUrl or imageProvider, not both.',
         );
 
-  double get _dimension => switch (size) {
+  /// Diameter in logical pixels for the configured [size]. Exposed so
+  /// composites — [OctoAvatarStack] — can compute overlap geometry without
+  /// duplicating the size table.
+  double get dimension => switch (size) {
         OctoAvatarSize.xs => 16,
         OctoAvatarSize.sm => 20,
         OctoAvatarSize.md => 32,
@@ -101,7 +104,7 @@ class OctoAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OctoTheme.of(context);
-    final dim = _dimension;
+    final dim = dimension;
     final radius = shape == OctoAvatarShape.circle
         ? BorderRadius.all(Radius.circular(dim))
         : BorderRadius.all(Radius.circular(theme.radii.medium));
@@ -153,10 +156,14 @@ class _Fallback extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return Center(
-      child: OctoText.styled(
-        initials!,
-        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600, height: 1),
-        color: theme.colors.fg.defaultColor,
+      // The initials duplicate the avatar's semanticLabel — announcing them
+      // as well makes a screen reader read "Marat Shakirov MA".
+      child: ExcludeSemantics(
+        child: OctoText.styled(
+          initials!,
+          style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600, height: 1),
+          color: theme.colors.fg.defaultColor,
+        ),
       ),
     );
   }

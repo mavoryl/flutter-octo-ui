@@ -65,6 +65,19 @@ void main() {
       handle.dispose();
     });
 
+    testWidgets('initials are decorative — the label is not doubled by them', (tester) async {
+      final handle = tester.ensureSemantics();
+      await _pump(
+        tester,
+        const OctoAvatar(initials: 'MA', semanticLabel: 'Marat Shakirov'),
+      );
+      // Without ExcludeSemantics around the fallback text, a screen reader
+      // announces "Marat Shakirov MA" — the initials are a visual stand-in
+      // for the name, never extra information.
+      expect(tester.getSemantics(find.byType(OctoAvatar)).label, 'Marat Shakirov');
+      handle.dispose();
+    });
+
     testWidgets('passing both imageUrl and imageProvider fails the assertion', (tester) async {
       expect(
         () => OctoAvatar(

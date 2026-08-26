@@ -128,6 +128,8 @@ class KitchenSinkPage extends StatefulWidget {
 class _KitchenSinkPageState extends State<KitchenSinkPage> {
   final TextEditingController _emailController = TextEditingController();
   final OctoMenuController _menuController = OctoMenuController();
+  final OctoOverlayController _popoverController = OctoOverlayController();
+  int? _selectedCard;
   bool _showError = false;
   String _lastAction = '';
   int _navIndex = 0;
@@ -180,6 +182,7 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
   void dispose() {
     _emailController.dispose();
     _menuController.dispose();
+    _popoverController.dispose();
     super.dispose();
   }
 
@@ -289,6 +292,140 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
                         semanticLabel: 'OG org',
                       ),
                     ],
+                  ),
+                ),
+                _Section(
+                  title: 'Avatar stack — assignees and participants',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const OctoAvatarStack(avatars: _reviewers),
+                      SizedBox(height: theme.spacing.gap.md),
+                      const OctoAvatarStack(avatars: _reviewers, maxVisible: 3),
+                      SizedBox(height: theme.spacing.gap.md),
+                      const OctoAvatarStack(
+                        avatars: _reviewers,
+                        maxVisible: 2,
+                        overlapRatio: 0.5,
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Cards — presentational, interactive, selected',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const OctoCard(
+                        child: OctoText(
+                          'Presentational card — a plain surface for grouped '
+                          'content. No hover, no focus, invisible to screen '
+                          'readers as a control.',
+                          kind: OctoTextKind.bodySmall,
+                        ),
+                      ),
+                      SizedBox(height: theme.spacing.gap.md),
+                      OctoCard(
+                        variant: OctoCardVariant.elevated,
+                        onPressed: () => _record('Tapped elevated card'),
+                        semanticLabel: 'Open octo_ui repository',
+                        child: Row(
+                          children: [
+                            const OctoIcon(OctIcons.repo_16),
+                            SizedBox(width: theme.spacing.gap.sm),
+                            const Expanded(
+                              child: OctoText(
+                                'mavoryl/octo_ui — interactive, elevated',
+                                kind: OctoTextKind.bodyEmphasis,
+                              ),
+                            ),
+                            const OctoIcon(OctIcons.chevron_right_16),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: theme.spacing.gap.md),
+                      OctoCard(
+                        onPressed: () => setState(
+                          () => _selectedCard = _selectedCard == 0 ? null : 0,
+                        ),
+                        selected: _selectedCard == 0,
+                        semanticLabel: 'Toggle selection',
+                        child: const OctoText(
+                          'Selectable card — tap to toggle the accent tint.',
+                          kind: OctoTextKind.bodySmall,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Popover — anchored surface with arbitrary content',
+                  child: Row(
+                    children: [
+                      OctoPopover(
+                        controller: _popoverController,
+                        semanticLabel: 'Author filter',
+                        content: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const OctoText(
+                              'Filter by author',
+                              kind: OctoTextKind.bodyEmphasis,
+                            ),
+                            SizedBox(height: theme.spacing.gap.sm),
+                            OctoText(
+                              'Unlike a menu, a popover holds any content and '
+                              'stays open until dismissed.',
+                              kind: OctoTextKind.bodySmall,
+                              color: theme.colors.fg.muted,
+                            ),
+                            SizedBox(height: theme.spacing.gap.md),
+                            OctoButton.label(
+                              'Apply',
+                              variant: OctoButtonVariant.primary,
+                              size: OctoButtonSize.small,
+                              onPressed: () {
+                                _popoverController.close();
+                                _record('Applied author filter');
+                              },
+                            ),
+                          ],
+                        ),
+                        child: OctoButton.label(
+                          'Author',
+                          leadingIcon: const Icon(OctIcons.person_16),
+                          onPressed: _popoverController.toggle,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
+                  title: 'Empty state — nothing to show yet',
+                  child: OctoCard(
+                    padding: EdgeInsets.all(theme.spacing.inset.xl),
+                    child: OctoEmptyState(
+                      icon: OctIcons.issue_opened_24,
+                      title: 'No issues match these filters',
+                      description:
+                          'Try widening the search, or open the first issue '
+                          'for this repository.',
+                      actions: [
+                        OctoButton.label(
+                          'New issue',
+                          variant: OctoButtonVariant.primary,
+                          onPressed: () =>
+                              _record('New issue from empty state'),
+                        ),
+                        OctoButton.label(
+                          'Clear filters',
+                          onPressed: () => _record('Cleared filters'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 _Section(
@@ -1325,6 +1462,15 @@ class _Section extends StatelessWidget {
     );
   }
 }
+
+/// Reviewers used by the avatar-stack demo.
+const List<OctoAvatar> _reviewers = [
+  OctoAvatar(initials: 'MA', semanticLabel: 'Marat'),
+  OctoAvatar(initials: 'JD', semanticLabel: 'Jane'),
+  OctoAvatar(initials: 'SP', semanticLabel: 'Sam'),
+  OctoAvatar(initials: 'KL', semanticLabel: 'Kim'),
+  OctoAvatar(initials: 'RO', semanticLabel: 'Robin'),
+];
 
 class _DemoPr {
   final int number;

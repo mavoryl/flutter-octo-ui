@@ -93,6 +93,31 @@ void main() {
       expect(find.text('Multi'), findsOneWidget);
     });
 
+    testWidgets('tapping the trigger of an open menu closes it', (tester) async {
+      final controller = OctoMenuController();
+      addTearDown(controller.dispose);
+
+      await _pump(
+        tester,
+        OctoMenu(
+          controller: controller,
+          items: [OctoActionListItem(label: 'Item', onPressed: () {})],
+          child: OctoButton.label('More', onPressed: controller.toggle),
+        ),
+      );
+
+      await tester.tap(find.text('More'));
+      await tester.pumpAndSettle();
+      expect(controller.isOpen, isTrue);
+
+      // Without a shared TapRegion group, this tap first fires
+      // `onTapOutside` (closing the menu) and then the trigger's own
+      // `toggle` (reopening it), so the menu never closes.
+      await tester.tap(find.text('More'));
+      await tester.pumpAndSettle();
+      expect(controller.isOpen, isFalse);
+    });
+
     testWidgets('Escape closes the menu', (tester) async {
       final controller = OctoMenuController();
       addTearDown(controller.dispose);

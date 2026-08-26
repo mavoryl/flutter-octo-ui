@@ -61,6 +61,12 @@ class _OctoMenuState extends State<OctoMenu> {
   final GlobalKey _anchorKey = GlobalKey();
   Size _anchorSize = Size.zero;
 
+  /// Shared by the trigger's and the popover's [TapRegion]s so a tap on the
+  /// trigger is not "outside". Without it, tapping an open menu's trigger
+  /// closes it via `onTapOutside` and the trigger's own `toggle` immediately
+  /// reopens it.
+  final Object _tapGroup = Object();
+
   @override
   void initState() {
     super.initState();
@@ -138,7 +144,7 @@ class _OctoMenuState extends State<OctoMenu> {
             child: OverlayPortal(
               controller: _portal,
               overlayChildBuilder: _buildOverlay,
-              child: widget.child,
+              child: TapRegion(groupId: _tapGroup, child: widget.child),
             ),
           ),
         ),
@@ -152,6 +158,7 @@ class _OctoMenuState extends State<OctoMenu> {
     final minWidth = widget.minWidth ?? _anchorSize.width;
 
     final menu = TapRegion(
+      groupId: _tapGroup,
       onTapOutside: (_) => widget.controller.close(),
       child: Shortcuts(
         shortcuts: const <ShortcutActivator, Intent>{
