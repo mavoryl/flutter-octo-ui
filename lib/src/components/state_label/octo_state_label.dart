@@ -176,10 +176,17 @@ class OctoStateLabel extends StatelessWidget {
               children: [
                 Icon(_icon, size: 14, color: colors.foreground),
                 SizedBox(width: theme.spacing.gap.xs),
-                OctoText(
-                  label,
-                  kind: OctoTextKind.labelSmall,
-                  color: colors.foreground,
+                // Status pills sit in table cells, where the column decides
+                // the width. Flexible lets the text ellipsize instead of
+                // painting an overflow stripe over the layout.
+                Flexible(
+                  child: OctoText(
+                    label,
+                    kind: OctoTextKind.labelSmall,
+                    color: colors.foreground,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),

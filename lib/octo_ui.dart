@@ -8,3 +8,4 @@ export 'src/components/components.dart';
 export 'src/foundation/foundation.dart';
 export 'src/theme/theme.dart';
 export 'src/tokens/tokens.dart';
+export 'src/utils/utils.dart';

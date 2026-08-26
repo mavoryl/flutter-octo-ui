@@ -90,6 +90,22 @@ void main() {
       expect(text.style!.color, theme.colors.accent.fg);
     });
 
+    testWidgets('shrinks instead of overflowing a narrow column', (tester) async {
+      // Status pills live in table cells, and a table cell is exactly where
+      // the available width is decided by something other than the label.
+      await _pump(
+        tester,
+        const SizedBox(
+          width: 60,
+          child: OctoStateLabel(
+            label: 'Maintenance',
+            variant: OctoStateLabelVariant.draft,
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('semanticLabel overrides the visible text for AT', (tester) async {
       final handle = tester.ensureSemantics();
       await _pump(
