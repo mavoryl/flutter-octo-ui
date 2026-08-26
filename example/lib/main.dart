@@ -3,6 +3,8 @@ import 'package:flutter/services.dart' show LogicalKeyboardKey;
 // Octicons are re-exported by package:octo_ui/octo_ui.dart as `OctIcons`.
 import 'package:octo_ui/octo_ui.dart';
 
+import 'package:octo_ui_example/dashboard/dashboard_page.dart';
+
 void main() => runApp(const KitchenSinkApp());
 
 class KitchenSinkApp extends StatefulWidget {
@@ -15,10 +17,15 @@ class KitchenSinkApp extends StatefulWidget {
 class _KitchenSinkAppState extends State<KitchenSinkApp> {
   bool _dark = false;
   bool _highContrast = false;
+  bool _showDashboard = true;
   final OctoCommandPaletteController _paletteController =
       OctoCommandPaletteController();
 
   void _toggleDark() => setState(() => _dark = !_dark);
+
+  void _showKitchenSink() => setState(() => _showDashboard = false);
+
+  void _openDashboard() => setState(() => _showDashboard = true);
 
   void _toggleHighContrast() => setState(() => _highContrast = !_highContrast);
 
@@ -92,13 +99,23 @@ class _KitchenSinkAppState extends State<KitchenSinkApp> {
             LogicalKeyboardKey.keyK,
             meta: true,
           ),
-          child: KitchenSinkPage(
-            isDark: _dark,
-            isHighContrast: _highContrast,
-            onToggleTheme: _toggleDark,
-            onToggleHighContrast: _toggleHighContrast,
-            onOpenPalette: _paletteController.open,
-          ),
+          child: _showDashboard
+              ? DashboardPage(
+                  isDark: _dark,
+                  isHighContrast: _highContrast,
+                  onToggleTheme: _toggleDark,
+                  onToggleHighContrast: _toggleHighContrast,
+                  onOpenPalette: _paletteController.open,
+                  onOpenKitchenSink: _showKitchenSink,
+                )
+              : KitchenSinkPage(
+                  isDark: _dark,
+                  isHighContrast: _highContrast,
+                  onToggleTheme: _toggleDark,
+                  onToggleHighContrast: _toggleHighContrast,
+                  onOpenPalette: _paletteController.open,
+                  onOpenDashboard: _openDashboard,
+                ),
         ),
       ),
     );
@@ -111,6 +128,7 @@ class KitchenSinkPage extends StatefulWidget {
   final VoidCallback onToggleTheme;
   final VoidCallback onToggleHighContrast;
   final VoidCallback onOpenPalette;
+  final VoidCallback onOpenDashboard;
 
   const KitchenSinkPage({
     super.key,
@@ -119,6 +137,7 @@ class KitchenSinkPage extends StatefulWidget {
     required this.onToggleTheme,
     required this.onToggleHighContrast,
     required this.onOpenPalette,
+    required this.onOpenDashboard,
   });
 
   @override
@@ -201,6 +220,13 @@ class _KitchenSinkPageState extends State<KitchenSinkPage> {
             Border(bottom: BorderSide(color: theme.colors.border.defaultColor)),
         title: const OctoText('octo_ui kitchen sink', kind: OctoTextKind.title),
         actions: [
+          OctoButton.label(
+            'Dashboard',
+            onPressed: widget.onOpenDashboard,
+            size: OctoButtonSize.small,
+            leadingIcon: const Icon(OctIcons.pulse_16),
+          ),
+          SizedBox(width: theme.spacing.gap.sm),
           OctoTooltip(
             message: 'Open command palette (⌘K)',
             child: OctoIconButton(
