@@ -59,6 +59,20 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
+      # `dart doc` has no --fatal-warnings, so the summary line is parsed. An
+      # unresolved [reference] renders as literal brackets on pub.dev, and a
+      # broken API reference is the most visible kind of stale documentation.
+      - name: API reference builds without warnings
+        run: |
+          set -euo pipefail
+          OUT=$(dart doc --output "${RUNNER_TEMP}/apidoc" 2>&1)
+          echo "$OUT" | tail -3
+          if ! echo "$OUT" | grep -q 'Found 0 warnings and 0 errors'; then
+            echo "::error::dart doc reported warnings"
+            echo "$OUT" | grep -B1 -A1 'warning:' || true
+            exit 1
+          fi
+
       - name: Test — token generator
         working-directory: tools/octo_tokens_gen
         run: dart test

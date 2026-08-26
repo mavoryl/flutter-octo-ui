@@ -30,6 +30,31 @@ enum OctoChipVariant {
 /// (tap and / or dismiss), and they ship filled (subtle background)
 /// rather than outlined. Common uses are filter chips, recipient chips
 /// in an email field, and selected-tag previews.
+///
+/// ```dart
+/// OctoChip(
+///   label: 'env: prod',
+///   variant: OctoChipVariant.accent,
+///   onDismiss: () => _removeFilter('env'),
+/// )
+/// ```
+///
+/// **Variants** — [OctoChipVariant]: `standard` · `accent` · `success` ·
+/// `attention` · `danger`.
+///
+/// **States** — a chip is interactive when [onPressed] is set and tracks hover,
+/// focus and pressed. [onDismiss] adds a separate × button with its own focus
+/// stop, so the chip body and its dismiss action are reachable independently.
+///
+/// **Accessibility** — the body announces itself as a button named
+/// [semanticLabel] or [label]. The dismiss button gets its own name from
+/// [dismissSemanticLabel] — give it a specific one (`Remove env filter`), since
+/// "dismiss" alone tells a screen-reader user nothing about what disappears.
+///
+/// See also:
+///
+///  * [OctoLabel], when the tag is purely descriptive.
+///  * [OctoFilterBar], which hosts a row of chips above a list.
 class OctoChip extends StatefulWidget {
   /// Visible label text.
   final String label;

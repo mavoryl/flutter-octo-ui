@@ -2,6 +2,33 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Per-component documentation.** All 37 components now carry a class-level
+  doc comment following one template: summary, usage sample, variants, sizes,
+  interactive states, and accessibility. Before this pass one component had a
+  code sample and none documented their semantics; the API reference on pub.dev
+  is now the primary documentation, with no separate site to fall out of sync.
+
+  The accessibility sections are the substantive half — each one states what
+  the widget exposes (`Semantics(button:)`, `selected`, `toggled`, `checked`,
+  `expanded`, live regions), which keys operate it, and where a caller still
+  has to do the work: `OctoIconButton` and `OctoAvatar` require a label because
+  an icon or a face announces nothing, a tooltip is not an accessible name, and
+  a toast must not be the only place an actionable message appears.
+
+- **Doc samples are type-checked** (`test/docs/doc_snippets_test.dart`). Every
+  Dart code fence in `lib/` is extracted, compiled against the real API, and
+  the test fails on a wrong parameter name, wrong argument type, wrong arity or a
+  missing required argument. It earned its place immediately: it caught eight
+  defects while the samples were being written, including `OctoLabel` and
+  `OctoCounterLabel` taking positional arguments and nav items wanting a
+  `Widget` rather than an `IconData`.
+
+- **CI gate on the API reference.** `dart doc` must report zero warnings. Seven
+  unresolved `[references]` — five of them pre-existing — were rendering as
+  literal brackets on pub.dev and are now fixed.
+
 ## [0.11.0] — 2026-08-26
 
 ### Changed

@@ -43,6 +43,18 @@ Pre-1.0 — APIs may evolve between `0.x` releases. The current published versio
 **Layout primitives**
 &nbsp;&nbsp;`OctoCard` · `OctoCollapsible` · `OctoDivider` · `OctoFilterBar`
 
+## Documentation
+
+Every component carries a class-level doc comment with the same sections: a
+one-line summary, a usage sample, its variants, its sizes, the interactive
+states it tracks, and what it exposes to assistive technology. The
+[API reference](https://pub.dev/documentation/octo_ui/latest/) is the primary
+documentation — there is no separate site to drift out of sync with the code.
+
+Both halves are enforced. The samples are type-checked against the real API by
+a test, so a renamed parameter breaks the build instead of shipping a snippet
+that doesn't compile, and CI fails on any unresolved doc reference.
+
 ## Installation
 
 ```yaml

@@ -18,6 +18,36 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///
 /// State is controlled — pass [selectedIndex] and react to [onChanged].
 /// `onChanged: null` renders an inert nav (read-only or "loading").
+///
+/// ```dart
+/// OctoUnderlineNav(
+///   selectedIndex: _tab,
+///   onChanged: (i) => setState(() => _tab = i),
+///   items: const [
+///     OctoUnderlineNavItem(label: 'Overview'),
+///     OctoUnderlineNavItem(label: 'Services', icon: OctoIcon(OctIcons.server_16)),
+///     OctoUnderlineNavItem(label: 'Incidents'),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — each [OctoUnderlineNavItem] may carry an
+/// [OctoUnderlineNavItem.icon] and an [OctoUnderlineNavItem.trailing]
+/// widget, which is where a count pill such as [OctoCounterLabel]
+/// belongs.
+///
+/// **States** — items track hover and focus; the item at [selectedIndex] carries
+/// the underline. `disabled` follows `onChanged == null` and applies to the whole
+/// bar. Selection is external — the nav renders what it is told.
+///
+/// **Accessibility** — every item is a button carrying `Semantics(selected: …)`,
+/// so a screen reader announces which section is current. Enter and Space
+/// activate the focused item.
+///
+/// See also:
+///
+///  * [OctoTabs], which pairs this bar with a body and switches it for you.
+///  * [OctoSideNav], for vertical navigation.
 class OctoUnderlineNav extends StatelessWidget {
   /// Tab descriptors rendered left to right.
   final List<OctoUnderlineNavItem> items;

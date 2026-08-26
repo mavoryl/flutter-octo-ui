@@ -25,6 +25,37 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///
 /// Requires an enclosing [Overlay] (provided by `MaterialApp` /
 /// `WidgetsApp`).
+///
+/// ```dart
+/// final palette = OctoCommandPaletteController();
+///
+/// OctoCommandPalette(
+///   controller: palette,
+///   placeholder: 'Search commands…',
+///   items: [
+///     OctoActionListItem(label: 'Open service', onPressed: _openService),
+///     OctoActionListItem(label: 'Acknowledge alert', onPressed: _ack),
+///   ],
+///   child: appBody,
+/// )
+/// ```
+///
+/// **Variants** — [openShortcut] overrides the default ⌘K / Ctrl-K binding;
+/// [maxWidth] and [maxHeight] bound the panel on large screens. Filtering is
+/// built in and matches on the item labels.
+///
+/// **States** — the panel opens over [child] with the query field focused, the
+/// first match highlighted, and hover / focus tracked per entry. Entries whose
+/// label does not match the query are removed, not greyed out.
+///
+/// **Accessibility** — fully keyboard-driven, which is the whole point of the
+/// component: the shortcut opens it, arrows move the highlight, Enter runs the
+/// command, Escape closes and returns focus where it was. Entries carry
+/// `Semantics(selected: …)` so the highlight is announced, not just painted.
+///
+/// See also:
+///
+///  * [OctoMenu], for a short list anchored to a specific trigger.
 class OctoCommandPalette extends StatefulWidget {
   /// Open / closed state driver.
   final OctoCommandPaletteController controller;
@@ -36,7 +67,8 @@ class OctoCommandPalette extends StatefulWidget {
   final Widget child;
 
   /// Optional global keyboard shortcut that opens the palette. When
-  /// `null`, the caller is responsible for invoking [controller.open].
+  /// `null`, the caller is responsible for invoking
+  /// [OctoCommandPaletteController.open].
   /// Defaults to `null` — set e.g.
   /// `SingleActivator(LogicalKeyboardKey.keyK, meta: true)` for `Cmd+K`.
   final ShortcutActivator? openShortcut;

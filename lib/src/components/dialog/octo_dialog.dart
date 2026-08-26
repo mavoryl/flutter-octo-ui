@@ -22,6 +22,38 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// (return `null`). The dialog surface picks up `canvas.overlay`,
 /// `border.defaultColor`, `radii.large`, and `shadows.large` from the
 /// enclosing [OctoTheme].
+///
+/// ```dart
+/// final confirmed = await OctoDialog.show<bool>(
+///   context: context,
+///   title: const OctoDialogTitle('Delete branch?'),
+///   content: const OctoText('This cannot be undone.'),
+///   actions: [
+///     OctoButton.label('Cancel', onPressed: () => Navigator.pop(context, false)),
+///     OctoButton.label(
+///       'Delete',
+///       variant: OctoButtonVariant.danger,
+///       onPressed: () => Navigator.pop(context, true),
+///     ),
+///   ],
+/// );
+/// ```
+///
+/// **Variants** — every slot is optional, so the same widget covers a bare
+/// confirmation and a full form. [maxWidth] caps the panel on wide screens;
+/// `barrierDismissible: false` forces an explicit choice.
+///
+/// **States** — no interactive state of its own; the [actions] are ordinary
+/// buttons.
+///
+/// **Accessibility** — [OctoDialog.show] routes through Flutter's `showDialog`,
+/// which traps focus inside the panel and restores it to the trigger on close, so
+/// keyboard and screen-reader users cannot wander into the inert page behind.
+/// Escape dismisses when the barrier is dismissible.
+///
+/// See also:
+///
+///  * [OctoPopover], for a light anchored panel that needs no focus trap.
 class OctoDialog extends StatelessWidget {
   /// Heading content. Inherits [OctoTypography.heading].
   final Widget? title;

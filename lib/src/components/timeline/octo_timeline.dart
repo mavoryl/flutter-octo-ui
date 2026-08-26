@@ -13,6 +13,36 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// Used for PR / issue activity, audit logs, deploy history — any
 /// sequence of dated events where the chronology itself is part of
 /// the information.
+///
+/// ```dart
+/// OctoTimeline(
+///   items: const [
+///     OctoTimelineItem(
+///       icon: OctIcons.git_commit_16,
+///       title: 'Pushed 3 commits',
+///       subtitle: '2 hours ago',
+///     ),
+///     OctoTimelineItem(
+///       icon: OctIcons.check_circle_16,
+///       title: 'Checks passed',
+///       variant: OctoTimelineVariant.success,
+///     ),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [OctoTimelineVariant] tints an entry's marker disc:
+/// `standard` · `accent` · `success` · `attention` · `danger`.
+/// [OctoTimelineItem.body] takes any widget for a richer entry than title plus
+/// subtitle.
+///
+/// **States** — none; the timeline is a read-only feed. The connecting rail is
+/// drawn continuous between markers and stops at the first and last entry.
+///
+/// **Accessibility** — the feed is one container named `Timeline`; each entry is
+/// named by [OctoTimelineItem.semanticLabel] or its title. Marker icons are
+/// decorative and excluded, so the variant's meaning must also be in the text —
+/// a green disc alone is invisible to a screen reader.
 class OctoTimeline extends StatelessWidget {
   static const double _markerSize = 24;
   static const double _railWidth = 2;

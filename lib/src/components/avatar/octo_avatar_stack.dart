@@ -12,6 +12,36 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///
 /// When [maxVisible] is set and the list is longer, the extras collapse
 /// into a `+N` counter rendered as a trailing avatar.
+///
+/// ```dart
+/// OctoAvatarStack(
+///   maxVisible: 3,
+///   avatars: const [
+///     OctoAvatar(initials: 'MS', semanticLabel: 'Marat Shakirov'),
+///     OctoAvatar(initials: 'AB', semanticLabel: 'Anna Bright'),
+///     OctoAvatar(initials: 'CD', semanticLabel: 'Carl Doe'),
+///     OctoAvatar(initials: 'EF', semanticLabel: 'Eve Frost'),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [maxVisible] caps how many avatars are drawn; the remainder
+/// collapse into a trailing `+N` tile. [overlapRatio] tunes how far each avatar
+/// slides under the previous one.
+///
+/// **Layout** — the first avatar paints on top, so reading order matches visual
+/// order. Every tile is ringed in the canvas colour to stay separable against a
+/// busy background.
+///
+/// **States** — none; the stack is presentational.
+///
+/// **Accessibility** — each avatar keeps its own [OctoAvatar.semanticLabel], so
+/// assistive technology reads the actual names rather than "4 avatars". The
+/// overflow tile announces its count.
+///
+/// See also:
+///
+///  * [OctoAvatar], for the single-avatar case.
 class OctoAvatarStack extends StatelessWidget {
   /// Avatars in reading order. The first one paints on top.
   final List<OctoAvatar> avatars;

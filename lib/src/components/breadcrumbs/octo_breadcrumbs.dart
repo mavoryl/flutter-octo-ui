@@ -33,6 +33,28 @@ class OctoBreadcrumbItem {
 /// pass `onPressed: null` to keep it as plain text without a button
 /// affordance. Earlier items are clickable `OctoButton`s (`invisible`
 /// variant) so they pick up hover / focus / pressed feedback for free.
+///
+/// ```dart
+/// OctoBreadcrumbs(
+///   items: [
+///     OctoBreadcrumbItem(label: 'mavoryl', onPressed: _openOwner),
+///     OctoBreadcrumbItem(label: 'octo_ui', onPressed: _openRepo),
+///     const OctoBreadcrumbItem(label: 'lib'),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — an item without [OctoBreadcrumbItem.onPressed] renders as plain
+/// text. The last item is the current location, so leaving its callback off is
+/// the normal case.
+///
+/// **States** — linked items track hover and focus; the trailing plain item is
+/// inert.
+///
+/// **Accessibility** — the trail is one container named `Breadcrumb`, which is
+/// how assistive technology distinguishes it from an ordinary row of links.
+/// Separators are decorative and excluded, so a screen reader reads the path
+/// rather than a string of slashes.
 class OctoBreadcrumbs extends StatelessWidget {
   /// Segments rendered left → right.
   final List<OctoBreadcrumbItem> items;

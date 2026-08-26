@@ -63,6 +63,31 @@ class OctoToastController {
 /// pushes the toast through the nearest [Overlay], slides it in from
 /// the bottom-center, schedules auto-dismiss, and returns an
 /// [OctoToastController] for manual control.
+///
+/// ```dart
+/// OctoToast.show(
+///   context,
+///   message: 'Branch deleted.',
+///   variant: OctoToastVariant.success,
+///   action: OctoToastAction(label: 'Undo', onPressed: _undo),
+/// );
+/// ```
+///
+/// **Variants** — [OctoToastVariant]: `info` · `success` · `attention` ·
+/// `danger`. [action] adds one button; [dismissible] adds a close control.
+///
+/// **States** — the pill slides in, waits out its duration, and slides away.
+/// `OctoToast.show` returns an [OctoToastController] so a caller can dismiss it
+/// early. Motion is skipped when the platform asks for reduced motion.
+///
+/// **Accessibility** — the pill is a live region, so the message is announced on
+/// arrival. Because it disappears on a timer, never put anything a user must act
+/// on *only* in a toast: give the same information a persistent home, and keep
+/// [action] to a shortcut for something reachable elsewhere.
+///
+/// See also:
+///
+///  * [OctoFlash], for a banner that stays until dismissed.
 class OctoToast extends StatefulWidget {
   /// Body text.
   final String message;

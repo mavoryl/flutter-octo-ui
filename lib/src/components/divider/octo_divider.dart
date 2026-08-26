@@ -31,6 +31,29 @@ enum OctoDividerEmphasis {
 /// dividers fill their parent's cross-axis space. Use [indent] /
 /// [endIndent] to inset the line from its container's edges (matches
 /// Material's `Divider` API).
+///
+/// ```dart
+/// Column(
+///   children: [
+///     header,
+///     const OctoDivider(),
+///     body,
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [OctoDividerEmphasis] picks the border tier:
+/// `subtle` · `muted` · `strong`. [color] overrides it outright.
+///
+/// **States** — none; the divider is inert and never interactive.
+///
+/// **Accessibility** — a decorative line carries no semantics, so nothing is
+/// exposed to screen readers. Use a labelled heading for structure a
+/// screen-reader user needs to perceive; a divider alone does not convey it.
+///
+/// See also:
+///
+///  * [OctoDivider.vertical], for the cross-axis form.
 class OctoDivider extends StatelessWidget {
   /// Layout direction. See [OctoDividerAxis].
   final OctoDividerAxis axis;
@@ -38,7 +61,7 @@ class OctoDivider extends StatelessWidget {
   /// Line thickness in logical pixels. Defaults to a 1 px hairline.
   final double thickness;
 
-  /// Emphasis tier — selects the [theme.colors.border] shade.
+  /// Emphasis tier — selects the `theme.colors.border` shade.
   final OctoDividerEmphasis emphasis;
 
   /// Override the resolved colour. When non-null, [emphasis] is ignored.

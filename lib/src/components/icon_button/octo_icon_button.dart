@@ -9,6 +9,30 @@ import 'package:octo_ui/src/foundation/octo_icon.dart';
 ///
 /// `semanticLabel` is required (ADR-0008): a bare icon is meaningless to
 /// screen-readers without an explicit description.
+///
+/// ```dart
+/// OctoIconButton(
+///   icon: OctIcons.trash_16,
+///   semanticLabel: 'Delete branch',
+///   variant: OctoButtonVariant.danger,
+///   onPressed: _delete,
+/// )
+/// ```
+///
+/// **Variants / sizes** — shares [OctoButtonVariant] and [OctoButtonSize] with
+/// [OctoButton], so an icon button sits flush in a row of text buttons. The
+/// `small` / `medium` / `large` tiers are square: 28 · 32 · 40 px.
+///
+/// **States** — hovered, focused and pressed via [OctoStateLayer]; `disabled`
+/// follows `onPressed == null`; [loading] replaces the icon with a spinner.
+///
+/// **Accessibility** — [semanticLabel] is **required**: an icon alone tells a
+/// screen-reader user nothing. Enter, Space and NumpadEnter activate it. Wrap in
+/// [OctoTooltip] when sighted users also need the name.
+///
+/// See also:
+///
+///  * [OctoButton], when the action has a visible text label.
 class OctoIconButton extends StatelessWidget {
   /// Glyph rendered as the button's content.
   final IconData icon;

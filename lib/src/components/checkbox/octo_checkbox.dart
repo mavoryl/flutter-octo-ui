@@ -11,6 +11,29 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// renders the checkbox disabled. When [tristate] is `true`, [value] may
 /// be `null` (indeterminate); the user cycles `false → true → null →
 /// false` via tap or `Space`.
+///
+/// ```dart
+/// OctoCheckbox(
+///   value: _accepted,
+///   semanticLabel: 'I accept the terms',
+///   onChanged: (v) => setState(() => _accepted = v ?? false),
+/// )
+/// ```
+///
+/// **Variants** — [tristate] adds the indeterminate value: [value] may then be
+/// `null`, drawn as a dash, for a parent whose children are partly selected.
+///
+/// **States** — hovered, focused and pressed; `disabled` follows
+/// `onChanged == null`.
+///
+/// **Accessibility** — exposes `Semantics(checked: …)` with the mixed state
+/// reported when [value] is `null`, so assistive technology says "partially
+/// checked" rather than guessing. Space toggles it.
+///
+/// See also:
+///
+///  * [OctoRadio], for one choice out of several.
+///  * [OctoSwitch], for a setting that applies at once.
 class OctoCheckbox extends StatefulWidget {
   /// Current state. `null` is only allowed when [tristate] is `true`.
   final bool? value;

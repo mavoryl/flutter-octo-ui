@@ -19,6 +19,32 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// background and a subtle border. Each segment is independently
 /// focusable; `Tab` / `Shift+Tab` walk between them and `Space`
 /// activates the focused segment.
+///
+/// ```dart
+/// OctoSegmentedControl<Range>(
+///   value: _range,
+///   onChanged: (r) => setState(() => _range = r),
+///   items: const [
+///     OctoSegmentedControlItem(value: Range.day, label: '24h'),
+///     OctoSegmentedControlItem(value: Range.week, label: '7d'),
+///     OctoSegmentedControlItem(value: Range.month, label: '30d'),
+///   ],
+/// )
+/// ```
+///
+/// **States** — each segment tracks hover, focus and pressed; the segment whose
+/// [OctoSegmentedControlItem.value] equals [value] is selected. `disabled`
+/// follows `onChanged == null` and applies to the whole control.
+///
+/// **Accessibility** — every segment is a button carrying
+/// `Semantics(selected: …)`, so a screen reader announces which one is current
+/// instead of reading a row of unlabelled options. Space activates the focused
+/// segment.
+///
+/// See also:
+///
+///  * [OctoRadio], when the options need more room than a compact row allows.
+///  * [OctoUnderlineNav], for switching views rather than picking a value.
 class OctoSegmentedControl<T> extends StatelessWidget {
   /// Segments rendered left → right.
   final List<OctoSegmentedControlItem<T>> items;

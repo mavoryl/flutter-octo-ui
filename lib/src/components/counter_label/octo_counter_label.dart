@@ -29,6 +29,28 @@ enum OctoCounterLabelVariant {
 /// the background is full-radius so single-digit counts look like circles.
 /// When [maxDisplayed] is non-null and [count] exceeds it, the visible
 /// value is clamped and a `+` suffix is appended ("99+", "999+").
+///
+/// ```dart
+/// const OctoCounterLabel(128, maxDisplayed: 99)
+/// ```
+///
+/// **Variants** — [OctoCounterLabelVariant]: `standard` (quiet, beside a nav
+/// item) · `primary` · `secondary`.
+///
+/// **Sizes** — one size only; the pill takes its metrics from the theme's small
+/// label typography so it aligns with the text it annotates.
+///
+/// **States** — none; the counter is descriptive.
+///
+/// **Accessibility** — exposes the rendered number as its accessible name.
+/// [maxDisplayed] caps the digits at, say, `99+`, and the accessible name follows
+/// the visible text, so a screen reader never announces a count the user cannot
+/// see. Pass [semanticLabel] to say what is being counted — `128 open issues`
+/// reads better than a bare `128`.
+///
+/// See also:
+///
+///  * [OctoLabel], for a word instead of a number.
 class OctoCounterLabel extends StatelessWidget {
   /// Numeric value displayed inside the pill.
   final int count;

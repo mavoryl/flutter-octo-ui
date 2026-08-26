@@ -15,6 +15,27 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// Arrow-key traversal across siblings is left to the enclosing layout;
 /// inside an [OctoActionList] or a [FocusTraversalGroup] arrow keys move
 /// focus by reading order. `Space` activates the focused radio.
+///
+/// ```dart
+/// OctoRadio<RepoVisibility>(
+///   value: RepoVisibility.public,
+///   groupValue: _visibility,
+///   semanticLabel: 'Public',
+///   onChanged: (v) => setState(() => _visibility = v),
+/// )
+/// ```
+///
+/// **States** — hovered, focused and pressed; `disabled` follows
+/// `onChanged == null`. Selection is external: the radio compares [value] with
+/// [groupValue] and never stores a choice of its own.
+///
+/// **Accessibility** — exposes `Semantics(checked: …)` with [semanticLabel] as
+/// the name. Space selects. Give every radio in a group the same
+/// [groupValue] source so screen readers can report the group consistently.
+///
+/// See also:
+///
+///  * [OctoSegmentedControl], for the same one-of-N choice as a compact row.
 class OctoRadio<T> extends StatefulWidget {
   /// Value that this radio represents inside the group.
   final T value;

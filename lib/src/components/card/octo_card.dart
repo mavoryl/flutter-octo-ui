@@ -32,6 +32,34 @@ enum OctoCardVariant {
 ///
 /// [selected] works in both modes so a list of presentational cards can
 /// still show which row is current.
+///
+/// ```dart
+/// OctoCard(
+///   variant: OctoCardVariant.outlined,
+///   onPressed: _openService,
+///   child: const OctoText('checkout-api'),
+/// )
+/// ```
+///
+/// **Variants** — [OctoCardVariant]: `outlined` (border, flat — the default for
+/// lists) and `elevated` (shadow, no border — for a surface lifted off the page).
+///
+/// **Sizes** — none; the card wraps its [child] and takes [padding] from the
+/// theme's inset scale unless overridden.
+///
+/// **States** — in interactive mode hovered, focused and pressed are tracked;
+/// [selected] works in both modes so a list of presentational cards can still
+/// show which row is current.
+///
+/// **Accessibility** — presentational cards add no semantics at all, so a screen
+/// reader walks straight through to the content. Interactive cards announce
+/// themselves as a button named [semanticLabel] and activate on Enter or Space.
+/// When a card is interactive, give it a [semanticLabel] — the child content
+/// alone rarely reads as an action.
+///
+/// See also:
+///
+///  * [OctoEmptyState], for the empty variant of a card-based list.
 class OctoCard extends StatefulWidget {
   /// Card content.
   final Widget child;

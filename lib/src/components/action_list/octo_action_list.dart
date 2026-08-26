@@ -25,6 +25,42 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// (wrapped in a [FocusTraversalGroup] with a reading-order policy);
 /// `Enter` / `Space` activate the focused row. When [autofocus] is `true`
 /// the first row requests focus on mount — convenient for overlay menus.
+///
+/// ```dart
+/// OctoActionList(
+///   items: [
+///     OctoActionListItem(
+///       label: 'Settings',
+///       description: 'Repository configuration',
+///       onPressed: _openSettings,
+///     ),
+///     OctoActionListItem(
+///       label: 'Delete repository',
+///       variant: OctoActionListItemVariant.danger,
+///       onPressed: _delete,
+///     ),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [OctoActionList.builder] takes [itemCount] plus a builder for
+/// long or lazily-loaded lists. [OctoActionListItem] carries an optional
+/// [OctoActionListItem.description], leading and trailing slots, and a `danger`
+/// variant. [shrinkWrap] fits the list to its content inside a scroll view.
+///
+/// **States** — items track hover, focus and pressed; the item with
+/// [OctoActionListItem.selected] shows as current. An item without
+/// `onPressed` renders disabled.
+///
+/// **Accessibility** — each item is a button carrying `Semantics(selected: …)`
+/// named [OctoActionListItem.semanticLabel] or its label. Arrow keys move between
+/// items, Enter and Space activate — so the list is navigable without a pointer
+/// even outside an overlay.
+///
+/// See also:
+///
+///  * [OctoMenu], for the same list anchored in an overlay.
+///  * [OctoSideNav], when the items are navigation destinations.
 class OctoActionList extends StatelessWidget {
   /// Eager list of items. Mutually exclusive with [itemCount] / [itemBuilder].
   final List<OctoActionListItem>? items;

@@ -18,6 +18,32 @@ import 'package:octo_ui/src/components/underline_nav/octo_underline_nav_item.dar
 /// - *Controlled* — pass [selectedIndex] (non-null) together with
 ///   [onTabChanged]; the parent owns the state and the widget mirrors
 ///   whatever the parent rebuilds with.
+///
+/// ```dart
+/// OctoTabs(
+///   tabs: const [
+///     OctoUnderlineNavItem(label: 'Logs'),
+///     OctoUnderlineNavItem(label: 'Metrics'),
+///   ],
+///   children: [LogsView(), MetricsView()],
+/// )
+/// ```
+///
+/// **Variants** — uncontrolled by default: pass [initialIndex] and let the widget
+/// track the selection. Pass [selectedIndex] together with [onTabChanged] to
+/// drive it from outside, e.g. from a route.
+///
+/// **States** — the bar's own hover / focus / selected handling comes from
+/// [OctoUnderlineNav]. Bodies cross-fade over [switchDuration], and the fade is
+/// skipped when the platform asks for reduced motion.
+///
+/// **Accessibility** — inherits the nav bar's per-item `Semantics(selected: …)`.
+/// Only the visible body is in the tree, so a screen reader never walks content
+/// belonging to a hidden tab.
+///
+/// See also:
+///
+///  * [OctoUnderlineNav], when the bodies live elsewhere — under a router, say.
 class OctoTabs extends StatefulWidget {
   /// Tab descriptors (label / icon / trailing). The same shape used by
   /// [OctoUnderlineNav].

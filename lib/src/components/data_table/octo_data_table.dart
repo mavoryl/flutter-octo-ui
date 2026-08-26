@@ -44,6 +44,47 @@ enum OctoDataTableDensity {
 /// fixed-pixel column or [OctoDataColumn.flex] for the column that
 /// should soak up the leftover horizontal space (usually the title /
 /// subject column).
+///
+/// ```dart
+/// OctoDataTable<Issue>(
+///   rows: issues,
+///   sortColumnIndex: _sortColumn,
+///   sortDirection: _sortDirection,
+///   onSortChanged: _sort,
+///   columns: [
+///     OctoDataColumn(label: '#', text: (i) => '#${i.number}', width: 64),
+///     OctoDataColumn(label: 'Title', text: (i) => i.title, flex: 1, sortable: true),
+///     OctoDataColumn(
+///       label: 'Status',
+///       cell: (context, i) => OctoStateLabel(
+///         label: i.state,
+///         variant: OctoStateLabelVariant.open,
+///       ),
+///     ),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [zebra] alternates row backgrounds for scanning wide rows;
+/// [emptyMessage] replaces the body when [rows] is empty.
+///
+/// **Sizes** — [OctoDataTableDensity]: `comfortable` for body content,
+/// `compact` for dense admin lists.
+///
+/// **States** — sortable headers track hover and focus; rows track hover when
+/// [onRowTap] is set. Sorting itself is external: the table renders the
+/// direction it is told and calls [onSortChanged], it never reorders [rows].
+///
+/// **Accessibility** — the table is one semantic container labelled
+/// `Data table`. A sortable header announces itself as a button labelled
+/// `<column>, sortable` and activates from the keyboard; non-sortable headers
+/// are excluded from semantics so screen-reader users are not walked through
+/// inert text. Cell content keeps whatever semantics its own widgets expose.
+///
+/// See also:
+///
+///  * [OctoDataColumn], for describing one column.
+///  * [OctoEmptyState], for a richer empty view than [emptyMessage].
 class OctoDataTable<T> extends StatelessWidget {
   /// Column descriptors. Order matters — left to right.
   final List<OctoDataColumn<T>> columns;

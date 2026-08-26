@@ -15,6 +15,28 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///
 /// Pass ready-made widgets in [actions] — typically one or two
 /// `OctoButton`s. Their order is the reading order.
+///
+/// ```dart
+/// OctoEmptyState(
+///   icon: OctIcons.search_24,
+///   title: 'No services match this filter',
+///   description: 'Clear the filter or widen the time range.',
+///   actions: [OctoButton.label('Clear filters', onPressed: _clear)],
+/// )
+/// ```
+///
+/// **Variants** — every slot but [title] is optional, so the same widget covers
+/// the bare "nothing here yet" and the full illustration-plus-actions case.
+///
+/// **States** — none of its own; the [actions] are ordinary buttons.
+///
+/// **Accessibility** — [title] is marked as a heading, which is how a screen
+/// reader user navigating by heading finds out why the region is empty. The icon
+/// is decorative and excluded from semantics.
+///
+/// See also:
+///
+///  * [OctoDataTable.emptyMessage], for a one-line empty row inside a table.
 class OctoEmptyState extends StatelessWidget {
   /// Headline explaining what is missing. Announced as a header.
   final String title;

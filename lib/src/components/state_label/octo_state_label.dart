@@ -48,6 +48,33 @@ enum OctoStateLabelEmphasis {
 /// implied by [variant] but can be overridden via [icon]. The pill
 /// honours [emphasis] — `high` filled (PR header), `low` subtle (list
 /// items).
+///
+/// ```dart
+/// const OctoStateLabel(
+///   label: 'Merged',
+///   variant: OctoStateLabelVariant.merged,
+///   icon: OctIcons.git_merge_16,
+/// )
+/// ```
+///
+/// **Variants** — [OctoStateLabelVariant] names lifecycle states rather than
+/// colours: `open` · `closed` · `merged` · `draft` · `attention`. Naming the
+/// state instead of the hue is what keeps call sites readable when the palette
+/// changes.
+///
+/// **Emphasis** — [OctoStateLabelEmphasis]: `high` is a solid pill (a status
+/// header), `low` is tinted (a status cell inside a dense table).
+///
+/// **States** — none; use [OctoChip] for an interactive tag.
+///
+/// **Accessibility** — one semantic container whose name is [semanticLabel] or
+/// [label]. The icon is decorative and excluded, so the state is announced once
+/// rather than twice. Text truncates with an ellipsis in narrow columns instead
+/// of overflowing.
+///
+/// See also:
+///
+///  * [OctoLabel], for free-form tags.
 class OctoStateLabel extends StatelessWidget {
   /// Visible label text.
   final String label;

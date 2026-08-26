@@ -38,6 +38,35 @@ class OctoDropdownItem<T> {
 /// renders an inert trigger. The trigger shows the selected item's label
 /// (or [placeholder] when nothing is selected) plus a chevron, and
 /// dismisses the menu via [OctoMenuController.close] on selection.
+///
+/// ```dart
+/// OctoDropdown<Severity>(
+///   value: _severity,
+///   placeholder: 'Severity',
+///   onChanged: (s) => setState(() => _severity = s),
+///   items: const [
+///     OctoDropdownItem(value: Severity.high, label: 'High'),
+///     OctoDropdownItem(value: Severity.low, label: 'Low'),
+///   ],
+/// )
+/// ```
+///
+/// **Variants / sizes** — the trigger is an [OctoButton], so [variant] and
+/// [size] accept the same tiers and a dropdown lines up with neighbouring
+/// buttons. [minWidth] pins the panel when the labels differ in length and you
+/// don't want the width jumping between selections.
+///
+/// **States** — the trigger tracks hover, focus and pressed; the open panel
+/// marks the current item selected. `disabled` follows `onChanged == null`.
+/// Pass a [controller] to open or close it from outside.
+///
+/// **Accessibility** — panel entries carry `Semantics(selected: …)`. Arrow keys
+/// move through them, Enter picks, Escape closes and returns focus to the
+/// trigger — so the control is fully operable without a pointer.
+///
+/// See also:
+///
+///  * [OctoMenu], when the entries are commands rather than a value to select.
 class OctoDropdown<T> extends StatefulWidget {
   /// Options shown when the user opens the dropdown.
   final List<OctoDropdownItem<T>> items;

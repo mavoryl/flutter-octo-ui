@@ -37,6 +37,29 @@ enum OctoProgressBarSize {
 /// `MediaQuery.maybeDisableAnimationsOf(context) == true` (ADR-0008);
 /// in that case the bar falls back to a static 50%-filled track to keep
 /// the visual hint that something is in progress without burning frames.
+///
+/// ```dart
+/// const OctoProgressBar(value: 0.62, semanticLabel: 'Upload progress')
+/// ```
+///
+/// **Variants** — [OctoProgressBarVariant]: `accent` · `success` · `attention` ·
+/// `danger`. Passing `value: null` switches to the indeterminate sweep for work
+/// of unknown length.
+///
+/// **Sizes** — [OctoProgressBarSize]: `small` for inline rows, `medium` for a
+/// standalone bar.
+///
+/// **States** — determinate bars animate between values; the indeterminate sweep
+/// runs on [indeterminateDuration] and holds a static frame when the platform
+/// asks for reduced motion.
+///
+/// **Accessibility** — the bar is a container named [semanticLabel]. A bar with
+/// no label announces nothing useful, so name the work rather than the widget:
+/// `Upload progress`, not `Progress bar`.
+///
+/// See also:
+///
+///  * [OctoSpinner], when there is no proportion to show.
 class OctoProgressBar extends StatefulWidget {
   /// Progress in the closed interval `[0, 1]`. `null` → indeterminate.
   final double? value;

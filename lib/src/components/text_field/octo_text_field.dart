@@ -18,6 +18,35 @@ import 'package:octo_ui/src/theme/theme_data.dart';
 /// `inputFormatters`, `obscureText`, `autofillHints`, `keyboardType`,
 /// `textInputAction`, `onChanged`, `onSubmitted`, `maxLines`, etc.) so the
 /// component is usable for real forms without escape hatches.
+///
+/// ```dart
+/// OctoTextField(
+///   label: 'Repository name',
+///   placeholder: 'my-project',
+///   helperText: 'Lowercase letters, digits and hyphens.',
+///   onChanged: _validate,
+/// )
+/// ```
+///
+/// **Variants** — the field renders in one of three tiers, picked by what you
+/// pass rather than by an enum: plain, [helperText] (quiet hint below the
+/// field), or [errorText] (danger border plus the message, and [helperText] is
+/// suppressed). [enabled] and [readOnly] are distinct: a read-only field still
+/// takes focus and allows selection, a disabled one does neither.
+///
+/// **States** — focused draws the [OctoFocusRing]; invalid follows
+/// `errorText != null`; disabled follows `enabled == false`. Hover is
+/// deliberately not styled — a text field is not a button.
+///
+/// **Accessibility** — exposes `Semantics(textField: true)` with [label] as the
+/// accessible name, so a screen reader announces the field's purpose before its
+/// content. [errorText] is part of the same node, which is what lets assistive
+/// technology read the problem together with the field rather than as a
+/// detached line of text.
+///
+/// See also:
+///
+///  * [OctoFilterBar], which wraps a field of this kind above a list or table.
 class OctoTextField extends StatefulWidget {
   /// External controller. Mutually exclusive with [initialValue].
   final TextEditingController? controller;

@@ -24,6 +24,27 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// over [animationDuration]. When
 /// `MediaQuery.maybeDisableAnimationsOf(context) == true` (ADR-0008) the
 /// effective duration drops to zero so the transition snaps.
+///
+/// ```dart
+/// OctoCollapsible(
+///   title: 'Advanced settings',
+///   initiallyExpanded: false,
+///   child: settingsForm,
+/// )
+/// ```
+///
+/// **Variants** — uncontrolled by default via [initiallyExpanded]. Pass
+/// [expanded] together with [onExpansionChanged] to drive the state from outside,
+/// e.g. to keep only one section open at a time.
+///
+/// **States** — the header tracks hover, focus and pressed. The body animates
+/// open over [animationDuration] and snaps instead when the platform asks for
+/// reduced motion.
+///
+/// **Accessibility** — the header is a button carrying `Semantics(expanded: …)`
+/// named [title], so a screen reader announces whether the section is open before
+/// the user activates it. Enter and Space toggle it. The collapsed body is out of
+/// the tree, so its content is not read while hidden.
 class OctoCollapsible extends StatefulWidget {
   /// Header label.
   final String title;

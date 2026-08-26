@@ -14,6 +14,33 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///   * [OctoSkeletonAvatar] — circular avatar placeholder.
 ///   * [OctoSkeleton] — generic block; pass [width] / [height] /
 ///     [borderRadius] explicitly.
+///
+/// ```dart
+/// Column(
+///   crossAxisAlignment: CrossAxisAlignment.start,
+///   children: const [
+///     OctoSkeletonText(lines: 3),
+///     SizedBox(height: 12),
+///     OctoSkeleton(width: 120, height: 32),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [OctoSkeleton] is the bare block; [OctoSkeletonText] stacks
+/// [OctoSkeletonText.lines] of them with the last line shortened the way real
+/// text wraps; [OctoSkeletonAvatar] is the circular form.
+///
+/// **States** — a shimmer runs continuously while mounted. It stops and holds a
+/// static frame when `MediaQuery.disableAnimationsOf` is set, so a
+/// motion-sensitive user is not subjected to a pulsing screen.
+///
+/// **Accessibility** — placeholders carry no semantics: announcing "loading" for
+/// every block would bury the real content. Put one status message on the region
+/// being loaded instead.
+///
+/// See also:
+///
+///  * [OctoSpinner], for an indeterminate wait with no layout to preserve.
 class OctoSkeleton extends StatefulWidget {
   /// Block width. `null` means hug the parent.
   final double? width;

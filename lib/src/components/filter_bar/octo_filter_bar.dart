@@ -17,6 +17,37 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// Deciding *which* filters collapse on a phone is a screen-level decision,
 /// not a component one, so the bar itself has no breakpoint logic. Wrap it
 /// in an `OctoResponsiveBuilder` when a layout wants that.
+///
+/// ```dart
+/// OctoFilterBar(
+///   searchPlaceholder: 'Filter services…',
+///   onSearchChanged: _search,
+///   activeFilterCount: _active.length,
+///   onClear: _clearAll,
+///   filters: [
+///     OctoChip(label: 'env: prod', onDismiss: () => _remove('env')),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — the search field is built in; [filters] are caller-supplied
+/// widgets, so the bar hosts chips, dropdowns or anything else without knowing
+/// what a filter is. [onClear] adds the clear button, [activeFilterCount] the
+/// counter beside it.
+///
+/// **Layout** — everything sits in a `Wrap`, so a narrow bar reflows onto a
+/// second line instead of overflowing. The search field keeps a 200–320 px band
+/// so it stays usable at either extreme.
+///
+/// **States** — no state of its own; the field and each filter track their own.
+///
+/// **Accessibility** — one semantic container named [semanticLabel] — give it
+/// something specific like `Service filters`, so a screen-reader user landing on
+/// the region knows what it filters.
+///
+/// See also:
+///
+///  * [OctoChip], the usual filter widget to pass in.
 class OctoFilterBar extends StatelessWidget {
   /// Controller for the search field. Supply one to read or reset the query
   /// from outside.

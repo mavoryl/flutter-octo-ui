@@ -32,6 +32,29 @@ enum OctoFlashVariant {
 /// When [onDismiss] is set, a trailing close button (Octicons `x_16`) is
 /// rendered after the message; tapping it invokes the callback. The host
 /// is expected to remove the banner from the tree in response.
+///
+/// ```dart
+/// OctoFlash(
+///   message: 'Deploy finished in 42s.',
+///   variant: OctoFlashVariant.success,
+///   onDismiss: _hide,
+/// )
+/// ```
+///
+/// **Variants** — [OctoFlashVariant]: `info` · `success` · `attention` ·
+/// `danger`. Each supplies its own default [icon].
+///
+/// **States** — [onDismiss] adds a close button that tracks hover and focus.
+/// The banner itself is inert.
+///
+/// **Accessibility** — the banner is a live region, so a screen reader announces
+/// the message when it appears without the user having to go looking for it. That
+/// also means it should carry a *change* in state, not static page text — inline
+/// prose in a live region gets re-announced on every rebuild.
+///
+/// See also:
+///
+///  * [OctoToast], for a transient notification that dismisses itself.
 class OctoFlash extends StatelessWidget {
   /// Body text shown in the banner.
   final String message;

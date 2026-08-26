@@ -17,6 +17,26 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// component always keeps the first and last page in view; the rest of
 /// the slots track `currentPage` with ellipsis gaps where the gap to
 /// the next number is larger than one.
+///
+/// ```dart
+/// OctoPagination(
+///   currentPage: _page,
+///   pageCount: 42,
+///   onPageChanged: (p) => setState(() => _page = p),
+/// )
+/// ```
+///
+/// **Variants** — [maxVisible] sets how many numbered slots are drawn before the
+/// run collapses into an ellipsis; [showPrevNext] toggles the arrow buttons.
+///
+/// **States** — slots track hover and focus; the current page is selected; the
+/// previous / next arrows disable at the ends of the range rather than
+/// disappearing, so the control keeps its width as the user walks through pages.
+///
+/// **Accessibility** — the row is one container named `Pagination`, each slot is
+/// a button carrying `Semantics(selected: …)`, and the arrows report their
+/// disabled state instead of silently ignoring activation. The ellipsis is
+/// decorative and excluded.
 class OctoPagination extends StatelessWidget {
   /// Current page (1-based, inclusive).
   final int currentPage;

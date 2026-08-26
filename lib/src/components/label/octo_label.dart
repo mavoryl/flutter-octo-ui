@@ -32,6 +32,28 @@ enum OctoLabelVariant {
 /// Reads colours from the enclosing [OctoTheme] based on [variant]. The pill
 /// is outlined (border only, no fill) to match Primer's default Label style;
 /// the subtle filled variant is deferred to a later milestone.
+///
+/// ```dart
+/// const OctoLabel('needs-triage', variant: OctoLabelVariant.attention)
+/// ```
+///
+/// **Variants** — [OctoLabelVariant]: `standard` · `accent` · `success` ·
+/// `attention` · `danger`. Each pairs a tinted background with the matching
+/// foreground from the theme, so the pill stays legible in every palette
+/// including high contrast.
+///
+/// **States** — none; a label is descriptive, never interactive. Reach for
+/// [OctoChip] when the tag needs to respond to a tap or offer a dismiss button.
+///
+/// **Accessibility** — the text is read as ordinary content. Because the colour
+/// carries meaning that a colour-blind or screen-reader user cannot see, keep the
+/// text itself unambiguous: `failed`, not a red `build`.
+///
+/// See also:
+///
+///  * [OctoStateLabel], for lifecycle states (open / merged / closed) that also
+///    want an icon.
+///  * [OctoCounterLabel], for a number rather than a word.
 class OctoLabel extends StatelessWidget {
   /// Pill text. Rendered with [OctoTextKind.labelSmall].
   final String text;

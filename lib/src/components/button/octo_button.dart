@@ -55,6 +55,36 @@ class _ButtonColors {
 /// tracks state through a [WidgetStatesController] driven by a
 /// [FocusableActionDetector]. Reads colours and metrics from the enclosing
 /// [OctoTheme].
+///
+/// ```dart
+/// OctoButton.label(
+///   'Save changes',
+///   variant: OctoButtonVariant.primary,
+///   onPressed: _save,
+/// )
+/// ```
+///
+/// **Variants** — [OctoButtonVariant]: `primary` (solid accent, one per
+/// surface), `standard` (outlined default), `danger` (destructive),
+/// `invisible` (no chrome until hovered — toolbars and inline actions).
+///
+/// **Sizes** — [OctoButtonSize]: `small` 28 px · `medium` 32 px (default) ·
+/// `large` 40 px. Height is fixed per tier so buttons align in a row.
+///
+/// **States** — hovered, focused and pressed are drawn by [OctoStateLayer];
+/// `disabled` follows `onPressed == null`; [loading] swaps the leading slot
+/// for a spinner and blocks input while keeping the button's width, so an
+/// in-flight action does not shift the layout around it.
+///
+/// **Accessibility** — exposes `Semantics(button: true, enabled: …)` with
+/// [semanticLabel] (auto-filled from the text by [OctoButton.label]). Enter,
+/// Space and NumpadEnter activate it through `ActivateIntent`. The focus ring
+/// paints in keyboard mode only, so mouse users never see it.
+///
+/// See also:
+///
+///  * [OctoIconButton], for an icon-only trigger with a tooltip.
+///  * [OctoButtonVariant], for picking the emphasis tier.
 class OctoButton extends StatefulWidget {
   /// Visible child — typically text. Use [OctoButton.label] for the common
   /// string case so the semantic label is auto-populated.

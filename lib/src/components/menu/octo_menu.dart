@@ -17,8 +17,43 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// `OctoButton.label('More', onPressed: controller.toggle)` — and pass the
 /// trigger as [child]. The menu listens to the controller and shows /
 /// hides its overlay.
+///
+/// ```dart
+/// final controller = OctoMenuController();
+///
+/// OctoMenu(
+///   controller: controller,
+///   items: [
+///     OctoActionListItem(label: 'Rename', onPressed: _rename),
+///     OctoActionListItem(
+///       label: 'Delete',
+///       variant: OctoActionListItemVariant.danger,
+///       onPressed: _delete,
+///     ),
+///   ],
+///   child: OctoButton.label('Actions', onPressed: controller.toggle),
+/// )
+/// ```
+///
+/// **Variants** — [OctoActionListItemVariant.danger] tints a destructive entry.
+/// [minWidth] pins the panel so it stops resizing between openings;
+/// [closeOnSelect] can keep it open for a multi-select menu.
+///
+/// **States** — entries track hover and focus; [gap] sets the distance from the
+/// anchor. The menu closes on outside tap, on Escape, and on selection unless
+/// [closeOnSelect] says otherwise. Tapping the trigger while open closes it
+/// rather than reopening — trigger and panel share one tap region.
+///
+/// **Accessibility** — arrow keys move through entries, Enter activates, Escape
+/// closes and returns focus to the trigger.
+///
+/// See also:
+///
+///  * [OctoDropdown], when the entries are values rather than commands.
+///  * [OctoActionList], for the same list without an overlay.
 class OctoMenu extends StatefulWidget {
-  /// Trigger widget. Must wire its tap to [controller.toggle] (or `open`).
+  /// Trigger widget. Must wire its tap to [OctoOverlayController.toggle]
+  /// (or `open`).
   final Widget child;
 
   /// Rows displayed inside the popover.

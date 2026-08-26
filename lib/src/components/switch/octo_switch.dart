@@ -10,6 +10,27 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// renders the switch disabled and ignores pointer / keyboard input.
 /// Keyboard: Tab focuses, `Space` toggles. An [OctoFocusRing] surrounds
 /// the track under keyboard focus.
+///
+/// ```dart
+/// OctoSwitch(
+///   value: _notifications,
+///   semanticLabel: 'Email notifications',
+///   onChanged: (on) => setState(() => _notifications = on),
+/// )
+/// ```
+///
+/// **States** — hovered, focused and pressed on the track; `disabled` follows
+/// `onChanged == null`. The thumb animates between positions on
+/// [OctoAnimation]'s standard duration and holds still when the platform asks
+/// for reduced motion.
+///
+/// **Accessibility** — exposes `Semantics(toggled: …)` — the flag screen readers
+/// use to say "on" / "off" — with [semanticLabel] as the name. Space toggles it.
+///
+/// See also:
+///
+///  * [OctoCheckbox], when the choice is part of a form to be submitted rather
+///    than a setting that takes effect immediately.
 class OctoSwitch extends StatefulWidget {
   /// Current on/off state.
   final bool value;

@@ -19,11 +19,30 @@ enum OctoSpinnerSize {
 /// Circular indeterminate loading indicator (Primer "Spinner").
 ///
 /// Draws a 270° arc that rotates continuously. The bar uses
-/// [theme.colors.fg.muted] by default; the remaining 90° gap reveals
+/// `theme.colors.fg.muted` by default; the remaining 90° gap reveals
 /// the surface underneath. When
 /// `MediaQuery.maybeDisableAnimationsOf(context) == true` the spinner
 /// freezes at a deterministic angle so motion-reduce users still see
 /// the loading indication without continuous motion (ADR-0008).
+///
+/// ```dart
+/// const OctoSpinner(size: OctoSpinnerSize.small, semanticLabel: 'Loading services')
+/// ```
+///
+/// **Sizes** — [OctoSpinnerSize]: `small` · `medium` · `large`. [strokeWidth]
+/// overrides the ring thickness when the default reads too heavy at a given size.
+///
+/// **States** — spins continuously on [duration]; the animation stops and holds a
+/// static frame when the platform asks for reduced motion, so a
+/// motion-sensitive user does not face an endlessly rotating element.
+///
+/// **Accessibility** — a live region named [semanticLabel], so a screen reader
+/// announces the wait rather than leaving the user on a silent screen.
+///
+/// See also:
+///
+///  * [OctoProgressBar], when the proportion of work done is known.
+///  * [OctoSkeleton], when the shape of the incoming content is known.
 class OctoSpinner extends StatefulWidget {
   /// Diameter preset. See [OctoSpinnerSize].
   final OctoSpinnerSize size;

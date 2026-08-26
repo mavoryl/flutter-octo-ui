@@ -9,6 +9,32 @@ import 'package:flutter/widgets.dart';
 /// What we control is the visual: padding, radius, colours, typography —
 /// all driven by the `TooltipThemeData` that
 /// `OctoThemeData.toMaterialTheme()` installs (ADR-0004).
+///
+/// ```dart
+/// OctoTooltip(
+///   message: 'Delete branch',
+///   child: OctoIconButton(
+///     icon: OctIcons.trash_16,
+///     semanticLabel: 'Delete branch',
+///     onPressed: _delete,
+///   ),
+/// )
+/// ```
+///
+/// **Variants** — [triggerMode] follows Flutter's `TooltipTriggerMode`; the
+/// default shows on hover for pointers and on long-press for touch.
+///
+/// **States** — the tooltip fades in after the platform's usual delay and out on
+/// exit; it holds still when the platform asks for reduced motion.
+///
+/// **Accessibility** — a tooltip is a hint for sighted pointer users, not an
+/// accessible name. Screen readers may never surface it, so give the child its
+/// own label — as in the sample above, where the icon button repeats the text in
+/// [OctoIconButton.semanticLabel]. Never put information *only* in a tooltip.
+///
+/// See also:
+///
+///  * [OctoPopover], when the content is interactive rather than a hint.
 class OctoTooltip extends StatelessWidget {
   /// Plain-text message shown on hover or long press.
   final String message;

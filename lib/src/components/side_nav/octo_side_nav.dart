@@ -17,6 +17,32 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 /// Keyboard:
 /// - `Up` / `Down` move focus between rows.
 /// - `Space` / `Enter` activates the focused row (same as a tap).
+///
+/// ```dart
+/// OctoSideNav(
+///   selectedIndex: _section,
+///   onChanged: (i) => setState(() => _section = i),
+///   items: const [
+///     OctoSideNavItem(label: 'Services', icon: OctoIcon(OctIcons.server_16)),
+///     OctoSideNavItem(label: 'Alerts', icon: OctoIcon(OctIcons.bell_16)),
+///   ],
+/// )
+/// ```
+///
+/// **Variants** — [OctoSideNavItem.trailing] holds a count or status dot;
+/// [OctoSideNavItem.icon] is optional, so an icon-less list of sections works
+/// without a column of blank space.
+///
+/// **States** — items track hover and focus; the item at [selectedIndex] is
+/// selected. `disabled` follows `onChanged == null`.
+///
+/// **Accessibility** — the list is one container named `Sidebar navigation`, and
+/// each item is a button carrying `Semantics(selected: …)`. Enter and Space
+/// activate the focused item.
+///
+/// See also:
+///
+///  * [OctoUnderlineNav], for horizontal navigation across the top of a view.
 class OctoSideNav extends StatelessWidget {
   /// Rows to render, top to bottom.
   final List<OctoSideNavItem> items;

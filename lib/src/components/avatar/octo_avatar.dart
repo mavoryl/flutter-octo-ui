@@ -39,6 +39,34 @@ enum OctoAvatarShape {
 /// [initials] string for the fallback, plus an accessibility label.
 /// While the image loads — or if it fails — a neutral surface with the
 /// initials is shown.
+///
+/// ```dart
+/// const OctoAvatar(
+///   imageUrl: 'https://example.com/u/42.png',
+///   semanticLabel: 'Marat Shakirov',
+///   size: OctoAvatarSize.md,
+/// )
+/// ```
+///
+/// **Variants** — [OctoAvatarShape]: `circle` for people, `square` for
+/// organisations and repositories, matching Primer's convention.
+///
+/// **Sizes** — [OctoAvatarSize]: `xs` · `sm` · `md` · `lg` · `xl`.
+///
+/// **Fallback** — with no [imageUrl] or [imageProvider], the avatar draws
+/// [initials] over a neutral surface; a failed image load falls back the same
+/// way, so a broken URL never leaves a hole in a list.
+///
+/// **States** — none; wrap in [OctoCard] or a button when the avatar is a target.
+///
+/// **Accessibility** — [semanticLabel] is **required** and is the whole accessible
+/// name: the person or entity, not "avatar". The initials fallback is excluded
+/// from semantics so a screen reader announces the name once instead of the name
+/// followed by two stray letters.
+///
+/// See also:
+///
+///  * [OctoAvatarStack], for a row of overlapping avatars.
 class OctoAvatar extends StatelessWidget {
   /// Image URL fetched via [NetworkImage]. Mutually exclusive with
   /// [imageProvider].

@@ -42,8 +42,31 @@ enum OctoPopoverPlacement {
 ///   child: OctoButton.label('Author', onPressed: _controller.toggle),
 /// )
 /// ```
+///
+/// **Variants** — [OctoPopoverPlacement]: `bottomStart` · `bottomEnd` ·
+/// `topStart` · `topEnd`. Start / end resolve against the ambient
+/// `Directionality`, so an RTL locale flips the anchoring without a second code
+/// path. [gap] sets the distance from the trigger and [maxWidth] bounds the
+/// surface.
+///
+/// **States** — the surface closes on outside tap and on Escape. Tapping the
+/// trigger while open closes it rather than reopening: trigger and surface share
+/// one tap region, so the outside-tap dismissal does not race the trigger's own
+/// toggle.
+///
+/// **Accessibility** — the surface is a semantic container named [semanticLabel];
+/// give it one, since a panel announced only as a group of widgets leaves a
+/// screen-reader user without context. Escape closes it. Unlike [OctoDialog] the
+/// popover does **not** trap focus — that is what makes it right for a light
+/// panel and wrong for anything requiring a decision.
+///
+/// See also:
+///
+///  * [OctoMenu], when the content is a list of commands that closes on select.
+///  * [OctoDialog], when the user must respond before continuing.
 class OctoPopover extends StatefulWidget {
-  /// Trigger widget. Must wire its tap to [controller.toggle] (or `open`).
+  /// Trigger widget. Must wire its tap to [OctoOverlayController.toggle]
+  /// (or `open`).
   final Widget child;
 
   /// Surface content. Any widget — forms, text, lists.
