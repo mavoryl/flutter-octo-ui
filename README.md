@@ -19,7 +19,16 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.11.0`**.
+**Stable** — `1.0.0`. The theme API and every component API are frozen under
+semantic versioning: additions land in minor releases, and nothing breaks
+before `2.0.0`.
+
+What that covers: light and dark themes with high-contrast variants, an
+accessibility baseline verified by tests, 37 components with golden coverage,
+colour tokens generated from Primer Primitives, and per-component
+documentation. What it does not: the colour-blind palette variants are enum
+slots that still throw `UnimplementedError`, and `lib/src/` remains private —
+internal paths may move without a major bump.
 
 ## Component catalogue
 
@@ -59,7 +68,7 @@ that doesn't compile, and CI fails on any unresolved doc reference.
 
 ```yaml
 dependencies:
-  octo_ui: ^0.11.0
+  octo_ui: ^1.0.0
 ```
 
 Or `flutter pub add octo_ui`.

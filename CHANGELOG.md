@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-08-26
+
+`1.0.0` freezes the theme API and every component API under semantic
+versioning. All eight criteria the plan set for this release are met: stable
+theme and component APIs, light and dark themes, an accessibility baseline
+verified by tests, examples, documentation, golden tests, and no known layout
+breakage on web or desktop.
+
+Known gaps, stated so the version number does not overclaim: the colour-blind
+palette variants of `OctoColorSchemeVariant` are reserved enum slots that
+throw `UnimplementedError`, and `lib/src/` stays private — internal paths may
+still move without a major bump.
+
 ### Added
 
 - **Per-component documentation.** All 37 components now carry a class-level
