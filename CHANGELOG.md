@@ -2,6 +2,41 @@
 
 ## [Unreleased]
 
+## [0.10.0] — 2026-08-26
+
+### Added
+
+- **Responsive layer** (`OctoBreakpoint`, `context.octoBreakpoint`,
+  `context.isAtLeast`, `OctoResponsiveBuilder`). `OctoBreakpoints` has
+  been a theme token since the first release with nothing reading it;
+  this is the API that does. The extension resolves against the window
+  via `MediaQuery`, the builder against the incoming constraints via
+  `LayoutBuilder` — the distinction that matters for content sitting
+  beside a sidebar. Thresholds come from the theme, so `copyWith`
+  re-tunes every call site at once.
+- **`OctoFilterBar`** — search-and-filter row above a list or table. The
+  search field is built in; the filters themselves are caller-supplied
+  widgets in a `Wrap`, so a narrow bar reflows instead of overflowing.
+  Optional clear button and an active-filter counter.
+- **Service-monitoring dashboard** in `example/`, now the landing screen
+  of the demo (the kitchen sink is one tap away and still there). Dense
+  table, real filtering, incident feed — and three layout decisions
+  driven by the responsive layer rather than by fixed widths: the KPI row
+  goes 1 / 2 / 4 columns, the sidebar collapses into a popover below
+  `lg`, and the table drops its latency / error columns below `md`.
+
+### Fixed
+
+- **`OctoStateLabel` overflowed a narrow column.** Status pills live in
+  table cells, where the column decides the width — the label now
+  ellipsizes instead of painting an overflow stripe across the row.
+
+### Changed
+
+- README drops the golden-testing section: it documented the package's
+  own test tooling, which is not what a consumer of the package needs
+  from the pub.dev landing page.
+
 ## [0.9.0] — 2026-08-26
 
 ### Added

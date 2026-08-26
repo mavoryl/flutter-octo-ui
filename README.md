@@ -19,11 +19,11 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.9.0`**.
+Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.10.0`**.
 
 ## Component catalogue
 
-36 components across 6 categories. Each one has a [golden snapshot](test/goldens) and unit / widget tests.
+37 components across 6 categories, each covered by unit and widget tests.
 
 **Form & input**
 &nbsp;&nbsp;`OctoButton` · `OctoIconButton` · `OctoTextField` · `OctoSwitch` · `OctoCheckbox` · `OctoRadio` · `OctoSegmentedControl` · `OctoDropdown`
@@ -41,13 +41,13 @@ Pre-1.0 — APIs may evolve between `0.x` releases. The current published versio
 &nbsp;&nbsp;`OctoDataTable<T>` · `OctoTimeline` · `OctoProgressBar` · `OctoSpinner`
 
 **Layout primitives**
-&nbsp;&nbsp;`OctoCard` · `OctoCollapsible` · `OctoDivider`
+&nbsp;&nbsp;`OctoCard` · `OctoCollapsible` · `OctoDivider` · `OctoFilterBar`
 
 ## Installation
 
 ```yaml
 dependencies:
-  octo_ui: ^0.9.0
+  octo_ui: ^0.10.0
 ```
 
 Or `flutter pub add octo_ui`.
@@ -139,6 +139,26 @@ The public API is reachable only through `package:octo_ui/octo_ui.dart`. Interna
 
 The package re-exports `OctIcons` from [`flutter_octicons`](https://pub.dev/packages/flutter_octicons) so callers can paint Octicons without an extra dependency.
 
+## Responsive layout
+
+Breakpoints are theme tokens (`xs` 320 · `sm` 544 · `md` 768 · `lg` 1012 · `xl` 1280 · `xxl` 1400, matching Primer viewports), and two APIs read them:
+
+```dart
+// Window size class — for decisions that follow the viewport.
+if (context.isAtLeast(OctoBreakpoint.lg)) showSidebar();
+
+// Available-space size class — for content that sits beside a sidebar,
+// inside a split view, or in any box narrower than the window.
+OctoResponsiveBuilder(
+  builder: (context, breakpoint) => GridView.count(
+    crossAxisCount: breakpoint.isAtLeast(OctoBreakpoint.lg) ? 4 : 2,
+    children: tiles,
+  ),
+)
+```
+
+Thresholds come from `OctoThemeData.breakpoints`, so `copyWith` re-tunes every call site at once.
+
 ## Accessibility
 
 - Every interactive widget exposes `Semantics(button|toggled|selected|enabled|expanded, label)` matching its current state.
@@ -152,14 +172,10 @@ The package re-exports `OctIcons` from [`flutter_octicons`](https://pub.dev/pack
 
 ```bash
 flutter analyze
-flutter test                                   # widget + unit
-flutter test test/goldens/                     # golden regression
-flutter test test/goldens/ --update-goldens    # regenerate baselines
+flutter test
 ```
 
-Goldens are built with [`golden_matrix`](https://pub.dev/packages/golden_matrix). Small components use `componentMatrixGolden` (widget-sized PNGs); scaffold-positioned components use `matrixGolden`. Baselines are deterministic on **a single fixed OS** — currently macOS, matching the development environment. Cross-OS runs produce sub-pixel diffs; run goldens only on macOS in CI.
-
-CI runs `dart format` + `flutter analyze` + `flutter test` on every push; the JUnit report from `golden_matrix` is published inline on the PR.
+CI runs `dart format` + `flutter analyze` + `flutter test` on every push.
 
 ## License
 
