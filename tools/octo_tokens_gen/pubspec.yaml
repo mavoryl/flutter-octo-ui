@@ -1,0 +1,21 @@
+name: octo_tokens_gen
+description: >-
+  Generates octo_ui colour and breakpoint tokens from a frozen Primer
+  Primitives snapshot. Development tool — never published, never a
+  dependency of octo_ui itself.
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  # Reading the npm tarball during `fetch`. Only the tool depends on this —
+  # `octo_ui` stays dependency-free on this axis.
+  archive: ^3.6.0
+  # sha256 of the tarball, recorded in the snapshot for provenance.
+  crypto: ^3.0.0
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.25.0

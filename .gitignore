@@ -43,3 +43,6 @@ test/goldens/**/*_report.json
 # golden_matrix failure artifacts — diff / master / test PNGs written when
 # a comparison fails locally. Uploaded as CI artifacts only.
 test/goldens/**/failures/
+
+# Token generator build output (the root `/build/` pattern is anchored).
+tools/octo_tokens_gen/build/

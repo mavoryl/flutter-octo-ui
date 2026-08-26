@@ -2,6 +2,8 @@ import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/foundation.dart';
 
+import 'package:octo_ui/src/tokens/generated/primer_tokens.g.dart';
+
 /// Layout breakpoints mirroring Primer Viewport sizes.
 @immutable
 class OctoBreakpoints {
@@ -25,12 +27,12 @@ class OctoBreakpoints {
 
   /// Creates a breakpoint set. Defaults match Primer Viewport sizes.
   const OctoBreakpoints({
-    this.xs = 320,
-    this.sm = 544,
-    this.md = 768,
-    this.lg = 1012,
-    this.xl = 1280,
-    this.xxl = 1400,
+    this.xs = kOctoBreakpointXs,
+    this.sm = kOctoBreakpointSm,
+    this.md = kOctoBreakpointMd,
+    this.lg = kOctoBreakpointLg,
+    this.xl = kOctoBreakpointXl,
+    this.xxl = kOctoBreakpointXxl,
   });
 
   /// Default Primer-aligned breakpoints.

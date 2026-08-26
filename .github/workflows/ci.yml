@@ -46,11 +46,30 @@ jobs:
         working-directory: example
         run: flutter pub get
 
+      # `flutter analyze` and `dart format` at the repository root walk into
+      # tools/octo_tokens_gen too, and the analyzer needs that package's
+      # dependencies resolved before it can see `package:test`.
+      - name: Resolve token generator dependencies
+        working-directory: tools/octo_tokens_gen
+        run: dart pub get
+
       - name: Format check (page_width=100, configured in analysis_options.yaml)
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze
         run: flutter analyze
+
+      - name: Test — token generator
+        working-directory: tools/octo_tokens_gen
+        run: dart test
+
+      # The colour palettes and breakpoint scale under
+      # lib/src/tokens/generated/ are emitted from the committed Primer
+      # snapshot. This fails if either was hand-edited or if someone
+      # refreshed the snapshot without regenerating.
+      - name: Generated tokens are in sync with the snapshot
+        working-directory: tools/octo_tokens_gen
+        run: dart run octo_tokens_gen generate --check
 
       - name: Test — widget / unit / goldens
         run: flutter test --coverage

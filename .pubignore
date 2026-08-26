@@ -50,6 +50,11 @@ test/
 # CI plumbing.
 .github/
 
+# Token generator — a dev tool plus its frozen Primer snapshot. Consumers
+# get the generated `lib/src/tokens/generated/` output, not the machinery
+# that produced it.
+tools/
+
 # Tooling configs — consumers ship their own analyzer / project files.
 analysis_options.yaml
 .metadata
