@@ -4,44 +4,82 @@ import 'package:octo_ui/octo_ui.dart';
 
 import '_octo_matrix.dart';
 
-class _PR {
-  final int number;
-  final String title;
-  final String author;
-  final int comments;
+class _Service {
+  final String name;
+  final String owner;
+  final int p95;
+  final String health;
   final OctoStateLabelVariant status;
-  const _PR(this.number, this.title, this.author, this.comments, this.status);
+  final IconData icon;
+  const _Service(
+    this.name,
+    this.owner,
+    this.p95,
+    this.health,
+    this.status,
+    this.icon,
+  );
 }
 
+// The variant's default icon is lifecycle-shaped (a pull-request glyph), which
+// reads oddly next to "Healthy" — so each row names its own.
 const _rows = [
-  _PR(42, 'Add tabs component', 'anna', 5, OctoStateLabelVariant.open),
-  _PR(43, 'Fix timeline rail', 'bob', 2, OctoStateLabelVariant.merged),
-  _PR(44, 'Cut 0.6 release', 'cara', 0, OctoStateLabelVariant.draft),
-  _PR(45, 'Switch chip dismiss', 'dee', 8, OctoStateLabelVariant.closed),
+  _Service(
+    'checkout-api',
+    'payments',
+    142,
+    'Healthy',
+    OctoStateLabelVariant.open,
+    OctIcons.check_circle_16,
+  ),
+  _Service(
+    'search-indexer',
+    'discovery',
+    890,
+    'Degraded',
+    OctoStateLabelVariant.attention,
+    OctIcons.alert_16,
+  ),
+  _Service(
+    'image-resizer',
+    'media',
+    0,
+    'Down',
+    OctoStateLabelVariant.closed,
+    OctIcons.x_circle_16,
+  ),
+  _Service(
+    'billing-worker',
+    'payments',
+    210,
+    'Maintenance',
+    OctoStateLabelVariant.draft,
+    OctIcons.tools_16,
+  ),
 ];
 
-List<OctoDataColumn<_PR>> _buildColumns() => [
-      OctoDataColumn<_PR>(label: '#', text: (r) => '#${r.number}'),
-      // Title is the wide flex column — it soaks up the leftover space
+List<OctoDataColumn<_Service>> _buildColumns() => [
+      // Service is the wide flex column — it soaks up the leftover space
       // while every other column hugs its content via IntrinsicColumnWidth.
-      OctoDataColumn<_PR>(
-        label: 'Title',
-        text: (r) => r.title,
+      OctoDataColumn<_Service>(
+        label: 'Service',
+        text: (r) => r.name,
         sortable: true,
         flex: 1,
       ),
-      OctoDataColumn<_PR>(
+      OctoDataColumn<_Service>(
         label: 'Status',
         cell: (_, r) => OctoStateLabel(
-          label: r.status.name,
+          label: r.health,
           variant: r.status,
+          icon: r.icon,
           emphasis: OctoStateLabelEmphasis.low,
         ),
       ),
-      OctoDataColumn<_PR>(label: 'Author', text: (r) => r.author),
-      OctoDataColumn<_PR>(
-        label: 'Comments',
-        text: (r) => '${r.comments}',
+      OctoDataColumn<_Service>(label: 'Team', text: (r) => r.owner),
+      OctoDataColumn<_Service>(
+        label: 'p95 ms',
+        text: (r) => '${r.p95}',
         alignment: OctoDataColumnAlignment.end,
         sortable: true,
       ),
@@ -56,7 +94,7 @@ void main() {
         builder: () => _Sampler(
           child: SizedBox(
             width: 640,
-            child: OctoDataTable<_PR>(columns: _buildColumns(), rows: _rows),
+            child: OctoDataTable<_Service>(columns: _buildColumns(), rows: _rows),
           ),
         ),
       ),
@@ -65,10 +103,10 @@ void main() {
         builder: () => _Sampler(
           child: SizedBox(
             width: 640,
-            child: OctoDataTable<_PR>(
+            child: OctoDataTable<_Service>(
               columns: _buildColumns(),
               rows: _rows,
-              sortColumnIndex: 4,
+              sortColumnIndex: 3,
               sortDirection: OctoSortDirection.desc,
             ),
           ),
@@ -79,7 +117,7 @@ void main() {
         builder: () => _Sampler(
           child: SizedBox(
             width: 640,
-            child: OctoDataTable<_PR>(
+            child: OctoDataTable<_Service>(
               columns: _buildColumns(),
               rows: _rows,
               density: OctoDataTableDensity.compact,
@@ -93,7 +131,7 @@ void main() {
         builder: () => _Sampler(
           child: SizedBox(
             width: 640,
-            child: OctoDataTable<_PR>(
+            child: OctoDataTable<_Service>(
               columns: _buildColumns(),
               rows: const [],
               emptyMessage: 'No PRs match the filter',

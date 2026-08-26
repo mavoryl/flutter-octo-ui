@@ -42,7 +42,8 @@ import 'package:octo_ui/src/theme/octo_theme.dart';
 ///
 /// **Variants** — [openShortcut] overrides the default ⌘K / Ctrl-K binding;
 /// [maxWidth] and [maxHeight] bound the panel on large screens. Filtering is
-/// built in and matches on the item labels.
+/// built in: the query is matched as a substring of an entry's label or its
+/// description, so a command is findable by what it does as well as by name.
 ///
 /// **States** — the panel opens over [child] with the query field focused, the
 /// first match highlighted, and hover / focus tracked per entry. Entries whose

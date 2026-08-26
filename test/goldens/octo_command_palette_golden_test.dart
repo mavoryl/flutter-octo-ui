@@ -48,19 +48,19 @@ class _PaletteStageState extends State<_PaletteStage> {
         controller: _controller,
         items: const [
           OctoActionListItem(
-            label: 'New issue',
-            leading: Icon(OctIcons.plus_16),
+            label: 'Restart service',
+            leading: Icon(OctIcons.sync_16),
             onPressed: _noop,
           ),
           OctoActionListItem(
-            label: 'New pull request',
-            leading: Icon(OctIcons.git_pull_request_16),
+            label: 'Acknowledge alert',
+            leading: Icon(OctIcons.bell_16),
             onPressed: _noop,
           ),
           OctoActionListItem(
-            label: 'Open settings',
-            leading: Icon(OctIcons.gear_16),
-            description: 'Repository preferences and integrations',
+            label: 'Open runbook',
+            leading: Icon(OctIcons.book_16),
+            description: 'Escalation steps and on-call contacts',
             onPressed: _noop,
           ),
           OctoActionListItem(
