@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -98,7 +99,7 @@ void main() {
         ),
       );
       final node = tester.getSemantics(find.text('Open'));
-      expect(node.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(node.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
       handle.dispose();
     });
 
@@ -116,9 +117,9 @@ void main() {
         ),
       );
       final open = tester.getSemantics(find.text('Open'));
-      expect(open.getSemanticsData().flagsCollection.isSelected, isTrue);
+      expect(open.getSemanticsData().flagsCollection.isSelected, Tristate.isTrue);
       final all = tester.getSemantics(find.text('All'));
-      expect(all.getSemanticsData().flagsCollection.isSelected, isFalse);
+      expect(all.getSemanticsData().flagsCollection.isSelected, Tristate.isFalse);
       handle.dispose();
     });
   });

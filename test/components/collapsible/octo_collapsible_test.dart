@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -123,7 +124,7 @@ void main() {
       // Text widget itself sits inside that Semantics scope.
       final flags = tester.getSemantics(find.text('Details')).getSemanticsData().flagsCollection;
       expect(flags.isButton, isTrue);
-      expect(flags.isExpanded, isTrue);
+      expect(flags.isExpanded, Tristate.isTrue);
       handle.dispose();
     });
   });

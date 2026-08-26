@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -109,14 +110,14 @@ void main() {
       // Disabled tiles don't have a tappable GestureDetector — taps go
       // through to the background. Verify by the Semantics enabled flag.
       final prev = tester.getSemantics(find.bySemanticsLabel('Previous page')).getSemanticsData();
-      expect(prev.flagsCollection.isEnabled, isFalse);
+      expect(prev.flagsCollection.isEnabled, Tristate.isFalse);
 
       await _pump(
         tester,
         OctoPagination(currentPage: 5, pageCount: 5, onPageChanged: (_) {}),
       );
       final next = tester.getSemantics(find.bySemanticsLabel('Next page')).getSemanticsData();
-      expect(next.flagsCollection.isEnabled, isFalse);
+      expect(next.flagsCollection.isEnabled, Tristate.isFalse);
     });
 
     testWidgets('ellipsis renders for wide ranges', (tester) async {
@@ -144,7 +145,7 @@ void main() {
         ),
       );
       final data = tester.getSemantics(find.bySemanticsLabel('Page 2')).getSemanticsData();
-      expect(data.flagsCollection.isSelected, isTrue);
+      expect(data.flagsCollection.isSelected, Tristate.isTrue);
       handle.dispose();
     });
   });

@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -63,9 +64,9 @@ void main() {
         ),
       );
       final issuesNode = tester.getSemantics(find.text('Issues'));
-      expect(issuesNode.getSemanticsData().flagsCollection.isSelected, isTrue);
+      expect(issuesNode.getSemanticsData().flagsCollection.isSelected, Tristate.isTrue);
       final codeNode = tester.getSemantics(find.text('Code'));
-      expect(codeNode.getSemanticsData().flagsCollection.isSelected, isFalse);
+      expect(codeNode.getSemanticsData().flagsCollection.isSelected, Tristate.isFalse);
       handle.dispose();
     });
 
@@ -85,7 +86,7 @@ void main() {
       // of not crashing. Also verify enabled flag is off.
       final handle = tester.ensureSemantics();
       final node = tester.getSemantics(find.text('Issues'));
-      expect(node.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(node.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
       handle.dispose();
     });
 

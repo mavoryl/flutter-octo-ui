@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -63,7 +64,7 @@ void main() {
       );
       final flags =
           tester.getSemantics(find.text('Discussions')).getSemanticsData().flagsCollection;
-      expect(flags.isSelected, isTrue);
+      expect(flags.isSelected, Tristate.isTrue);
       handle.dispose();
     });
 

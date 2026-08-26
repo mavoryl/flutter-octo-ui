@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/material.dart' show CircularProgressIndicator;
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
@@ -34,7 +35,7 @@ void main() {
       await tester.tap(find.byType(OctoButton));
       final semantics = tester.getSemantics(find.byType(OctoButton));
       expect(semantics.getSemanticsData().flagsCollection.isButton, isTrue);
-      expect(semantics.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(semantics.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
       handle.dispose();
     });
 

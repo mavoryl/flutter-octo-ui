@@ -1,3 +1,4 @@
+import 'dart:ui' show CheckedState;
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -87,7 +88,7 @@ void main() {
       final flags =
           tester.getSemantics(find.byType(OctoRadio<String>)).getSemanticsData().flagsCollection;
       expect(flags.isInMutuallyExclusiveGroup, isTrue);
-      expect(flags.isChecked, isTrue);
+      expect(flags.isChecked, CheckedState.isTrue);
       handle.dispose();
     });
   });

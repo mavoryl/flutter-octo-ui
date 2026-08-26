@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -53,7 +54,7 @@ void main() {
       await tester.tap(find.text('Disabled'));
       expect(taps, 0);
       final node = tester.getSemantics(find.text('Disabled'));
-      expect(node.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(node.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
     });
 
     testWidgets('selected exposes selected flag in Semantics', (tester) async {
@@ -67,7 +68,7 @@ void main() {
         ),
       );
       final node = tester.getSemantics(find.text('Picked'));
-      expect(node.getSemanticsData().flagsCollection.isSelected, isTrue);
+      expect(node.getSemanticsData().flagsCollection.isSelected, Tristate.isTrue);
       handle.dispose();
     });
 

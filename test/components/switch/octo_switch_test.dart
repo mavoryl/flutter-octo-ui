@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -56,17 +57,18 @@ void main() {
       await _pump(tester, const OctoSwitch(value: false, onChanged: null));
       await tester.tap(find.byType(OctoSwitch));
       final node = tester.getSemantics(find.byType(OctoSwitch));
-      expect(node.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(node.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
       handle.dispose();
     });
 
-    testWidgets('Semantics carries hasToggledState + correct isToggled', (tester) async {
+    testWidgets('Semantics carries the toggled state', (tester) async {
       final handle = tester.ensureSemantics();
       await _pump(tester, OctoSwitch(value: true, onChanged: (_) {}));
       final node = tester.getSemantics(find.byType(OctoSwitch));
       final flags = node.getSemanticsData().flagsCollection;
-      expect(flags.hasToggledState, isTrue);
-      expect(flags.isToggled, isTrue);
+      // Tristate.isTrue means both "this node has a toggled state" and
+      // "it is on" — the pre-3.44 API split that across two flags.
+      expect(flags.isToggled, Tristate.isTrue);
       handle.dispose();
     });
   });

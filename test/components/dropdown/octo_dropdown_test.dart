@@ -1,3 +1,4 @@
+import 'dart:ui' show Tristate;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:octo_ui/octo_ui.dart';
@@ -97,7 +98,7 @@ void main() {
         ),
       );
       final node = tester.getSemantics(find.byType(OctoButton));
-      expect(node.getSemanticsData().flagsCollection.isEnabled, isFalse);
+      expect(node.getSemanticsData().flagsCollection.isEnabled, Tristate.isFalse);
       handle.dispose();
     });
   });

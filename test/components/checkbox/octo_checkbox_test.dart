@@ -1,3 +1,4 @@
+import 'dart:ui' show CheckedState;
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -74,7 +75,7 @@ void main() {
       expect(v, isTrue);
     });
 
-    testWidgets('Semantics exposes hasCheckedState + correct isChecked / mixed', (tester) async {
+    testWidgets('Semantics reports a mixed check state for a tristate null value', (tester) async {
       final handle = tester.ensureSemantics();
       await _pump(
         tester,
@@ -82,9 +83,10 @@ void main() {
       );
       final flags =
           tester.getSemantics(find.byType(OctoCheckbox)).getSemanticsData().flagsCollection;
-      expect(flags.hasCheckedState, isTrue);
-      expect(flags.isChecked, isFalse);
-      expect(flags.isCheckStateMixed, isTrue);
+      // A tristate checkbox with a null value is neither checked nor
+      // unchecked — CheckedState.mixed carries both facts at once, where the
+      // pre-3.44 API needed hasCheckedState + isChecked + isCheckStateMixed.
+      expect(flags.isChecked, CheckedState.mixed);
       handle.dispose();
     });
 
