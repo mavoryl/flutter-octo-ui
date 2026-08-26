@@ -19,7 +19,7 @@ Material is mobile-first and design-opinionated; Cupertino is iOS-locked; most b
 
 ## Status
 
-Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.10.0`**.
+Pre-1.0 — APIs may evolve between `0.x` releases. The current published version is **`0.11.0`**.
 
 ## Component catalogue
 
@@ -47,7 +47,7 @@ Pre-1.0 — APIs may evolve between `0.x` releases. The current published versio
 
 ```yaml
 dependencies:
-  octo_ui: ^0.10.0
+  octo_ui: ^0.11.0
 ```
 
 Or `flutter pub add octo_ui`.
@@ -120,6 +120,19 @@ final radius        = BorderRadius.all(Radius.circular(theme.radii.medium));
 
 Three built-in variants: `OctoThemeData.light()`, `.dark()`, and `OctoColorSchemeVariant.highContrast` for either brightness — WCAG-AA verified by tests.
 
+### Where the colours come from
+
+The four palettes and the breakpoint scale are **generated** from a pinned
+[`@primer/primitives`](https://github.com/primer/primitives) snapshot, not
+typed by hand, so every value traces back to an upstream token and a tarball
+digest. The snapshot is committed — builds never reach the network — and CI
+fails if the generated file and the snapshot disagree.
+
+`OctoRadius`, `OctoTypography`, `OctoShadows` and `OctoAnimation` stay
+hand-written: Primer states those as CSS shorthand, or on a step scale that
+doesn't line up with Flutter's — `borderRadius-small` is 3 px upstream against
+4 px here, and there is no 10 px type step for `labelSmall` at all.
+
 ## Architecture
 
 ```
@@ -133,6 +146,7 @@ lib/
     foundation/                      # OctoBox, OctoText, OctoIcon,
                                      # OctoFocusRing, OctoStateLayer
     components/<name>/               # one folder per component, internals private
+    tokens/generated/                # emitted from the Primer snapshot — never edited
 ```
 
 The public API is reachable only through `package:octo_ui/octo_ui.dart`. Internal paths under `lib/src/` are private and may move without a breaking-change bump.

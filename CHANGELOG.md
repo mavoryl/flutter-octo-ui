@@ -2,6 +2,50 @@
 
 ## [Unreleased]
 
+## [0.11.0] — 2026-08-26
+
+### Changed
+
+- **BREAKING (values, not API): colour tokens are now generated from Primer
+  Primitives.** The four palettes (`light`, `dark`, and their high-contrast
+  variants) and the `OctoBreakpoints` scale are emitted from a frozen
+  `@primer/primitives` 11.10.0 snapshot committed at
+  `tools/primer_primitives_snapshot.json`, rather than typed by hand. Two
+  things change at once, and both are deliberate:
+
+  1. **The generation path.** ADR-0009 called for a major bump when tokens stop
+     being hand-written, even at identical values, because the source of truth
+     moves.
+  2. **~61 of 128 colour values** (light 5, dark 14, light-hc 23, dark-hc 27).
+     ADR-0009 assumed a generator could reproduce the hand-written palette
+     1:1; measurement across 149 upstream releases showed no version matches
+     more than 83/128, and `border.muted` `#d8dee4` appears in no Primer
+     release at all. The palette now follows current upstream instead.
+
+  No API changed: same classes, same fields, same `copyWith`. If you pinned a
+  layout or a screenshot to specific hex values, expect a visual diff. The
+  loudest one is light-hc no longer being pure white — `canvas.inset` moves
+  from `#ffffff` to `#eff2f5`. All 28 WCAG contrast assertions of ADR-0008
+  still pass without touching a threshold.
+
+  Two token slots have no direct Primer counterpart and are mapped explicitly:
+  `fg.subtle` → `fgColor-disabled` (upstream removed `fgColor-subtle`) and
+  `neutral.emphasisPlus` → `bgColor-inverse`. See ADR-0010 for the full
+  reasoning and for what stays hand-written — `OctoRadius`, `OctoTypography`,
+  `OctoShadows`, `OctoAnimation` and the `gap`/`inset` aliases are outside the
+  generator's remit.
+
+### Added
+
+- **`tools/octo_tokens_gen`** — the generator itself: a dev-only Dart package
+  (`publish_to: none`, stripped from the published archive). `fetch --version
+  <x.y.z>` downloads upstream, trims ~1000 tokens per theme down to the few
+  dozen octo_ui consumes, and records the tarball sha256 for provenance;
+  `generate` emits `lib/src/tokens/generated/primer_tokens.g.dart`;
+  `generate --check` fails when the committed output has drifted, and runs in
+  CI as a fourth gate beside format, analyze and test. Upgrading Primer is now
+  two commands with a reviewable value diff instead of hand-edited hex.
+
 ## [0.10.0] — 2026-08-26
 
 ### Added
